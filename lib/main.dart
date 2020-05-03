@@ -11,6 +11,7 @@ void main() => runApp(MyApp());
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   static const String _title = 'Aplicação Nosso Shopping';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,10 +29,9 @@ void openPage(BuildContext context) {
     builder: (BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
           title: const Text('Registar'),
         ),
-<<<<<<< HEAD
+        
         body: Center(child: 
         Column (children: [
           SizedBox(height: 15),
@@ -41,14 +41,7 @@ void openPage(BuildContext context) {
           hintText: 'Name?',
           labelText: 'Name *',
   ),
-=======
-        body: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Password',
->>>>>>> d73624b9cbad6a9953fbdeb56cc47f9ff43d0bc7
-        ),
+          ),
         TextFormField(
           decoration: const InputDecoration(         
          icon: Icon(Icons.person),
@@ -79,14 +72,11 @@ void openPage(BuildContext context) {
         ),
      
     
-        ),
-        
+      ),
       );
     },
   ));
 }
-
-
 
 /// This is the stateless widget that the main application instantiates.
 class MyStatelessWidget extends StatelessWidget {
