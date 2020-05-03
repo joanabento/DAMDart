@@ -31,6 +31,7 @@ void openPage(BuildContext context) {
           backgroundColor: Colors.black,
           title: const Text('Registar'),
         ),
+<<<<<<< HEAD
         body: Center(child: 
         Column (children: [
           SizedBox(height: 15),
@@ -40,6 +41,13 @@ void openPage(BuildContext context) {
           hintText: 'Name?',
           labelText: 'Name *',
   ),
+=======
+        body: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: 'Password',
+>>>>>>> d73624b9cbad6a9953fbdeb56cc47f9ff43d0bc7
         ),
         TextFormField(
           decoration: const InputDecoration(         
