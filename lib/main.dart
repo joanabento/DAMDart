@@ -35,7 +35,7 @@ void openPage(BuildContext context) {
         obscureText: true,
         decoration: InputDecoration(
         border: OutlineInputBorder(),
-        labelText: '',
+        labelText: 'Password',
         ),
       ),
       );
