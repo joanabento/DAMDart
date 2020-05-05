@@ -11,6 +11,7 @@ void main() => runApp(MyApp());
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   static const String _title = 'Aplicação Nosso Shopping';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,66 +29,224 @@ void openPage(BuildContext context) {
     builder: (BuildContext context) {
       return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
           title: const Text('Registar'),
-        ),
-<<<<<<< HEAD
+          backgroundColor: Colors.black,
+        ),        
         body: Center(child: 
-        Column (children: [
-          SizedBox(height: 15),
-          TextFormField(
-         decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Name?',
-          labelText: 'Name *',
-  ),
-=======
-        body: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        labelText: 'Password',
->>>>>>> d73624b9cbad6a9953fbdeb56cc47f9ff43d0bc7
-        ),
-        TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Email?',
-          labelText: 'Email*',
-  ),
-        
+            
+            Column (children: [
+            SizedBox(height: 15),
+          Text(
+                'Efetue o seu registo',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 20),
+              ),
+                         
+              
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Name',
+              labelText: 'Name', 
+              
+            ),
+          ),
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Email',
+              labelText: 'Email',
+            ),
+          ),
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+          ButtonBar(
+            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Registar'),
+            color: Colors.black,
+            onPressed: () {/** */},
+            ),
+            FlatButton(
+            child: Text('Login'),
+            
+            color: Colors.black,
+            onPressed: () {openLogin(context);},
+            ),
+          ],
+        )
+        ]        
+      ),     
+      ),
+      );
+    },
+  ));
+}
+bool _obscureText = true;
 
-        ),
-        TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Password?',
-          labelText: 'Password*',
-  ),),
-  TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Confirmar Password?',
-          labelText: 'Confirmar Password*',
-  ),),
-    
-    
-        ]
+String _password;
+
+  // Toggles the password show status
 
 
 
-        ),
-     
-    
-        ),
-        
+void openLogin(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(
+    builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Login'),
+          backgroundColor: Colors.black,
+        ),        
+        body: Center(child: 
+            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            SizedBox(height: 15),
+           
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Email',
+              labelText: 'Email*',
+            ),
+          ),
+            TextFormField(
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+           
+            ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Login'),
+            color: Colors.black,
+            onPressed: () {/** */},
+            ),
+            FlatButton(
+            child: Text('Cancelar'),
+            color: Colors.black,
+            onPressed: () {/** */},
+            ),
+          ],
+        )
+        ]        
+      ),     
+      ),
       );
     },
   ));
 }
 
+void newContacto(BuildContext context){
+Navigator.push(context, MaterialPageRoute(
+    builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Contactos'),
+          backgroundColor: Colors.black,
+        ),        
+        body: Center(child: 
+            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            SizedBox(height: 15),
+           
+           Text(
+             'Contactos',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
+           ),
+            Text(
+             'NossoShopping',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             '(+351) 259 309 060.',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+
+            
+        ]        
+      ),     
+      ),
+      );
+    },
+  ));
 
 
+}
+
+void newHorarios(BuildContext context){
+
+}
+void newContactos(BuildContext context){
+
+}
+
+void newEventos(BuildContext context){
+
+}
+void newPromo(BuildContext context){
+
+}
+
+void newCine(BuildContext context){
+
+}
+
+void newTeatro(BuildContext context){
+
+}
+
+void newService(BuildContext context){
+
+}
 /// This is the stateless widget that the main application instantiates.
 class MyStatelessWidget extends StatelessWidget {
   MyStatelessWidget({Key key}) : super(key: key);
@@ -131,7 +290,7 @@ static const List<Widget> _widgetOptions = <Widget>[
        drawer: Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
-      children: const <Widget>[
+      children:  <Widget>[
         DrawerHeader(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -150,30 +309,37 @@ static const List<Widget> _widgetOptions = <Widget>[
         ListTile(
           leading: Icon(Icons.contacts),
           title: Text('Contactos'),
+          onTap: (){return newContacto(context);},
         ),
         ListTile(
           leading: Icon(Icons.schedule),
           title: Text('Horários'),
+          onTap: (){return newHorarios(context);},
         ),
         ListTile(
           leading: Icon(Icons.event),
           title: Text('Eventos'),
+          onTap: (){return newEventos(context);},
         ),
         ListTile(
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
+          onTap: (){return newPromo(context);},      
         ),
         ListTile(
           leading: Icon(Icons.movie),
           title: Text('Cinema'),
+          onTap: (){return newCine(context);},
         ),
         ListTile(
           leading: Icon(Icons.theaters),
           title: Text('Teatro'),
+          onTap: (){return newTeatro(context);},
         ),
         ListTile(
           leading: Icon(Icons.info),
           title: Text('Serviços'),
+          onTap: (){return newService(context);},
         ),
       ],
     ),
