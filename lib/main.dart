@@ -30,48 +30,126 @@ void openPage(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Registar'),
-        ),
-        
+        ),        
         body: Center(child: 
-        Column (children: [
-          SizedBox(height: 15),
-          TextFormField(
-         decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Name?',
-          labelText: 'Name *',
-  ),
+            
+            Column (children: [
+            SizedBox(height: 15),
+            TextFormField(
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Name?',
+              labelText: 'Name *',
+            ),
           ),
-        TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Email?',
-          labelText: 'Email*',
-  ),
-        
+            TextFormField(
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Email?',
+              labelText: 'Email*',
+            ),
+          ),
+            TextFormField(
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+            
+            ButtonBar(
+              mainAxisSize: MainAxisSize.max,
+              alignment: MainAxisAlignment.center,
+              children: <Widget>[
+              FlatButton(
+              child: Text('Registar'),
+              color: Colors.black,
+              onPressed: () {/** */},
+              ),
+              FlatButton(
+              child: Text('Login'),
+              color: Colors.black,
+              onPressed: () {openLogin(context);},
+              ),
+            ],
+          )]        
+        ),     
+      ),
+      );
+    },
+  ));
+}
+bool _obscureText = true;
 
-        ),
-        TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Password?',
-          labelText: 'Password*',
-  ),),
-  TextFormField(
-          decoration: const InputDecoration(         
-         icon: Icon(Icons.person),
-          hintText: 'Confirmar Password?',
-          labelText: 'Confirmar Password*',
-  ),),
-    
-    
-        ]
+String _password;
+
+  // Toggles the password show status
 
 
 
-        ),
-     
-    
+void openLogin(BuildContext context) {
+  Navigator.push(context, MaterialPageRoute(
+    builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Login'),
+        ),        
+        body: Center(child: 
+            Column (children: [
+            SizedBox(height: 15),
+           
+            TextFormField(
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Email',
+              labelText: 'Email*',
+            ),
+          ),
+            TextFormField(
+              decoration: const InputDecoration(
+              labelText: 'Password',
+              icon: const Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: const Icon(Icons.lock),
+              )),
+              validator: (val) => val.length < 6 ? 'Password too short.' : null,
+              onSaved: (val) => _password = val,
+              obscureText: true,
+            ),
+           
+            ButtonBar(
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Login'),
+            color: Colors.black,
+            onPressed: () {/** */},
+            ),
+            FlatButton(
+            child: Text('Cancelar'),
+            color: Colors.black,
+            onPressed: () {/** */},
+            ),
+          ],
+        )
+        ]        
+      ),     
       ),
       );
     },
@@ -168,7 +246,6 @@ static const List<Widget> _widgetOptions = <Widget>[
       ],
     ),
   ),
-
       body:  Center(
         child: _widgetOptions.elementAt(_selectedIndex),
         ),
@@ -180,7 +257,7 @@ static const List<Widget> _widgetOptions = <Widget>[
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          title: Text('My Profile'),
+          title: Text('My Profile'),         
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
