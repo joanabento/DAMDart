@@ -30,7 +30,6 @@ void openPage(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Registar'),
-<<<<<<< HEAD
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -112,7 +111,6 @@ void openPage(BuildContext context) {
   ));
 }
 bool _obscureText = true;
-=======
         ),
         
         body: Center(child: 
@@ -132,14 +130,12 @@ bool _obscureText = true;
           labelText: 'Email*',
   ),
         
->>>>>>> 37320f01cef0b36e212ffec19d6323198a6c4b75
 
 String _password;
 
   // Toggles the password show status
 
 
-<<<<<<< HEAD
 
 void openLogin(BuildContext context) {
   Navigator.push(context, MaterialPageRoute(
@@ -238,11 +234,6 @@ Navigator.push(context, MaterialPageRoute(
             
         ]        
       ),     
-=======
-        ),
-     
-    
->>>>>>> 37320f01cef0b36e212ffec19d6323198a6c4b75
       ),
       );
     },
@@ -251,7 +242,6 @@ Navigator.push(context, MaterialPageRoute(
 
 }
 
-<<<<<<< HEAD
 void newHorarios(BuildContext context){
 
 Navigator.push(context, MaterialPageRoute(
@@ -417,8 +407,6 @@ void newTeatro(BuildContext context){
 void newService(BuildContext context){
 
 }
-=======
->>>>>>> 37320f01cef0b36e212ffec19d6323198a6c4b75
 /// This is the stateless widget that the main application instantiates.
 class MyStatelessWidget extends StatelessWidget {
   MyStatelessWidget({Key key}) : super(key: key);
