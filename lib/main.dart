@@ -164,7 +164,7 @@ void openLogin(BuildContext context) {
             FlatButton(
             child: Text('Cancelar'),
             color: Colors.black,
-            onPressed: () {/** */},
+            onPressed: () {openPage(context);},
             ),
           ],
         )
@@ -200,7 +200,7 @@ Navigator.push(context, MaterialPageRoute(
              'NossoShopping',  
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 10),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
 
            ),
            Text(
@@ -211,6 +211,7 @@ Navigator.push(context, MaterialPageRoute(
 
            ),
 
+        
             
         ]        
       ),     
@@ -224,6 +225,146 @@ Navigator.push(context, MaterialPageRoute(
 
 void newHorarios(BuildContext context){
 
+Navigator.push(context, MaterialPageRoute(
+    builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Horários'),
+          backgroundColor: Colors.black,
+        ),        
+        body: Center(child: 
+            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            SizedBox(height: 15),
+                 
+
+           Text(
+             'Horários',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             'Centro Comercial',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '9h00 - 23h00',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+            Text(
+             'Lojas',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '10h00 - 23h00',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Cinema',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             'Segunda a Sábado - abertura às 13h00. \n Domingo  abertura às 10h30',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Parafarmácia',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '9h00 - 23h00',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Hipermercado',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '9h00 - 23h00 \n Domingo e feriados: 9h00 - 22h00',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+
+           Text(
+             'ACP',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '10h00 - 20h00 (encerra ao fim de semana)',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Parque de Estacionamento',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             'Parque A: \n segunda a quinta: 9h00 - 23-00h; \n sextas, sábados e véspera de feriado: 9h00 - 15min apos a última sessão de cine.',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Parque B: \n 9h00 - 23-00h',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+           Text(
+             'Parque C: \n Segunda a sexta: 12h00 - 22-30h \n Sábado e domingo: 9h00 - 22h30',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+            
+        ]        
+      ),     
+      ),
+      );
+    },
+  ));
 }
 void newContactos(BuildContext context){
 
