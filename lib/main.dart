@@ -110,78 +110,11 @@ void openPage(BuildContext context) {
     },
   ));
 }
-bool _obscureText = true;
+  
         
-        
-        body: Center(child: 
-            
-            Column (children: [
-            SizedBox(height: 15),
-            TextFormField(
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Name?',
-              labelText: 'Name *',
-            ),
-          ),
-            TextFormField(
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Email?',
-              labelText: 'Email*',
-            ),
-          ),
-            TextFormField(
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-            
-            ButtonBar(
-              mainAxisSize: MainAxisSize.max,
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[
-              FlatButton(
-              child: Text('Registar'),
-              color: Colors.black,
-              onPressed: () {/** */},
-              ),
-              FlatButton(
-              child: Text('Login'),
-              color: Colors.black,
-              onPressed: () {openLogin(context);},
-              ),
-            ],
-          )]        
-        ),     
-      ),
-      );
-    },
-  ));
-}
 bool _obscureText = true;
 
 String _password;
-
-  // Toggles the password show status
-
 
 
 void openLogin(BuildContext context) {
@@ -199,6 +132,9 @@ void openLogin(BuildContext context) {
            
             TextFormField(
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),        
+       
+            TextFormField(
               decoration: const InputDecoration(         
               icon: Icon(Icons.person),
               hintText: 'Email',
@@ -231,6 +167,7 @@ void openLogin(BuildContext context) {
             child: Text('Cancelar'),
             color: Colors.black,
             onPressed: () {openPage(context);},
+            
             ),
           ],
         )
