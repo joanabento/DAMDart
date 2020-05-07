@@ -30,7 +30,6 @@ void openPage(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Registar'),
-<<<<<<< HEAD
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -111,75 +110,8 @@ void openPage(BuildContext context) {
     },
   ));
 }
-bool _obscureText = true;
-        ),
+  
         
-=======
-        ),        
->>>>>>> 941882863e0cf403f8f40489eb79d9a96768f1b5
-        body: Center(child: 
-            
-            Column (children: [
-            SizedBox(height: 15),
-            TextFormField(
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Name?',
-              labelText: 'Name *',
-            ),
-          ),
-            TextFormField(
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Email?',
-              labelText: 'Email*',
-            ),
-          ),
-            TextFormField(
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-            
-            ButtonBar(
-              mainAxisSize: MainAxisSize.max,
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[
-              FlatButton(
-              child: Text('Registar'),
-              color: Colors.black,
-              onPressed: () {/** */},
-              ),
-              FlatButton(
-              child: Text('Login'),
-              color: Colors.black,
-              onPressed: () {openLogin(context);},
-              ),
-            ],
-          )]        
-        ),     
-      ),
-      );
-    },
-  ));
-}
 bool _obscureText = true;
 
 String _password;
@@ -194,7 +126,6 @@ void openLogin(BuildContext context) {
       return Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
-<<<<<<< HEAD
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -204,14 +135,9 @@ void openLogin(BuildContext context) {
            
             TextFormField(
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-=======
         ),        
-        body: Center(child: 
-            Column (children: [
-            SizedBox(height: 15),
-           
+       
             TextFormField(
->>>>>>> 941882863e0cf403f8f40489eb79d9a96768f1b5
               decoration: const InputDecoration(         
               icon: Icon(Icons.person),
               hintText: 'Email',
@@ -219,10 +145,7 @@ void openLogin(BuildContext context) {
             ),
           ),
             TextFormField(
-<<<<<<< HEAD
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-=======
->>>>>>> 941882863e0cf403f8f40489eb79d9a96768f1b5
               decoration: const InputDecoration(
               labelText: 'Password',
               icon: const Padding(
@@ -246,17 +169,13 @@ void openLogin(BuildContext context) {
             FlatButton(
             child: Text('Cancelar'),
             color: Colors.black,
-<<<<<<< HEAD
             onPressed: () {openPage(context);},
-=======
-            onPressed: () {/** */},
->>>>>>> 941882863e0cf403f8f40489eb79d9a96768f1b5
+            
             ),
           ],
         )
         ]        
       ),     
-<<<<<<< HEAD
       ),
       );
     },
@@ -302,8 +221,6 @@ Navigator.push(context, MaterialPageRoute(
             
         ]        
       ),     
-=======
->>>>>>> 941882863e0cf403f8f40489eb79d9a96768f1b5
       ),
       );
     },
