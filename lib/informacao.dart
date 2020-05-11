@@ -72,9 +72,6 @@ void CreateInfo(Informacao informacao) async {
   http.post(url,
       headers: {"Content-Type": "application/json"},
       body: body).then((http.Response response){
-
-      
-
 });
 }
 
@@ -87,7 +84,5 @@ void UpdateInfo(int idInfo, String what, DateTime hora, String nome, int contact
     body: body).then((http.Response response){
 
     });
-  
-  
 }
 }

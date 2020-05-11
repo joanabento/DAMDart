@@ -71,9 +71,7 @@ void CreateUtilizador(Utilizador user) async {
   http.post(url,
       headers: {"Content-Type": "application/json"},
       body: body).then((http.Response response){
-
-      
-
+        
 });
 }
 
