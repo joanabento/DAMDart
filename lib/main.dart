@@ -4,6 +4,8 @@
 // opens a [SnackBar], while the second action navigates to a new page.
 
 import 'package:flutter/material.dart';
+import 'package:my_app/Registo.dart';
+import 'package:my_app/utilizador.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,175 +13,98 @@ void main() => runApp(MyApp());
 /// This Widget is the main application widget.
 class MyApp extends StatelessWidget {
   static const String _title = 'Aplicação Nosso Shopping';
-
+  bool state = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      home: MyStatelessWidget(),
+      home: HomePage(),
     );
   }
 }
 
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
-
-void openPage(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(
-    builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Registar'),
-          backgroundColor: Colors.black,
-        ),        
-        body: Center(child: 
-            
-            Column (children: [
-            SizedBox(height: 15),
-          Text(
-                'Efetue o seu registo',  
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20),
-              ),
-                         
-              
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Name',
-              labelText: 'Name', 
-              
-            ),
-          ),
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Email',
-              labelText: 'Email',
-            ),
-          ),
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-          ButtonBar(
-            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            FlatButton(
-            child: Text('Registar'),
-            color: Colors.black,
-            onPressed: () {/** */},
-            ),
-            FlatButton(
-            child: Text('Login'),
-            
-            color: Colors.black,
-            onPressed: () {openLogin(context);},
-            ),
-          ],
-        )
-        ]        
-      ),     
-      ),
-      );
-    },
-  ));
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
 }
-  
+
+
+class _HomePageState extends State<HomePage> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    
+
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Center(child:Text('PratoDoDia')),
+        backgroundColor: Colors.red,
+      ),
+
+      body:Center( child:Column(
         
-bool _obscureText = true;
-
-String _password;
-
-
-void openLogin(BuildContext context) {
-  Navigator.push(context, MaterialPageRoute(
-    builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Login'),
-          backgroundColor: Colors.black,
-        ),        
-        body: Center(child: 
-            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-            SizedBox(height: 15),
-           
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),        
-       
-            TextFormField(
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Email',
-              labelText: 'Email*',
-            ),
-          ),
-            TextFormField(
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(
-              labelText: 'Password',
-              icon: const Padding(
-              padding: const EdgeInsets.only(top: 15.0),
-              child: const Icon(Icons.lock),
-              )),
-              validator: (val) => val.length < 6 ? 'Password too short.' : null,
-              onSaved: (val) => _password = val,
-              obscureText: true,
-            ),
-           
-            ButtonBar(
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            FlatButton(
-            child: Text('Login'),
-            color: Colors.black,
-            onPressed: () {/** */},
-            ),
-            FlatButton(
-            child: Text('Cancelar'),
-            color: Colors.black,
-            onPressed: () {openPage(context);},
+            children: getwidgets(),
+      
             
-            ),
-          ],
-        )
-        ]        
-      ),     
-      ),
-      );
-    },
-  ));
-}
+          ),
+    ));
+    
+  }
 
-void newContacto(BuildContext context){
+  List<Widget> getwidgets()
+  {
+     List<Widget> w = new List<Widget>();
+
+    w.add(SizedBox(height: 50,));
+
+    w.add(Text("Nosso Shopping", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.red, fontSize:34) ),);
+    w.add(Row(children:[SizedBox(width: 200,),Text("Que se come hoje?", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize:15) ), ],));
+
+    w.add(SizedBox(height: 50),);
+
+     
+
+     w.add(SizedBox(height: 50),);
+    w.add(SizedBox(
+       width: 200.0,
+       height: 50.0,child: RaisedButton(color: Theme.of(context).accentColor,child:Row(children: [Text("Registar", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize:15),),SizedBox(width: 80,),Icon(Icons.arrow_forward, color: Colors.white,),]),onPressed:(){ Navigator.push(context,MaterialPageRoute(builder: (context){
+              
+              
+          
+             return Registo();
+
+            
+
+            }));},),
+            
+            
+            
+    ));
+
+    w.add(SizedBox(height: 30,));
+
+   
+
+    w.add(new SizedBox(
+       width: 200.0,
+       height: 50.0,child: RaisedButton(color: Theme.of(context).accentColor,child:Row(children: [Text("Login", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize:15),),SizedBox(width: 100,),Icon(Icons.arrow_forward, color: Colors.white,),]),onPressed:(){ Navigator.push(context,MaterialPageRoute(builder: (context){
+              
+                            
+
+   
+       }));},),));
+
+     return w;
+     
+  }
+
+     
+
+
+
+/*void newContacto(BuildContext context){
 Navigator.push(context, MaterialPageRoute(
     builder: (BuildContext context) {
       return Scaffold(
@@ -509,4 +434,7 @@ static const List<Widget> _widgetOptions = <Widget>[
       ),
     );
   }
+  
+
+}*/
 }

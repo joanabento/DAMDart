@@ -57,22 +57,21 @@ Future<Utilizador> getUtilizadors(int id) async {
   return user;
 }
 
-void CreateUtilizador(Utilizador user) async {
-  var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idU':user.idu.toString(),
+Future <int> createUtilizador(Utilizador user) async {
+  var url = 'http://330821d7.ngrok.io/api/Utilizador';
+  var body = json.encode(<String,Object>{
+    'idU':user.idu,
     'nome':user.nome, //mm nomes como no c#
     'email':user.email,
     'pass':user.pass,
-    'tipo':user.tipo
+    //'tipo':user.tipo
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-        
-});
+      body: body);
+    return response.statusCode;
 }
 
 void UpdateUtilizador(int idU, String what, String nome, String pass) async{
