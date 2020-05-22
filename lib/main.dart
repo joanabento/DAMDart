@@ -39,8 +39,8 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(child:Text('PratoDoDia')),
-        backgroundColor: Colors.red,
+        title: Center(child:Text('Nosso Shopping')),
+        backgroundColor: Colors.blue,
       ),
 
       body:Center( child:Column(
