@@ -36,66 +36,62 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     
-
-
     return Scaffold(
       appBar: AppBar(
-        title: Center(child:Text('Nosso Shopping')),
-        backgroundColor: Colors.blue,
-      ),
+        title: const Text('Nosso Shopping'),
+        backgroundColor: Colors.black,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.person_add),
+            tooltip: 'Registar',
+            onPressed: () {
+              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Registo()),
+                              );
+            }
+            
+          ),
+         
+        ]),
 
       body:Center( child:Column(
         
             children: getwidgets(),
-      
+            
             
           ),
+          
     ));
     
   }
 
   List<Widget> getwidgets()
   {
-     List<Widget> w = new List<Widget>();
+    List<Widget> w = new List<Widget>();
 
-    w.add(SizedBox(height: 50,));
+   
 
-    w.add(Text("Nosso Shopping", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.red, fontSize:34) ),);
-    w.add(Row(children:[SizedBox(width: 200,),Text("Que se come hoje?", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.black, fontSize:15) ), ],));
+    w.add(SizedBox(height: 500, width: 500,));
 
-    w.add(SizedBox(height: 50),);
+  
 
-     
-
-     w.add(SizedBox(height: 50),);
-    w.add(SizedBox(
-       width: 200.0,
-       height: 50.0,child: RaisedButton(color: Theme.of(context).accentColor,child:Row(children: [Text("Registar", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize:15),),SizedBox(width: 80,),Icon(Icons.arrow_forward, color: Colors.white,),]),onPressed:(){ Navigator.push(context,MaterialPageRoute(builder: (context){
-              
-              
-          
-             return Registo();
-
-            
-
-            }));},),
-            
-            
-            
+    w.add(BottomNavigationBar(
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          title: Text('My Profile'),         
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.map),
+          title: Text('Map'),
+        ),
+      ]
     ));
-
-    w.add(SizedBox(height: 30,));
-
-   
-
-    w.add(new SizedBox(
-       width: 200.0,
-       height: 50.0,child: RaisedButton(color: Theme.of(context).accentColor,child:Row(children: [Text("Login", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize:15),),SizedBox(width: 100,),Icon(Icons.arrow_forward, color: Colors.white,),]),onPressed:(){ Navigator.push(context,MaterialPageRoute(builder: (context){
-              
-                            
-              return Login();
-   
-       }));},),));
 
      return w;
      

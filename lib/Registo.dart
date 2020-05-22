@@ -126,7 +126,12 @@ bool state = false;
             child: Text('Login'),
             
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login()),
+                              );
+            },
             ),
           ],
         )
