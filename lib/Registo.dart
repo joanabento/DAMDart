@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/Login.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -93,8 +94,7 @@ bool state = false;
               )),
               obscureText: true,
             ),
-          ButtonBar(
-            
+          ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -110,8 +110,11 @@ bool state = false;
               //retorna um inteiro
               Future <int> create = user.createUtilizador(user).then((int onValue){
                 if(onValue == 200){
-
-                  
+                    
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login()),
+                              );
 
                 }
                 else{

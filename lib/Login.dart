@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -66,7 +67,24 @@ final passc = TextEditingController();
             FlatButton(
             child: Text('Login'),
             color: Colors.black,
-            onPressed: () {/** */},
+            onPressed: () {
+              Utilizador user = new Utilizador();
+              user.email = emailc.text;
+              user.pass = passc.text;
+              Future <int> verifica = user.makelogin(user.email, user.pass).then((int onValue){
+                if(onValue != 0){
+
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Registo()),
+                              );
+                }
+                else {
+                  typeButton();
+                }
+              });
+              
+            },
             ),
             FlatButton(
             child: Text('Cancelar'),
@@ -81,6 +99,14 @@ final passc = TextEditingController();
       ),
       );
   }
+  
+   typeButton(){
+     setState(() {
+    state = !state;
+
+    });
 
     
+}
+
 }

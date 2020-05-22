@@ -33,7 +33,7 @@ factory Utilizador.fromJson(Map<String, dynamic> json)
 }
 
 Future<List> getUtilizadores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://52e2ef2d.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -46,7 +46,7 @@ Future<List> getUtilizadores() async{
 
 Future<Utilizador> getUtilizadors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://52e2ef2d.ngrok.io/api/Utilizador" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -58,7 +58,7 @@ Future<Utilizador> getUtilizadors(int id) async {
 }
 
 Future <int> createUtilizador(Utilizador user) async {
-  var url = 'http://330821d7.ngrok.io/api/Utilizador';
+  var url = 'http://52e2ef2d.ngrok.io/api/Utilizador';
   var body = json.encode(<String,Object>{
     'idU':user.idu,
     'nome':user.nome, //mm nomes como no c#
@@ -74,7 +74,7 @@ Future <int> createUtilizador(Utilizador user) async {
     return response.statusCode;
 }
 
-void UpdateUtilizador(int idU, String what, String nome, String pass) async{
+void updateUtilizador(int idU, String what, String nome, String pass) async{
   var url = 'link ngrok' + idU.toString() + "/" + what;
   var body = json.encode(nome);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
@@ -85,5 +85,31 @@ void UpdateUtilizador(int idU, String what, String nome, String pass) async{
     });
   
   
+}
+
+Future<int> makelogin(String email, String password) async
+{
+  var url = "http://52e2ef2d.ngrok.io/api/Login";
+
+  var body = json.encode(<String,Object>{
+    'email': email,
+    'password':password
+
+  });
+
+  http.Response response = await http.post(url,
+      headers: {"Content-Type": "application/json"},
+      body: body); 
+
+
+  if(response.statusCode == 200)
+  {
+    return json.decode(response.body);
+  }
+  else{
+    return 0;
+  }
+
+
 }
 }

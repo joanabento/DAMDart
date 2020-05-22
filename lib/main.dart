@@ -4,6 +4,7 @@
 // opens a [SnackBar], while the second action navigates to a new page.
 
 import 'package:flutter/material.dart';
+import 'package:my_app/Login.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/utilizador.dart';
 
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
        height: 50.0,child: RaisedButton(color: Theme.of(context).accentColor,child:Row(children: [Text("Login", style: TextStyle( fontWeight: FontWeight.bold, color: Colors.white, fontSize:15),),SizedBox(width: 100,),Icon(Icons.arrow_forward, color: Colors.white,),]),onPressed:(){ Navigator.push(context,MaterialPageRoute(builder: (context){
               
                             
-
+              return Login();
    
        }));},),));
 
