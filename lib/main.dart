@@ -32,6 +32,22 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Index 0: Home',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 1: Person',
+      style: optionStyle,
+    ),
+    Text(
+      'Index 2: Map',
+      style: optionStyle,
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -53,34 +69,74 @@ class _HomePageState extends State<HomePage> {
             
           ),
          
-        ]),
-
-      body:Center( child:Column(
-        
-            children: getwidgets(),
-            
-            
+        ]
+      ),
+        drawer: Drawer(
+          child: ListView(
+          padding: EdgeInsets.zero,
+          children:  <Widget>[
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            image: const DecorationImage(
+            image: NetworkImage('https://nossoshopping.pt/wp-content/themes/nosso/img/the_center_img.png'),
+            ),
           ),
-          
-    ));
-    
-  }
-
-  List<Widget> getwidgets()
-  {
-    List<Widget> w = new List<Widget>();
-
-   
-
-    w.add(SizedBox(height: 500, width: 500,));
-
+          child: Text(
+            '',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+            ),
+          ),
+        ),
+        ListTile(
+          leading: Icon(Icons.contacts),
+          title: Text('Contactos'),
+          onTap: (){},
+        ),
+        ListTile(
+          leading: Icon(Icons.schedule),
+          title: Text('Horários'),
+          onTap: (){/*return pagina que queremos*/},
+        ),
+        ListTile(
+          leading: Icon(Icons.event),
+          title: Text('Eventos'),
+          onTap: (){},
+        ),
+        ListTile(
+          leading: Icon(Icons.shop),
+          title: Text('Promoções'),
+          onTap: (){},      
+        ),
+        ListTile(
+          leading: Icon(Icons.movie),
+          title: Text('Cinema'),
+          onTap: (){},
+        ),
+        ListTile(
+          leading: Icon(Icons.theaters),
+          title: Text('Teatro'),
+          onTap: (){},
+        ),
+        ListTile(
+          leading: Icon(Icons.info),
+          title: Text('Serviços'),
+          onTap: (){},
+        ),
+      ],
+    ),
+  ),
   
-
-    w.add(BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
+      body:Center( 
+        child: _widgetOptions.elementAt(_selectedIndex)),
+        bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           title: Text('Home'),
+          
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
@@ -88,14 +144,47 @@ class _HomePageState extends State<HomePage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
+          
           title: Text('Map'),
         ),
-      ]
-    ));
+      ],
+      onTap: (_selectedIndex) {
+    setState(() {
+      int navigationIndex = _selectedIndex;
+      switch (navigationIndex) {
+        case 0:
+          return Login();
+          break;
+        case 1:
+          return Registo();
+          break;
+        case 2:
+          return Login();
+          break;
+        default: 
+          return Text('Erro');
+                }
+              }
+            );
+          }
+        ),
+      );
+    } 
+  }
+
+
+
+  /*List<Widget> getwidgets()
+  {
+    int _selectedIndex = 0;
+    const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+    List<Widget> w = new List<Widget>();
+
+    
 
      return w;
      
-  }
+  }*/
 
      
 
@@ -434,4 +523,3 @@ static const List<Widget> _widgetOptions = <Widget>[
   
 
 }*/
-}
