@@ -32,7 +32,7 @@ factory Utilizador.fromJson(Map<String, dynamic> json)
   );
 }
 
-Future<List> getUtilizadores() async{
+Future<List<Utilizador>> getUtilizadores() async{
   http.Response resposta = await http.get(Uri.encodeFull('http://33724237.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);

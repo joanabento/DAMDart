@@ -36,15 +36,18 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'Nosso Shopping',
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      
       style: optionStyle,
     ),
     Text(
-      'Index 1: Person',
+      'My Profile',
       style: optionStyle,
     ),
     Text(
-      'Index 2: Map',
+      'Map',
       style: optionStyle,
     ),
   ];
@@ -91,6 +94,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         ListTile(
+          leading: Icon(Icons.person),
+          title: Text('Meu Perfil'),
+          onTap: (){newMyProfile(context);},
+        ),
+        ListTile(
           leading: Icon(Icons.contacts),
           title: Text('Contactos'),
           onTap: (){},
@@ -132,7 +140,9 @@ class _HomePageState extends State<HomePage> {
       body:Center( 
         child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
+        currentIndex: _selectedIndex,
+        iconSize: 30,
+        items: /*<BottomNavigationBarItem>*/[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           title: Text('Home'),
@@ -148,10 +158,11 @@ class _HomePageState extends State<HomePage> {
           title: Text('Map'),
         ),
       ],
-      onTap: (_selectedIndex) {
-    setState(() {
-      int navigationIndex = _selectedIndex;
-      switch (navigationIndex) {
+      onTap: (index) {
+        setState(() {
+      //navigationIndex = _selectedIndex;
+      _selectedIndex = index;
+      /*switch (navigationIndex) {
         case 0:
           return Login();
           break;
@@ -163,7 +174,7 @@ class _HomePageState extends State<HomePage> {
           break;
         default: 
           return Text('Erro');
-                }
+                }*/
               }
             );
           }
@@ -186,6 +197,63 @@ class _HomePageState extends State<HomePage> {
      
   }*/
 
+void newMyProfile(BuildContext context){
+Navigator.push(context, MaterialPageRoute(
+    builder: (BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Meu Perfil'),
+          backgroundColor: Colors.black,
+        ),        
+        body: Center(child: 
+            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+            SizedBox(height: 15),
+           
+         /*  ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Gerir Utilizadores'),
+            color: Colors.black,
+            onPressed: () {
+              Utilizador user = new Utilizador();
+              
+              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                              );
+                
+              });
+            }),*/
+            Text(
+             'NossoShopping',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+           ),
+           Text(
+             '(+351) 259 309 060.',  
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 10),
+
+           ),
+
+        
+            
+        ]        
+      ),     
+      ),
+      );
+    },
+  ));
+
+
+}
      
 
 
