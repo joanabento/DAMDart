@@ -58,24 +58,25 @@ Future<Informacao> getInformacoes(int id) async {
   return informacao;
 }
 
-void CreateInfo(Informacao informacao) async {
+Future <int> createInfo(Informacao informacao) async {
   var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idInfo':informacao.idInfo.toString(),
+  var body = json.encode(<String,Object>{
+    'idInfo':informacao.idInfo,
     'nome':informacao.nome, //mm nomes como no c#
     'hora':informacao.hora.toString(),
-    'contacto':informacao.contacto.toString(),
+    'contacto':informacao.contacto,
     'descricao': informacao.descricao
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-});
+      body: body);
+     return response.statusCode; 
+      
 }
 
-void UpdateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
+void updateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
   var url = 'link ngrok' + idInfo.toString() + "/" + what;
   var body = json.encode(hora);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 

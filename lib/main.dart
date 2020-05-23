@@ -5,8 +5,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:my_app/Login.dart';
+import 'package:my_app/Perfil.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/utilizador.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -52,6 +54,9 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
+
+  
+
   @override
   Widget build(BuildContext context) {
     
@@ -60,6 +65,17 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Nosso Shopping'),
         backgroundColor: Colors.black,
         actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.person),
+            tooltip: 'Profile',
+            onPressed: () {
+              //se não tiver login feito n pode dar
+              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Perfil()),
+                              );
+            }  
+          ),
           IconButton(
             icon: const Icon(Icons.person_add),
             tooltip: 'Registar',
@@ -96,7 +112,7 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.person),
           title: Text('Meu Perfil'),
-          onTap: (){newMyProfile(context);},
+          onTap: (){/*newMyProfile(context);*/},
         ),
         ListTile(
           leading: Icon(Icons.contacts),
@@ -142,15 +158,11 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         iconSize: 30,
-        items: /*<BottomNavigationBarItem>*/[
+        items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           title: Text('Home'),
           
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          title: Text('My Profile'),         
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.map),
@@ -162,7 +174,7 @@ class _HomePageState extends State<HomePage> {
         setState(() {
       //navigationIndex = _selectedIndex;
       _selectedIndex = index;
-      /*switch (navigationIndex) {
+      /*switch (index) {
         case 0:
           return Login();
           break;
