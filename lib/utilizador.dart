@@ -33,7 +33,7 @@ factory Utilizador.fromJson(Map<String, dynamic> json)
 }
 
 Future<List> getUtilizadores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://d94055fd.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://0ac059a0.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -46,7 +46,7 @@ Future<List> getUtilizadores() async{
 
 Future<Utilizador> getUtilizadors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://d94055fd.ngrok.io/api/Utilizador" + id.toString()),
+    Uri.encodeFull("http://0ac059a0.ngrok.io/api/Utilizador" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -58,7 +58,7 @@ Future<Utilizador> getUtilizadors(int id) async {
 }
 
 Future <int> createUtilizador(Utilizador user) async {
-  var url = 'http://d94055fd.ngrok.io/api/Utilizador';
+  var url = 'http://0ac059a0.ngrok.io/api/Utilizador';
   var body = json.encode(<String,Object>{
     'idU':user.idu,
     'nome':user.nome, //mm nomes como no c#
@@ -89,7 +89,7 @@ void updateUtilizador(int idU, String what, String nome, String pass) async{
 
 Future<int> makelogin(String email, String password) async
 {
-  var url = "http://d94055fd.ngrok.io/api/Login";
+  var url = "http://0ac059a0.ngrok.io/api/Login";
 
   var body = json.encode(<String,Object>{
     'email': email,
