@@ -241,8 +241,50 @@ Navigator.push(context, MaterialPageRoute(
                               );
                 
               });
-            })
-        
+            }),
+              FlatButton(
+            child: Text('Gerir Contactos'),
+            color: Colors.black,
+            onPressed: () {
+             Informacao info = new Informacao();
+              
+              Future <List<Informacao>> listar = user.getUtilizadores().then((List<Utilizador> users){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                              );
+                
+              });
+            }),
+             
+              FlatButton(
+            child: Text('Gerir Serviços'),
+            color: Colors.black,
+            onPressed: () {
+             Utilizador user = new Utilizador();
+              
+              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                              );
+                
+              });
+            }),
+          FlatButton(
+            child: Text('Gerir Noticias'),
+            color: Colors.black,
+            onPressed: () {
+             Utilizador user = new Utilizador();
+              
+              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                              );
+                
+              });
+            }),
             
         ]        
       ), ],    
