@@ -20,7 +20,7 @@ Gerecontact({Key key, @required this.informacoes}): super(key:key);
       ),
 
     body:
-    createlista(informacoes));
+    createcontacts(informacoes));
   }
 //*
 Widget createcontacts(List informacoes){
