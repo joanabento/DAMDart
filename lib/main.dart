@@ -263,10 +263,10 @@ Navigator.push(context, MaterialPageRoute(
             onPressed: () {
              Utilizador user = new Utilizador();
               
-              Future <List<Informacao>> listar = user.getUtilizadores().then((List<Informacao> infos){
+              Future <List<Informacao>> listar = user.getInformacao().then((List<Informacao> infos){
                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => GereServico(informacoes:infos)),
+                                MaterialPageRoute(builder: (context) => Gereservico(informacoes:infos)),
                               );
                 
               });
