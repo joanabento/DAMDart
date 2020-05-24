@@ -27,7 +27,7 @@ Widget createcontacts(List informacoes){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
-      Text(u.nome),
+      Text(i.contacto),
       new SizedBox(
         width: 30.0,
         height: 25, 
