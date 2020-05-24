@@ -34,7 +34,7 @@ factory Noticia.fromJson(Map<String, dynamic> json)
   );
 }
 
-Future<List> getNoticias() async{
+Future<List<Noticia>> getNoticias() async{
   http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);

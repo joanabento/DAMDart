@@ -55,10 +55,10 @@ bool state = false;
             child: Text('Lista de Utilizadores'),
             color: Colors.black,
             onPressed: () {               
-                  Navigator.push(
+                  /*Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => ListarUti()),
-                              );
+                              );*/
 
                 }                
             ),

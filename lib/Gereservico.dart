@@ -5,29 +5,29 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
-import 'utilizador.dart';
+import 'informacao.dart';
 
-class ListarUti extends StatelessWidget {
+class Gereservico extends StatelessWidget {
  
- List utilizadores;
-ListarUti({Key key, @required this.utilizadores}): super(key:key);
+ List informacoes;
+Gereservico({Key key, @required this.informacoes}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
-        title: Center(child:Text('Gerir Utilizadores')),
+        title: Center(child:Text('Gerir Serviços')),
         backgroundColor: Colors.black,
       ),
 
     body:
-    createlista(utilizadores));
+    createservice(informacoes));
   }
 //*
-Widget createlista(List utilizadores){
+Widget createservice(List informacoes){
   List<TableRow> rows = [];
-  for (Utilizador u in utilizadores){
+  for (Informacao i in informacoes){
     rows.add(TableRow(children: [
-      Text(u.nome),
+      Text(i.nome),
       new SizedBox(
         width: 30.0,
         height: 25, 
