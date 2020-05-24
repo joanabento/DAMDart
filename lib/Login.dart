@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
+import 'package:my_app/main.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -76,7 +77,7 @@ final passc = TextEditingController();
 
                   Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Registo()),
+                                MaterialPageRoute(builder: (context) => MyApp()),
                               );
                 }
                 else {

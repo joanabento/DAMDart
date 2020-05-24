@@ -51,7 +51,7 @@ bool state = false;
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.info),
-              hintText: 'Titulo da informação',
+              hintText: 'Nome',
               labelText: 'Nome',              
             ),
           ),

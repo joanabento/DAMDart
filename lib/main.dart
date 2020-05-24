@@ -45,10 +45,6 @@ class _HomePageState extends State<HomePage> {
       style: optionStyle,
     ),
     Text(
-      'My Profile',
-      style: optionStyle,
-    ),
-    Text(
       'Map',
       style: optionStyle,
     ),
@@ -84,10 +80,8 @@ class _HomePageState extends State<HomePage> {
                                 context,
                                 MaterialPageRoute(builder: (context) => Registo()),
                               );
-            }
-            
-          ),
-         
+            }            
+          ),         
         ]
       ),
         drawer: Drawer(
@@ -109,11 +103,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        ListTile(
+        /*ListTile(
           leading: Icon(Icons.person),
           title: Text('Meu Perfil'),
           onTap: (){/*newMyProfile(context);*/},
-        ),
+        ),*/
         ListTile(
           leading: Icon(Icons.contacts),
           title: Text('Contactos'),
@@ -147,7 +141,7 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.info),
           title: Text('Serviços'),
-          onTap: (){},
+          onTap: (){/*Lista das informações*/},
         ),
       ],
     ),
@@ -222,7 +216,7 @@ Navigator.push(context, MaterialPageRoute(
             children: [
             SizedBox(height: 15),
            
-         /*  ButtonBar(            
+         /*ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -240,7 +234,7 @@ Navigator.push(context, MaterialPageRoute(
                 
               });
             }),*/
-            //ola
+            
             Text(
              'NossoShopping',  
                 textAlign: TextAlign.center,
