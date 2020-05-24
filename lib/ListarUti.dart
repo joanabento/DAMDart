@@ -22,7 +22,7 @@ ListarUti({Key key, @required this.utilizadores}): super(key:key);
     body:
     createlista(utilizadores));
   }
-
+//*
 Widget createlista(List utilizadores){
   List<TableRow> rows = [];
   for (Utilizador u in utilizadores){
