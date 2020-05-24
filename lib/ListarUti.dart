@@ -10,11 +10,17 @@ import 'utilizador.dart';
 class ListarUti extends StatelessWidget {
  
  List utilizadores;
-
+ListarUti({Key key, @required this.utilizadores}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return null;
+    return Scaffold(appBar: AppBar(
+        title: Center(child:Text('PratoDoDia')),
+        backgroundColor: Colors.red,
+      ),
+
+    body:
+    createlista(utilizadores));
   }
 
 Widget createlista(List utilizadores){
@@ -29,10 +35,21 @@ Widget createlista(List utilizadores){
         child: Row(children: [
           Text("Eliminar", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15)),
         
-        ],))
+        ],),onPressed: (){},)
       )
     ]));
   }
+
+  return Table( border: TableBorder(
+    horizontalInside: BorderSide(
+      color: Colors.black,
+      style: BorderStyle.solid,
+      width: 0.5,
+    ),
+    
+  ),
+  children: rows);
+  
 }
 
 }
