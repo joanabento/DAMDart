@@ -15,8 +15,8 @@ ListarUti({Key key, @required this.utilizadores}): super(key:key);
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
-        title: Center(child:Text('PratoDoDia')),
-        backgroundColor: Colors.red,
+        title: Center(child:Text('Gerir Utilizadores')),
+        backgroundColor: Colors.black,
       ),
 
     body:
