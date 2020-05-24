@@ -261,7 +261,7 @@ Navigator.push(context, MaterialPageRoute(
             child: Text('Gerir Serviços'),
             color: Colors.black,
             onPressed: () {
-             Utilizador user = new Utilizador();
+            Informacao info = new Informacao();
               
               Future <List<Informacao>> listar = user.getInformacao().then((List<Informacao> infos){
                 Navigator.push(
@@ -275,12 +275,12 @@ Navigator.push(context, MaterialPageRoute(
             child: Text('Gerir Noticias'),
             color: Colors.black,
             onPressed: () {
-             Utilizador user = new Utilizador();
+             Noticia noticia = new Noticia();
               
-              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+              Future <List<Noticia>> listar = user.getNoticias().then((List<Noticia> notices){
                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                                MaterialPageRoute(builder: (context) => Gerenotice(noticias: notices)),
                               );
                 
               });
