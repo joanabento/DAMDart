@@ -4,6 +4,7 @@
 // opens a [SnackBar], while the second action navigates to a new page.
 
 import 'package:flutter/material.dart';
+import 'package:my_app/Gerecontact.dart';
 import 'package:my_app/Gerenotice.dart';
 import 'package:my_app/Gereservico.dart';
 import 'package:my_app/Login.dart';
@@ -249,7 +250,7 @@ Navigator.push(context, MaterialPageRoute(
               Future <List<Informacao>> listar = info.getInformacao().then((List<Informacao> infos){
                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => GereContact(informacoes:infos)),
+                                MaterialPageRoute(builder: (context) => Gerecontact(informacoes:infos)),
                               );
                 
               });

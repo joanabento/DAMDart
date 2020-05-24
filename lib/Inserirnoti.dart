@@ -5,31 +5,31 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/Perfil.dart';
 import 'package:my_app/informacao.dart';
+import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
 
 
 
-class Inseririnfo extends StatefulWidget {
+class Inserirnoti extends StatefulWidget {
 
-  Inseririnfo();
+  Inserirnoti();
   
   @override
-  _inseririnfo createState() => _inseririnfo();
+  _inserirnoti createState() => _inserirnoti();
 }
 
 
   
 
-class _inseririnfo extends State<Inseririnfo> {
+class _inserirnoti extends State<Inserirnoti> {
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
-final horaC = TextEditingController();
-final contactoC = TextEditingController();
-final descricaoC = TextEditingController();
+final conteudoC = TextEditingController();
+final fotografiaC = TextEditingController();
 
 bool state = false;
 
@@ -55,31 +55,22 @@ bool state = false;
               labelText: 'Nome',              
             ),
           ),
-          TextField(
-              controller: horaC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.timer),
-              hintText: 'Horário',
-              labelText: 'Horário',              
-            ),
-          ),
             TextField(
-              controller: contactoC,
+              controller: conteudoC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.phone),
-              hintText: 'Contacto',
-              labelText: 'Contacto',
+              hintText: 'Conteudo',
+              labelText: 'Conteudo',
             ),
           ),
           TextField(
-              controller: descricaoC,
+              controller: fotografiaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.pages),
-              hintText: 'Descrição',
-              labelText: 'Descrição',
+              icon: Icon(Icons.image),
+              hintText: 'Fotografia',
+              labelText: 'Fotografia',
             ),
           ),
           //falta a hora mas é automático, secalhar tiramos para não complicar xD  
@@ -92,14 +83,13 @@ bool state = false;
             child: Text('Criar'),
             color: Colors.black,
             onPressed: () {
-              Informacao info = new Informacao();
-              info.idInfo = 0;
-              info.horario = horaC.text;
-              info.nome = nomeC.text;
-              info.contacto = int.parse(contactoC.text);
-              info.descricao = descricaoC.text; 
+              Noticia noti = new Noticia();
+              noti.idN = 0;
+              noti.nome = nomeC.text;
+              noti.conteudo = conteudoC.text;
+              noti.fotografia = fotografiaC.text;
               //retorna um inteiro
-              Future <int> create = info.createInfo(info).then((int onValue){
+              Future <int> create = noti.createNoticia(noti).then((int onValue){
                 if(onValue == 200){
                     
                   Navigator.push(

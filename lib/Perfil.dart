@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Inseririnfo.dart';
+import 'package:my_app/Inserirnoti.dart';
 import 'package:my_app/ListarUti.dart';
 import 'package:my_app/Login.dart';
 import 'dart:convert' show json;
@@ -55,12 +56,17 @@ bool state = false;
             child: Text('Lista de Utilizadores'),
             color: Colors.black,
             onPressed: () {               
-                  /*Navigator.push(
+                Utilizador user = new Utilizador();
+              
+              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+                Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ListarUti()),
-                              );*/
+                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                              );
 
-                }                
+              }
+              );
+            },               
             ),
             
             
@@ -116,7 +122,7 @@ bool state = false;
             onPressed: () {               
                   Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Login()),
+                                MaterialPageRoute(builder: (context) => Inserirnoti()),
                               );
 
                 }                

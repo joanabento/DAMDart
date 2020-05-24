@@ -8,16 +8,16 @@ class Informacao extends Model
 {
 int idInfo;  //todas as variaveis em minuscula
 String nome; 
-DateTime hora; 
+String horario; 
 int contacto;
 String descricao;
 
 
-Informacao({int id, String name, DateTime hour, int contact, String description})
+Informacao({int id, String name, String hour, int contact, String description})
 {
   this.idInfo = id;
   this.nome = name;  
-  this.hora = hour;
+  this.horario = hour;
   this.contacto = contact;
   this.descricao = description;
 }
@@ -27,14 +27,14 @@ factory Informacao.fromJson(Map<String, dynamic> json)
   return Informacao(
     id: json['idInfo'] as int,
     name: json['nome'] as String,
-    hour: json['hora'] as DateTime, //as variaveis a laranja sao iguais as da api
+    hour: json['horario'] as String, //as variaveis a laranja sao iguais as da api
     contact: json['contacto'] as int,
     description: json['descricao'] as String
   );
 }
 
 Future<List<Informacao>> getInformacao() async{
-  http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://431b2308.ngrok.io/api/Informacao'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -47,7 +47,7 @@ Future<List<Informacao>> getInformacao() async{
 
 Future<Informacao> getInformacoes(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://431b2308.ngrok.io/api/Informacao" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -59,11 +59,11 @@ Future<Informacao> getInformacoes(int id) async {
 }
 
 Future <int> createInfo(Informacao informacao) async {
-  var url = 'link ngrok';
+  var url = 'http://431b2308.ngrok.io/api/Informacao';
   var body = json.encode(<String,Object>{
     'idInfo':informacao.idInfo,
     'nome':informacao.nome, //mm nomes como no c#
-    'hora':informacao.hora.toString(),
+    'hora':informacao.horario,
     'contacto':informacao.contacto,
     'descricao': informacao.descricao
   });
@@ -77,7 +77,7 @@ Future <int> createInfo(Informacao informacao) async {
 }
 
 void updateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
-  var url = 'link ngrok' + idInfo.toString() + "/" + what;
+  var url = 'http://431b2308.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
   var body = json.encode(hora);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
+import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
 
 import 'informacao.dart';
@@ -10,7 +11,7 @@ import 'informacao.dart';
 class Gerenotice extends StatelessWidget {
  
  List noticias;
-Gerenotice({Key key, @required this.informacoes}): super(key:key);
+Gerenotice({Key key, @required this.noticias}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

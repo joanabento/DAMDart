@@ -8,7 +8,6 @@ class Noticia extends Model
 {
 int idN;  //todas as variaveis em minuscula
 String nome; 
-DateTime dataN;
 String conteudo; 
 String fotografia;
 
@@ -18,7 +17,6 @@ Noticia({int id, String name, DateTime date, String content, String pic})
 {
   this.idN = id;
   this.nome = name;  
-  this.dataN = date;
   this.conteudo = content;
   this.fotografia = pic;
 }
@@ -28,14 +26,13 @@ factory Noticia.fromJson(Map<String, dynamic> json)
   return Noticia(
     id: json['idN'] as int,
     name: json['nome'] as String,
-    date: json['dataN'] as DateTime, //as variaveis a laranja sao iguais as da api
     content: json['conteudo'] as String,
     pic: json['fotografia'] as String
   );
 }
 
 Future<List<Noticia>> getNoticias() async{
-  http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://431b2308.ngrok.io/api/Noticia'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -48,7 +45,7 @@ Future<List<Noticia>> getNoticias() async{
 
 Future<Noticia> getNotices(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://431b2308.ngrok.io/api/Noticia" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -59,28 +56,24 @@ Future<Noticia> getNotices(int id) async {
   return noticia;
 }
 
-void CreateNoticia(Noticia noticia) async {
-  var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idN':noticia.idN.toString(),
+Future<int> createNoticia(Noticia noticia) async {
+  var url = 'http://431b2308.ngrok.io/api/Noticia';
+  var body = json.encode(<String,Object>{
+    'idN':noticia.idN,
     'nome':noticia.nome, //mm nomes como no c#
-    'dataN': noticia.dataN.toString(),
     'conteudo': noticia.conteudo,
     'fotografia': noticia.fotografia
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-
-      
-
-});
+      body: body);
+      return response.statusCode;
 }
 
-void UpdateNoticia(int idN, String what, String nome, DateTime data, String conteudo, String foto) async{
-  var url = 'link ngrok' + idN.toString() + "/" + what;
+void updateNoticia(int idN, String what, String nome, DateTime data, String conteudo, String foto) async{
+  var url = 'http://431b2308.ngrok.io/api/Noticia' + idN.toString() + "/" + what;
   var body = json.encode(nome);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
