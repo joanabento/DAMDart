@@ -2,19 +2,22 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/Gerecontact.dart';
+import 'package:my_app/Gerenotice.dart';
 import 'package:my_app/Inseririnfo.dart';
 import 'package:my_app/Inserirnoti.dart';
 import 'package:my_app/ListarUti.dart';
 import 'package:my_app/Login.dart';
+import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
 
 
 
-class Perfil extends StatefulWidget {
+class PerfilA extends StatefulWidget {
 
-  Perfil();
+  PerfilA();
   
   @override
   _Perfil createState() => _Perfil();
@@ -23,7 +26,7 @@ class Perfil extends StatefulWidget {
 
   
 
-class _Perfil extends State<Perfil> {
+class _Perfil extends State<PerfilA> {
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
@@ -44,9 +47,9 @@ bool state = false;
             SizedBox(height: 30),
           Text(
                 'Gerir Utilizadores',  
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.right,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -74,9 +77,9 @@ bool state = false;
         ),
           Text(
                 'Gerir informações',  
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.right,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),           
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -93,24 +96,62 @@ bool state = false;
 
                 }                
             ),
+            
+            
+          ],
+        ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
             RaisedButton(
-            child: Text('Lista das Informações'),
+            child: Text('Gerir Horários'),
             color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login()),
-                              );
-            },
+            onPressed: () {               
+                  
+
+                }                
             ),
+            
+            
+          ],
+        ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Gerir Contactos'),
+            color: Colors.black,
+            onPressed: () {               
+                  
+
+                }                
+            ),
+            
+            
+          ],
+        ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Gerir Serviços'),
+            color: Colors.black,
+            onPressed: () {               
+                  
+                }                
+            ),
+            
             
           ],
         ),
         Text(
                 'Gerir Noticias',  
-                textAlign: TextAlign.center,
+                textAlign: TextAlign.right,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
         ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -127,19 +168,31 @@ bool state = false;
 
                 }                
             ),
-            FlatButton(
-            child: Text('Lista de Noticias'),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login()),
-                              );
-            },
-            ),
             
           ],
         ), 
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Lista de Noticias'),
+            color: Colors.black,
+            onPressed: () {               
+                Noticia noticia = new Noticia();
+              
+              Future <List<Noticia>> listar = noticia.getNoticias().then((List<Noticia> notices){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Gerenotice(noticias: notices)),
+                              );
+
+                }                
+            );
+            }, 
+            ), 
+          ],
+        ),
         ]        
       ),     
       ),

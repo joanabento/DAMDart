@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
-import 'package:my_app/Perfil.dart';
+import 'package:my_app/PerfilA.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
@@ -94,7 +94,7 @@ bool state = false;
                     
                   Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Perfil()),
+                                MaterialPageRoute(builder: (context) => PerfilA()),
                               );
 
                 }
@@ -110,7 +110,7 @@ bool state = false;
             onPressed: () {
               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Perfil()),
+                                MaterialPageRoute(builder: (context) => PerfilA()),
                               );
             },
             ),

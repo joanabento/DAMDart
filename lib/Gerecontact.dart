@@ -9,7 +9,7 @@ import 'informacao.dart';
 
 class Gerecontact extends StatelessWidget {
  
- List informacoes;
+List informacoes;
 Gerecontact({Key key, @required this.informacoes}): super(key:key);
   @override
   Widget build(BuildContext context) {
@@ -27,14 +27,13 @@ Widget createcontacts(List informacoes){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
-      Text(''),
+      Text(i.contacto.toString()),
       new SizedBox(
-        width: 30.0,
-        height: 25, 
-        child: RaisedButton(color: Colors.black,
+        width: 20.0,
+        height: 15, 
+        child: RaisedButton(color: Colors.white,
         child: Row(children: [
-          Text("Eliminar", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15)),
-        
+          Text("Eliminar", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15)),       
         ],),onPressed: (){},)
       )
     ]));
@@ -44,7 +43,7 @@ Widget createcontacts(List informacoes){
     horizontalInside: BorderSide(
       color: Colors.black,
       style: BorderStyle.solid,
-      width: 0.5,
+      width: 2,
     ),
     
   ),
