@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
+import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -70,7 +72,7 @@ bool state = false;
               controller: precoC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.money),
+              icon: Icon(Icons.money_off),
               hintText: 'Preco',
               labelText: 'Preco',
             ),
@@ -79,7 +81,7 @@ bool state = false;
               controller: referenciaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.store),
+              icon: Icon(Icons.format_list_numbered),
               hintText: 'Referencia',
               labelText: 'Referencia',
             ),
@@ -93,7 +95,7 @@ bool state = false;
               labelText: 'Fotografia',
             ),
           ),
-          //falta a hora mas é automático, secalhar tiramos para não complicar xD  
+          
            
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -107,11 +109,11 @@ bool state = false;
               prod.idProduto = 0;
               prod.nome = nomeC.text;
               prod.loja = lojaC.text;
-              prod.preco = precoC.text; //aqui deve dar erro dps temos de confirmar no programa
+              //prod.preco = int.parse();//aqui deve dar erro dps temos de confirmar no programa
               prod.referencia = referenciaC.text;
-              noti.fotografia = fotografiaC.text;
+              prod.fotografia = fotografiaC.text;
               //retorna um inteiro
-              Future <int> create = prod.CreateProduto(prod).then((int onValue){
+              Future <int> create = prod.createProduto(prod).then((int onValue){
                 if(onValue == 200){
                     
                   Navigator.push(

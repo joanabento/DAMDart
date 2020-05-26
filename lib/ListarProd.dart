@@ -25,10 +25,10 @@ ListarProd({Key key, @required this.produtos}): super(key:key);
 //*
 Widget createlista(List produtos){
   List<TableRow> rows = [];
-  for (Produto p in utilizadores){
+  for (Produto p in produtos){
     rows.add(TableRow(children: [
       Text(p.nome, style: TextStyle(fontWeight: FontWeight.bold)),
-      Text(p.referencia, style: TextStyle(fontWeigh: FontWeigh.bold)),
+      Text(p.referencia, style: TextStyle(fontWeight: FontWeight.bold)),
     
       //Text(u.email),
 

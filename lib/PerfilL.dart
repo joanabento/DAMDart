@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/InserirProd.dart';
+import 'package:my_app/ListarProd.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/noticia.dart';
+import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -53,8 +56,8 @@ bool state = false;
             FlatButton(
             child: Text('Consultar dados pessoais'),
             color: Colors.black,
-            /*onPressed: () {               
-                Utilizador user = new Utilizador();
+            onPressed: () {               
+               /* Utilizador user = new Utilizador();
               
               Future <Utilizador> listar = user.getUtilizadors(id).then((<Utilizador> uti){
                 Navigator.push(
@@ -63,15 +66,14 @@ bool state = false;
                               );
 
               }
-              );
-            },  */             
-            ),
-              
-             FlatButton(
+              );*/
+            },              
+            ), 
+            FlatButton(
             child: Text('Editar Perfil'),
             color: Colors.black,
-            /*onPressed: () {               
-                Utilizador user = new Utilizador();
+            onPressed: () {               
+                /*Utilizador user = new Utilizador();
               
               Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
                 Navigator.push(
@@ -80,22 +82,22 @@ bool state = false;
                               );
 
               }
-              );
-            }, */            
+              );*/
+            },            
             ), 
             
             
           ],
         ),
               
-              Text(
-                'Adicionar Produto',  
-                textAlign: TextAlign.right,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+          Text(
+            'Adicionar Produto',  
+            textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
               
-               ButtonBar(            
+          ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -109,13 +111,11 @@ bool state = false;
                               );
 
                 }                
-            ),
-            
-            
+            ), 
           ],
         ),
               
-              ButtonBar(            
+        ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -126,7 +126,7 @@ bool state = false;
                   
               Produto produto = new Produto();
               
-              Future <List<Produto>> listar = user.getProduto().then((List<Produto> products){
+              Future <List<Produto>> listar = produto.getProduto().then((List<Produto> products){
                 Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => ListarProd(produtos:products)),
@@ -136,11 +136,14 @@ bool state = false;
               );
 
                 }                
-            ),
-            
-            
+            ),       
           ],
         ),
+            ]
+            ),
+        ),
+        );
+  }
               
               
    typeButton(){
@@ -152,4 +155,4 @@ bool state = false;
 
     
 }
-}
+

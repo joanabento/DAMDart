@@ -60,7 +60,7 @@ class Produto extends Model{
   return p;
 }
 
-void CreateProduto(Produto p) async {
+Future<int> createProduto(Produto p) async {
   var url = 'link ngrok';
   var body = json.encode(<String,String>{
     'idProduto': p.idProduto.toString(),
