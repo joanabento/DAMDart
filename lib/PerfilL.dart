@@ -56,10 +56,10 @@ bool state = false;
             onPressed: () {               
                 Utilizador user = new Utilizador();
               
-              Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
+              Future <Utilizador> listar = user.getUtilizadors(id).then((<Utilizador> uti){
                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
+                                MaterialPageRoute(builder: (context) => MostrarUti(uti)),
                               );
 
               }
@@ -70,7 +70,7 @@ bool state = false;
              FlatButton(
             child: Text('Editar Perfil'),
             color: Colors.black,
-            onPressed: () {               
+            /*onPressed: () {               
                 Utilizador user = new Utilizador();
               
               Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
@@ -81,7 +81,7 @@ bool state = false;
 
               }
               );
-            },               
+            }, */            
             ), 
             
             
@@ -124,6 +124,16 @@ bool state = false;
             color: Colors.black,
             onPressed: () {               
                   
+              Produto produto = new Produto();
+              
+              Future <List<Produto>> listar = user.getProduto().then((List<Produto> products){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ListarProd(produtos:products)),
+                              );
+
+              }
+              );
 
                 }                
             ),
