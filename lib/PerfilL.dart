@@ -53,7 +53,7 @@ bool state = false;
             FlatButton(
             child: Text('Consultar dados pessoais'),
             color: Colors.black,
-            onPressed: () {               
+            /*onPressed: () {               
                 Utilizador user = new Utilizador();
               
               Future <Utilizador> listar = user.getUtilizadors(id).then((<Utilizador> uti){
@@ -64,7 +64,7 @@ bool state = false;
 
               }
               );
-            },               
+            },  */             
             ),
               
              FlatButton(
