@@ -35,7 +35,7 @@ class Produto extends Model{
   );
   }
 
-  Future<List> getProduto() async{
+  Future<List<Produto>> getProduto() async{
   http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
