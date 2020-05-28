@@ -142,11 +142,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         ListTile(
-          leading: Icon(Icons.event),
-          title: Text('Eventos'),
-          onTap: (){},
-        ),
-        ListTile(
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
           onTap: (){},      
