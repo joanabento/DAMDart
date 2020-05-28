@@ -2,12 +2,15 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/GereHorario.dart';
 import 'package:my_app/Gerecontact.dart';
 import 'package:my_app/Gerenotice.dart';
+import 'package:my_app/Gereservico.dart';
 import 'package:my_app/Inseririnfo.dart';
 import 'package:my_app/Inserirnoti.dart';
 import 'package:my_app/ListarUti.dart';
 import 'package:my_app/Login.dart';
+import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
 
@@ -59,20 +62,16 @@ bool state = false;
             child: Text('Lista de Utilizadores'),
             color: Colors.black,
             onPressed: () {               
-                Utilizador user = new Utilizador();
-              
+              Utilizador user = new Utilizador();
               Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
                 Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => ListarUti(utilizadores:users)),
                               );
-
               }
               );
             },               
             ),
-            
-            
           ],
         ),
           Text(
@@ -93,11 +92,8 @@ bool state = false;
                                 context,
                                 MaterialPageRoute(builder: (context) => Inseririnfo()),
                               );
-
                 }                
-            ),
-            
-            
+            ), 
           ],
         ),
         ButtonBar(            
@@ -107,13 +103,17 @@ bool state = false;
             RaisedButton(
             child: Text('Gerir Horários'),
             color: Colors.black,
-            onPressed: () {               
-                  
-
+            onPressed: () {  
+              Informacao horarios = new Informacao();            
+                Future <List<Informacao>> listas = horarios.getInformacao().then((List<Informacao> horario){
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => GereHorario(informacoes: horario)),
+                              );           
+                }
+                );                                
                 }                
-            ),
-            
-            
+            ),     
           ],
         ),
         ButtonBar(            
@@ -123,13 +123,17 @@ bool state = false;
             RaisedButton(
             child: Text('Gerir Contactos'),
             color: Colors.black,
-            onPressed: () {               
-                  
-
-                }                
-            ),
-            
-            
+            onPressed: () { 
+                Informacao contactos = new Informacao();            
+                Future <List<Informacao>> listac = contactos.getInformacao().then((List<Informacao> contacts){
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Gerecontact(informacoes: contacts)),
+                              );           
+                }
+                );
+            }                
+            ), 
           ],
         ),
         ButtonBar(            
@@ -139,20 +143,25 @@ bool state = false;
             RaisedButton(
             child: Text('Gerir Serviços'),
             color: Colors.black,
-            onPressed: () {               
-                  
+            onPressed: () {  
+              Informacao servicos = new Informacao();            
+                Future <List<Informacao>> listas = servicos.getInformacao().then((List<Informacao> services){
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Gereservico(informacoes: services)),
+                              );           
+                }
+                );                              
                 }                
-            ),
-            
-            
+            ),  
           ],
         ),
         Text(
-                'Gerir Noticias',  
-                textAlign: TextAlign.right,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+            'Gerir Noticias',  
+            textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
         ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
@@ -165,10 +174,8 @@ bool state = false;
                                 context,
                                 MaterialPageRoute(builder: (context) => Inserirnoti()),
                               );
-
                 }                
-            ),
-            
+            ),          
           ],
         ), 
         ButtonBar(            
@@ -179,14 +186,12 @@ bool state = false;
             child: Text('Lista de Noticias'),
             color: Colors.black,
             onPressed: () {               
-                Noticia noticia = new Noticia();
-              
+              Noticia noticia = new Noticia();            
               Future <List<Noticia>> listar = noticia.getNoticias().then((List<Noticia> notices){
                 Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => Gerenotice(noticias: notices)),
                               );
-
                 }                
             );
             }, 

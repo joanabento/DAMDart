@@ -27,15 +27,27 @@ Widget createcontacts(List informacoes){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
-      Text(i.contacto.toString()),
-      new SizedBox(
-        width: 20.0,
-        height: 15, 
-        child: RaisedButton(color: Colors.white,
-        child: Row(children: [
-          Text("Eliminar", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize: 15)),       
-        ],),onPressed: (){},)
-      )
+      Text(i.nome,
+      textAlign: TextAlign.center, 
+      style: TextStyle(fontSize: 20)
+      ),
+      Text(i.contacto.toString(),
+      textAlign: TextAlign.center,
+      style: TextStyle(fontSize: 20),
+      ),
+      ButtonBar(            
+            mainAxisSize: MainAxisSize.min,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Eliminar'),
+            color: Colors.black,
+            onPressed: () {                                
+                }                
+            ),  
+          ],
+        ),
+      
     ]));
   }
 
@@ -43,9 +55,8 @@ Widget createcontacts(List informacoes){
     horizontalInside: BorderSide(
       color: Colors.black,
       style: BorderStyle.solid,
-      width: 2,
+      width: 1.0,
     ),
-    
   ),
   children: rows);
   

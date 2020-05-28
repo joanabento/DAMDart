@@ -7,15 +7,15 @@ import 'dart:convert' show json;
 
 import 'informacao.dart';
 
-class Gereservico extends StatelessWidget {
+class ViewServicos extends StatelessWidget {
  
  List informacoes;
-Gereservico({Key key, @required this.informacoes}): super(key:key);
+ViewServicos({Key key, @required this.informacoes}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
-        title: Center(child:Text('Gerir Serviços')),
+        title: Center(child:Text('Serviços')),
         backgroundColor: Colors.black,
       ),
 
@@ -27,26 +27,18 @@ Widget createservice(List informacoes){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
+      IconButton(
+        icon: const Icon(Icons.info_outline),
+        onPressed: () {} 
+      ),
       Text(i.nome,
       textAlign: TextAlign.center, 
-      style: TextStyle(fontSize: 20)
+      style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold ,fontSize: 20)
       ),
       Text(i.descricao,
       textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 15),
       ),
-      ButtonBar(            
-            mainAxisSize: MainAxisSize.min,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            RaisedButton(
-            child: Text('Eliminar'),
-            color: Colors.black,
-            onPressed: () {                                
-                }                
-            ),  
-          ],
-        ),
     ],
     ));   
     
@@ -54,9 +46,9 @@ Widget createservice(List informacoes){
 
   return Table( border: TableBorder(
     horizontalInside: BorderSide(
-      color: Colors.black,
+      color: Colors.white,
       style: BorderStyle.solid,
-      width: 0.5,
+      width: 1.0,
     ),
     
   ),

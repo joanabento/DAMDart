@@ -10,6 +10,9 @@ import 'package:my_app/Gereservico.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/Registo.dart';
+import 'package:my_app/ViewContactos.dart';
+import 'package:my_app/ViewHor%C3%A1rios.dart';
+import 'package:my_app/ViewServicos.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/utilizador.dart';
@@ -110,20 +113,33 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        /*ListTile(
-          leading: Icon(Icons.person),
-          title: Text('Meu Perfil'),
-          onTap: (){/*newMyProfile(context);*/},
-        ),*/
         ListTile(
           leading: Icon(Icons.contacts),
           title: Text('Contactos'),
-          onTap: (){},
+          onTap: (){
+            Informacao contactos = new Informacao();            
+            Future <List<Informacao>> listac = contactos.getInformacao().then((List<Informacao> contacts){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewContactos(informacoes: contacts)),
+                  );           
+                }
+              );
+          },
         ),
         ListTile(
           leading: Icon(Icons.schedule),
           title: Text('Horários'),
-          onTap: (){/*return pagina que queremos*/},
+          onTap: (){
+            Informacao horarios = new Informacao();            
+            Future <List<Informacao>> listac = horarios.getInformacao().then((List<Informacao> horario){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewHorarios(informacoes: horario)),
+                  );           
+                }
+              );
+          },
         ),
         ListTile(
           leading: Icon(Icons.event),
@@ -148,7 +164,16 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.info),
           title: Text('Serviços'),
-          onTap: (){/*Lista das informações*/},
+          onTap: (){
+            Informacao servicos = new Informacao();            
+            Future <List<Informacao>> listac = servicos.getInformacao().then((List<Informacao> servico){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewServicos(informacoes: servico)),
+                  );           
+                }
+              );
+          },
         ),
       ],
     ),

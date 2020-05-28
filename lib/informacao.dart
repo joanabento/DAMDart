@@ -6,7 +6,7 @@ import 'dart:convert' show json;
 
 class Informacao extends Model
 {
-int idInfo;  //todas as variaveis em minuscula
+int idInfo;  
 String nome; 
 String horario; 
 int contacto;
@@ -34,7 +34,7 @@ factory Informacao.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Informacao>> getInformacao() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://b879641b.ngrok.io/api/Informacao'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://fef807502b54.ngrok.io/api/Informacao'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -47,7 +47,7 @@ Future<List<Informacao>> getInformacao() async{
 
 Future<Informacao> getInformacoes(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://b879641b.ngrok.io/api/Informacao" + id.toString()),
+    Uri.encodeFull("http://fef807502b54.ngrok.io/api/Informacao" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -59,11 +59,11 @@ Future<Informacao> getInformacoes(int id) async {
 }
 
 Future <int> createInfo(Informacao informacao) async {
-  var url = 'http://b879641b.ngrok.io/api/Informacao';
+  var url = 'http://fef807502b54.ngrok.io/api/Informacao';
   var body = json.encode(<String,Object>{
     'idInfo':informacao.idInfo,
     'nome':informacao.nome, //mm nomes como no c#
-    'hora':informacao.horario,
+    'horario':informacao.horario,
     'contacto':informacao.contacto,
     'descricao': informacao.descricao
   });
@@ -77,7 +77,7 @@ Future <int> createInfo(Informacao informacao) async {
 }
 
 void updateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
-  var url = 'http://b879641b.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
+  var url = 'http://fef807502b54.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
   var body = json.encode(hora);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
