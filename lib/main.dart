@@ -9,6 +9,7 @@ import 'package:my_app/Gerenotice.dart';
 import 'package:my_app/Gereservico.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/ViewContactos.dart';
 import 'package:my_app/ViewHor%C3%A1rios.dart';
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               //se não tiver login feito n pode dar
               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => PerfilA()),
+                                MaterialPageRoute(builder: (context) => PerfilL()),
                               );
             }  
           ),

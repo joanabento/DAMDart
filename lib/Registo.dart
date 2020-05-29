@@ -28,9 +28,9 @@ final nameC = TextEditingController();
 final emailC = TextEditingController();
 final passC = TextEditingController();
 final passCC = TextEditingController();
-
+final tipoCC = TextEditingController();
 bool state = false;
-
+var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9iGOjHYtXGa9imyK0sBA2H_3kUt23YD1_HPDI-K7iewweLgOjcfcez7aljA1dm5pn4q2kUkJsTN-kIJ8jQr8bgLV3njFqmcWmzzU';
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -94,6 +94,27 @@ bool state = false;
               )),
               obscureText: true,
             ),
+           /* ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            IconButton(
+              icon: Image.asset(url),
+              iconSize: 50,
+              onPressed: () {},
+              ),
+            IconButton(
+              icon: Image.asset(url),
+              iconSize: 50,
+              onPressed: () {},
+              )
+
+          ],
+        ),*/
+          
+        
+ 
+              
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,

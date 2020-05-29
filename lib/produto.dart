@@ -10,11 +10,11 @@ class Produto extends Model{
   int idProduto;
   String nome;
   String loja;
-  Float preco;
+  int preco;
   String referencia;
   String fotografia;
 
-  Produto({int id, String nome, String loja, Float p, String foto, String referencia}){
+  Produto({int id, String nome, String loja, int p, String foto, String referencia}){
     this.idProduto = id;
     this.nome = nome;
     this.loja = loja; 
@@ -29,14 +29,14 @@ class Produto extends Model{
     id: json['idProduto'] as int,
     nome: json['nome'] as String,
     loja: json['loja'] as String, //as variaveis a laranja sao iguais as da api
-    p: json['preco'] as Float,
+    p: json['preco'] as int,
     referencia: json['referencia'] as String,
     foto: json['fotografia'] as String
   );
   }
 
   Future<List<Produto>> getProduto() async{
-  http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://79d05b72761d.ngrok.io/api/Produto'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -49,7 +49,7 @@ class Produto extends Model{
 
   Future<Produto> getInformacoes(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://79d05b72761d.ngrok.io/api/Produto" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -61,21 +61,21 @@ class Produto extends Model{
 }
 
 Future<int> createProduto(Produto p) async {
-  var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idProduto': p.idProduto.toString(),
+  var url = 'http://79d05b72761d.ngrok.io/api/Produto';
+  var body = json.encode(<String,Object>{
+    'idProduto': p.idProduto,
     'nome':p.nome, //mm nomes como no c#
     'loja': p.loja,
-    'preco':p.preco.toString(),
+    'preco':p.preco,
     'referencia': p.referencia,
     'fotografia': p.fotografia
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-});
+      body: body);
+      return response.statusCode;
 }
 
 

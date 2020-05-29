@@ -12,12 +12,12 @@ class Filme extends Model{
   String titulo; 
   int idade;
   String genero;
-  DateTime dataEstreia;
+  String dataEstreia;
   String realizador; 
-  Float duracao; 
+  String duracao; 
   String versao;
 
-  Filme({int id, String titulo, int idade, DateTime data, String genero, String realizador, Float duracao, String versao}){
+  Filme({int id, String titulo, int idade, String data, String genero, String realizador, String duracao, String versao}){
     this.idF = id;
     this.titulo = titulo;
     this.dataEstreia = data;
@@ -34,28 +34,28 @@ class Filme extends Model{
       titulo: json['titulo'] as String,
       idade: json['idade'] as int, 
       genero: json['genero'] as String, 
-      data: json['dataEstreia'] as DateTime,
+      data: json['dataEstreia'] as String,
       realizador: json['realizador'] as String, 
-      duracao: json['duracao'] as Float,
+      duracao: json['duracao'] as String,
       versao: json['versao'] as String
     );
   }
 
-  Future<List> getFilme() async{
-    http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{ "Accept" : "application/json"});
+  Future<List<Filme>> getFilme() async{
+    http.Response resposta = await http.get(Uri.encodeFull('http://79d05b72761d.ngrok.io/api/Filme'), headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
     List<Filme> listaf = new List<Filme>();
-    for (int i = 0; i< lista.length; i++){
+    for (int i = 0; i< lista.length; i++)
       listaf.add(Filme.fromJson(lista[i]));
-      return lista;
-    }
+      return listaf;
+    
   }
 
   Future<Filme> getFilmes(int id) async {
   http.Response resposta = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://79d05b72761d.ngrok.io/api/Filme" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -66,24 +66,24 @@ class Filme extends Model{
   return f;
 }
 
-void CreateFilme(Filme f) async {
-  var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idF':f.idF.toString(),
+Future<int> createFilme(Filme f) async {
+  var url = 'http://79d05b72761d.ngrok.io/api/Filme';
+  var body = json.encode(<String,Object>{
+    'idF':f.idF,
     'titulo':f.titulo, //mm nomes como no c#
-    'idade': f.idade.toString(),
+    'idade': f.idade,
     'genero': f.genero,
-    'data': f.dataEstreia.toString(),
+    'dataEstreia': f.dataEstreia,
     'realizador': f.realizador,
-    'duracao': f.duracao.toString(),
+    'duracao': f.duracao,
     'versao': f.versao
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-});
+      body: body);
+      return response.statusCode;
 }
 
 void UpdateFilme(int idF, String what,String titulo, int idade, String genero, String realizador, DateTime data, String versao, Float duracao) async{

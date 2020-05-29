@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
+import 'package:my_app/evento.dart';
+import 'package:my_app/filme.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/produto.dart';
@@ -15,26 +17,27 @@ import 'utilizador.dart';
 
 
 
-class InserirProd extends StatefulWidget {
+class InserirEvento extends StatefulWidget {
 
-  InserirProd();
+  InserirEvento();
   
   @override
-  _inserirprod createState() => _inserirprod();
+  _inserirevento createState() => _inserirevento();
 }
 
 
   
 
-class _inserirprod extends State<InserirProd> {
+class _inserirevento extends State<InserirEvento> {
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
-final lojaC = TextEditingController();
+final dataC = TextEditingController();
+final localC = TextEditingController();
 final precoC = TextEditingController();
-final referenciaC = TextEditingController();
 final fotografiaC = TextEditingController();
+
   
 bool state = false;
 
@@ -43,7 +46,7 @@ bool state = false;
     // TODO: implement build
      return Scaffold(
         appBar: AppBar(
-          title: const Text('Inserir Produto'),
+          title: const Text('Inserir Filme'),
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -56,48 +59,47 @@ bool state = false;
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.info),
-              hintText: 'Nome',
-              labelText: 'Nome',              
+              hintText: 'Titulo',
+              labelText: 'Nome do Evento',              
             ),
           ),
             TextField(
-              controller: lojaC,
+              controller: dataC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.store),
-              hintText: 'Loja',
-              labelText: 'Loja',
+              icon: Icon(Icons.info),
+              hintText: 'Data',
+              labelText: 'Data do Evento',
             ),
           ),
               TextField(
-              controller: precoC,
+              controller: localC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.money_off),
-              hintText: 'Preco',
-              labelText: 'Preco',
-            ),
-          ),
-             TextField(
-              controller: referenciaC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.format_list_numbered),
-              hintText: 'Referencia',
-              labelText: 'Referencia',
+              icon: Icon(Icons.info),
+              hintText: 'Local',
+              labelText: 'Local do evento',
             ),
           ),
           TextField(
+              controller: precoC,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.info),
+              hintText: 'Data',
+              labelText: 'Data de Estreia',
+            ),
+          ),
+             TextField(
               controller: fotografiaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.image),
+              icon: Icon(Icons.person),
               hintText: 'Fotografia',
-              labelText: 'Fotografia',
+              labelText: 'Foto',
             ),
           ),
-          
-           
+  
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
@@ -106,15 +108,15 @@ bool state = false;
             child: Text('Criar'),
             color: Colors.black,
             onPressed: () {
-              Produto prod = new Produto();
-              prod.idProduto = 0;
-              prod.nome = nomeC.text;
-              prod.loja = lojaC.text;
-              prod.preco = int.parse(precoC.text); //aqui deve dar erro dps temos de confirmar no programa
-              prod.referencia = referenciaC.text;
-              prod.fotografia = fotografiaC.text;
+              Evento e = new Evento();
+              e.idEvento = 0;
+              e.nome = nomeC.text;
+              e.preco = precoC.text;
+              e.localE = localC.text;
+              e.dataE = dataC.text;
+              e.fotografia = fotografiaC.text;
               //retorna um inteiro
-              Future <int> create = prod.createProduto(prod).then((int onValue){
+              Future <int> create = e.createEvento(e).then((int onValue){
                 if(onValue == 200){
                     
                   Navigator.push(

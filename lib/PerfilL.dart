@@ -2,9 +2,15 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/GerirEvento.dart';
+import 'package:my_app/GerirFilme.dart';
+import 'package:my_app/GerirProduto.dart';
+import 'package:my_app/InserirEvento.dart';
+import 'package:my_app/InserirFilme.dart';
 import 'package:my_app/InserirProd.dart';
-import 'package:my_app/ListarProd.dart';
 import 'package:my_app/Login.dart';
+import 'package:my_app/evento.dart';
+import 'package:my_app/filme.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
@@ -91,7 +97,7 @@ bool state = false;
         ),
               
           Text(
-            'Adicionar Produto',  
+            'Gerir Produto',  
             textAlign: TextAlign.right,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -120,7 +126,7 @@ bool state = false;
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             RaisedButton(
-            child: Text('Consultar Produtos'),
+            child: Text('Gerir Produtos'),
             color: Colors.black,
             onPressed: () {               
                   
@@ -129,7 +135,102 @@ bool state = false;
               Future <List<Produto>> listar = produto.getProduto().then((List<Produto> products){
                 Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => ListarProd(produtos:products)),
+                                MaterialPageRoute(builder: (context) => GerirProduto(produtos:products)),
+                              );
+
+              }
+              );
+
+                }                
+            ),       
+          ],
+        ),
+        Text(
+            'Gerir Filmes',  
+            textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Adicionar Filme'),
+            color: Colors.black,
+            onPressed: () {               
+                  
+               Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => InserirFilme()),
+                              );
+
+                }                
+            ),       
+          ],
+        ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Gerir Filmes'),
+            color: Colors.black,
+            onPressed: () {               
+                  
+              Filme filme = new Filme();
+              
+              Future <List<Filme>> listar = filme.getFilme().then((List<Filme> films){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => GerirFilme(filmes:films)),
+                              );
+
+              }
+              );
+
+                }                
+            ),       
+          ],
+        ),
+        Text(
+            'Gerir Eventos',  
+            textAlign: TextAlign.right,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Adicionar Evento'),
+            color: Colors.black,
+            onPressed: () {               
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => InserirEvento()),
+                              );
+
+                }                
+            ),       
+          ],
+        ),
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            RaisedButton(
+            child: Text('Gerir Eventos'),
+            color: Colors.black,
+            onPressed: () {               
+                  
+             Evento evento = new Evento();
+              
+              Future <List<Evento>> listar = evento.getEvento().then((List<Evento> events){
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => GerirEvento(eventos: events)),
                               );
 
               }

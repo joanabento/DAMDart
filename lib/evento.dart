@@ -8,12 +8,12 @@ import 'dart:convert' show json;
 class Evento extends Model{
   int idEvento;
   String nome;
-  DateTime dataE;
+  String dataE;
   String localE;
-  Float preco;
+  String preco;
   String fotografia;
 
-  Evento({int id, String nome, DateTime data, String local, Float preco, String foto}){
+  Evento({int id, String nome, String data, String local, String preco, String foto}){
     this.idEvento = id;
     this.nome = nome;
     this.dataE = data;
@@ -26,28 +26,28 @@ class Evento extends Model{
     return Evento(
       id: json['idEvento'] as int,
       nome: json['nome'] as String, 
-      data: json['dataE'] as DateTime,
+      data: json['dataE'] as String,
       local: json['localE'] as String, 
-      preco: json['preco'] as Float, 
+      preco: json['preco'] as String, 
       foto: json['fotografia'] as String
     );
   }
 
-  Future<List> getEvento() async{
-    http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{ "Accept" : "application/json"});
+  Future<List<Evento>> getEvento() async{
+    http.Response resposta = await http.get(Uri.encodeFull('http://79d05b72761d.ngrok.io/api/Evento'), headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
     List<Evento> listae = new List<Evento>();
-    for (int i = 0; i< lista.length; i++){
+    for (int i = 0; i< lista.length; i++)
       listae.add(Evento.fromJson(lista[i]));
-      return lista;
-    }
+      return listae;
+    
   }
 
    Future<Evento> getEventos(int id) async {
     http.Response resposta = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://79d05b72761d.ngrok.io/api/Evento" + id.toString()),
     headers: {
       "Accept":"application/json"
     });
@@ -55,21 +55,21 @@ class Evento extends Model{
     return e;
   }
 
-  void CreateEvento(Evento e) async{
-    var url = 'link ngrok';
-    var body = json.encode(<String, String>{
-        'idEvento' : e.idEvento.toString(),
+Future<int> createEvento(Evento e) async{
+    var url = 'http://79d05b72761d.ngrok.io/api/Evento';
+    var body = json.encode(<String, Object>{
+        'idEvento' : e.idEvento,
         'nome': e.nome,
-        'dataE': e.dataE.toString(),
+        'dataE': e.dataE,
         'localE': e.localE,
-        'preco': e.preco.toString(),
+        'preco': e.preco,
         'fotografia': e.fotografia
     });
     print(body);
-    http.post(url,
+    http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-    });   
+      body: body);
+      return response.statusCode; 
   }
 
   void UpdateEvento(int idF, String what,String nome, String localE, String foto, DateTime data, Float preco) async{

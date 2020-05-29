@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
+import 'package:my_app/filme.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/produto.dart';
@@ -15,26 +16,28 @@ import 'utilizador.dart';
 
 
 
-class InserirProd extends StatefulWidget {
+class InserirFilme extends StatefulWidget {
 
-  InserirProd();
+  InserirFilme();
   
   @override
-  _inserirprod createState() => _inserirprod();
+  _inserirfilme createState() => _inserirfilme();
 }
 
 
   
 
-class _inserirprod extends State<InserirProd> {
+class _inserirfilme extends State<InserirFilme> {
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
-final nomeC = TextEditingController();
-final lojaC = TextEditingController();
-final precoC = TextEditingController();
-final referenciaC = TextEditingController();
-final fotografiaC = TextEditingController();
+final tituloC = TextEditingController();
+final idadeC = TextEditingController();
+final generoC = TextEditingController();
+final dataC = TextEditingController();
+final realizadorC = TextEditingController();
+final duracaoC = TextEditingController();
+final versaoC = TextEditingController();
   
 bool state = false;
 
@@ -43,7 +46,7 @@ bool state = false;
     // TODO: implement build
      return Scaffold(
         appBar: AppBar(
-          title: const Text('Inserir Produto'),
+          title: const Text('Inserir Filme'),
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -52,48 +55,57 @@ bool state = false;
             SizedBox(height: 15),
    
             TextField(
-              controller: nomeC,
+              controller: tituloC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.info),
-              hintText: 'Nome',
-              labelText: 'Nome',              
+              hintText: 'Titulo',
+              labelText: 'Titulo do Filme',              
             ),
           ),
             TextField(
-              controller: lojaC,
+              controller: idadeC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.store),
-              hintText: 'Loja',
-              labelText: 'Loja',
+              icon: Icon(Icons.info),
+              hintText: 'Idade',
+              labelText: 'Idade',
             ),
           ),
               TextField(
-              controller: precoC,
+              controller: generoC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.money_off),
-              hintText: 'Preco',
-              labelText: 'Preco',
-            ),
-          ),
-             TextField(
-              controller: referenciaC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.format_list_numbered),
-              hintText: 'Referencia',
-              labelText: 'Referencia',
+              icon: Icon(Icons.info),
+              hintText: 'Genero',
+              labelText: 'Genero do filme',
             ),
           ),
           TextField(
-              controller: fotografiaC,
+              controller: dataC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.image),
-              hintText: 'Fotografia',
-              labelText: 'Fotografia',
+              icon: Icon(Icons.info),
+              hintText: 'Data',
+              labelText: 'Data de Estreia',
+            ),
+          ),
+             TextField(
+              controller: realizadorC,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.person),
+              hintText: 'Realizador',
+              labelText: 'Realizador do filme',
+            ),
+          ),
+          TextField(
+              controller: duracaoC,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(         
+              icon: Icon(Icons.timer),
+              hintText: 'Duracao',
+              labelText: 'Duração do filme',
             ),
           ),
           
@@ -106,15 +118,17 @@ bool state = false;
             child: Text('Criar'),
             color: Colors.black,
             onPressed: () {
-              Produto prod = new Produto();
-              prod.idProduto = 0;
-              prod.nome = nomeC.text;
-              prod.loja = lojaC.text;
-              prod.preco = int.parse(precoC.text); //aqui deve dar erro dps temos de confirmar no programa
-              prod.referencia = referenciaC.text;
-              prod.fotografia = fotografiaC.text;
+              Filme f = new Filme();
+              f.idF = 0;
+              f.titulo = tituloC.text;
+              f.idade = int.parse(idadeC.text);
+              f.genero = generoC.text;
+              f.realizador = realizadorC.text;
+              f.duracao = duracaoC.text;
+              f.versao = versaoC.text;
+              f.dataEstreia = dataC.text;
               //retorna um inteiro
-              Future <int> create = prod.createProduto(prod).then((int onValue){
+              Future <int> create = f.createFilme(f).then((int onValue){
                 if(onValue == 200){
                     
                   Navigator.push(
