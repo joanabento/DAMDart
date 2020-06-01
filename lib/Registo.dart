@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
+import 'package:my_app/RegistoAdmin.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
@@ -30,7 +31,7 @@ final passC = TextEditingController();
 final passCC = TextEditingController();
 final tipoCC = TextEditingController();
 bool state = false;
-var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9iGOjHYtXGa9imyK0sBA2H_3kUt23YD1_HPDI-K7iewweLgOjcfcez7aljA1dm5pn4q2kUkJsTN-kIJ8jQr8bgLV3njFqmcWmzzU';
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -94,28 +95,46 @@ var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9i
               )),
               obscureText: true,
             ),
-           /* ButtonBar(            
+          ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             IconButton(
-              icon: Image.asset(url),
+              //Text("Administrador"),
+              icon: Icon(Icons.person),
               iconSize: 50,
-              onPressed: () {},
+              onPressed: () {
+              Utilizador user = new Utilizador();
+              user.idu = 0;
+              user.nome = nameC.text;
+              user.email = emailC.text;
+              user.pass = passC.text;
+              //retorna um inteiro
+              user.createUtilizador(user).then((http.Response response){
+                if(response.statusCode == 200){                   
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => RegistoAdmin(json.decode(response.body))),
+                              );
+                }
+                else{
+                  typeButton();
+                }});
+              },
               ),
+            Text("Administrador"),
             IconButton(
-              icon: Image.asset(url),
+              //Text("Cliente"),
+              icon: Icon(Icons.person),
               iconSize: 50,
-              onPressed: () {},
-              )
-
+              onPressed: () {
+                
+              },
+              ),
+              Text("Cliente")
           ],
-        ),*/
-          
-        
- 
-              
-          ButtonBar(            
+        ),     
+          /*ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -130,13 +149,11 @@ var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9i
               user.pass = passC.text;
               //retorna um inteiro
               Future <int> create = user.createUtilizador(user).then((int onValue){
-                if(onValue == 200){
-                    
+                if(onValue == 200){                   
                   Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => Login()),
                               );
-
                 }
                 else{
                   typeButton();
@@ -144,8 +161,7 @@ var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9i
             },
             ),
             FlatButton(
-            child: Text('Login'),
-            
+            child: Text('Login'),            
             color: Colors.black,
             onPressed: () {
               Navigator.push(
@@ -155,7 +171,7 @@ var url = 'https://lh3.googleusercontent.com/proxy/YF-9tert4lnaYLmDxhBCLs_Kt1U9i
             },
             ),
           ],
-        )
+        )*/
         ]        
       ),     
       ),

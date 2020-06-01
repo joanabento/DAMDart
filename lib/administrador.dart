@@ -7,14 +7,14 @@ import 'dart:convert' show json;
 class Administrador extends Model
 {
 int idA;  //todas as variaveis em minuscula
-String NomeShopping; 
+String nomeShopping; 
 
 
 
 Administrador({int id, String nameS})
 {
   this.idA = id;
-  this.NomeShopping = nameS;  
+  this.nomeShopping = nameS;  
 
 }
 
@@ -27,8 +27,8 @@ factory Administrador.fromJson(Map<String, dynamic> json)
   );
 }
 
-Future<List> getAdministradores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('link do ngrok'), headers:{"Accept" : "application/json"});
+Future<List<Administrador>> getAdministradores() async{
+  http.Response resposta = await http.get(Uri.encodeFull('http://a1632ea368cb.ngrok.io/api/Administrador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -41,7 +41,7 @@ Future<List> getAdministradores() async{
 
 Future<Administrador> getAdministradors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("link do ngrok" + id.toString()),
+    Uri.encodeFull("http://a1632ea368cb.ngrok.io/api/Administrador" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -52,22 +52,19 @@ Future<Administrador> getAdministradors(int id) async {
   return administrador;
 }
 
-void CreateAdmin(Administrador administrador) async {
-  var url = 'link ngrok';
-  var body = json.encode(<String,String>{
-    'idA':administrador.idA.toString(),
-    'NomeShopping':administrador.NomeShopping //mm nomes como no c#
+Future<int> createAdmin(Administrador administrador) async {
+  var url = 'http://a1632ea368cb.ngrok.io/api/Administrador';
+  var body = json.encode(<String,Object>{
+    'idA':administrador.idA,
+    'NomeShopping':administrador.nomeShopping //mm nomes como no c#
     
   });
   print(body);
 
-  http.post(url,
+  http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
-      body: body).then((http.Response response){
-
-      
-
-});
+      body: body);
+      return response.statusCode;
 }
 
 void UpdateAdmin(int idA, String what, String NS) async{
