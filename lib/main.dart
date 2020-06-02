@@ -12,13 +12,14 @@ import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/ViewContactos.dart';
-import 'package:my_app/ViewHor%C3%A1rios.dart';
+
 import 'package:my_app/ViewServicos.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/utilizador.dart';
 
 import 'ListarUti.dart';
+import 'ViewHorarios.dart';
 
 
 void main() => runApp(MyApp());
