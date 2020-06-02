@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
+import 'PerfilA.dart';
 import 'informacao.dart';
 
 class GereHorario extends StatelessWidget {
@@ -42,7 +44,18 @@ Widget createhorario(List informacoes){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {   
+              Informacao horario = new Informacao();
+              Future <int> eliminar = horario.EliminarInfo(horario.idInfo).then((int onValue){
+                if(onValue == 200){
+                  /*  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );*/
+
+                }
+              });
+                         
                 }                
             ),  
           ],

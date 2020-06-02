@@ -11,9 +11,11 @@ import 'package:my_app/InserirProd.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/evento.dart';
 import 'package:my_app/filme.dart';
+import 'package:my_app/lojista.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
+import 'ViewdadosL.dart';
 import 'utilizador.dart';
 
 
@@ -62,23 +64,23 @@ bool state = false;
             child: Text('Consultar dados pessoais'),
             color: Colors.black,
             onPressed: () {               
-               /* Utilizador user = new Utilizador();
+               Utilizador user = new Utilizador();
               
-              Future <Utilizador> listar = user.getUtilizadors(id).then((<Utilizador> uti){
-                Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => MostrarUti(uti)),
-                              );
+              Future <Utilizador> listar = user.getUtilizadors(user.idu).then((Utilizador uti){
+               /* Navigator.push(
+                               context,
+                                MaterialPageRoute(builder: (context) => ViewdadosL(uti)),
+                              );*/
 
               }
-              );*/
+              );
             },              
             ), 
-            FlatButton(
+           /* FlatButton(
             child: Text('Editar Perfil'),
             color: Colors.black,
             onPressed: () {               
-                /*Utilizador user = new Utilizador();
+                Utilizador user = new Utilizador();
               
               Future <List<Utilizador>> listar = user.getUtilizadores().then((List<Utilizador> users){
                 Navigator.push(
@@ -87,9 +89,9 @@ bool state = false;
                               );
 
               }
-              );*/
+              );
             },            
-            ), 
+            ),*/  
             
             
           ],

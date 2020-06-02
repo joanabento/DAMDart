@@ -86,4 +86,18 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
 
     });
 }
+
+Future<int> EliminarInfo (int idInfo) async{
+  print(idInfo);
+  var url = 'link ngrok' + idInfo.toString();
+
+  var body = json.encode("");
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+}
+
 }
