@@ -14,7 +14,6 @@ import 'package:my_app/filme.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
-
 import 'utilizador.dart';
 
 
