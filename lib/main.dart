@@ -11,6 +11,7 @@ import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
+import 'package:my_app/RegistoInicial.dart';
 import 'package:my_app/ViewContactos.dart';
 
 import 'package:my_app/ViewServicos.dart';
@@ -90,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => Registo()),
+                                MaterialPageRoute(builder: (context) => RegistoInicial()),
                               );
             }            
           ),         
