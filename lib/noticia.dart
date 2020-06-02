@@ -84,4 +84,16 @@ void updateNoticia(int idN, String what, String nome, DateTime data, String cont
   
   
 }
+Future<int> EliminarN (int idN) async{
+  print(idN);
+  var url = 'link ngrok' + idN.toString();
+
+  var body = json.encode("");
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+}
 }

@@ -98,5 +98,17 @@ void UpdateFilme(int idF, String what,String titulo, int idade, String genero, S
   
   
 }
+Future<int> EliminarFilme (int idF) async{
+  print(idF);
+  var url = 'link ngrok' + idF.toString();
+
+  var body = json.encode("");
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+}
 
 }

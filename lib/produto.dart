@@ -91,4 +91,17 @@ void UpdateProduto(int idP, String what, Float preco, String nome, String loja, 
   
   
 }
+
+Future<int> EliminarProduto (int idP) async{
+  print(idP);
+  var url = 'link ngrok' + idP.toString();
+
+  var body = json.encode("");
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+}
 }

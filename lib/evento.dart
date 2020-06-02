@@ -84,5 +84,17 @@ Future<int> createEvento(Evento e) async{
   
   
 }
+Future<int> EliminarEvento (int idEvento) async{
+  print(idEvento);
+  var url = 'link ngrok' + idEvento.toString();
+
+  var body = json.encode("");
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+}
 
 }

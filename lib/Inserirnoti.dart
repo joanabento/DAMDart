@@ -64,7 +64,13 @@ bool state = false;
               labelText: 'Conteudo',
             ),
           ),
-          TextField(
+          RaisedButton(
+            
+            onPressed: (){
+
+            },
+            child:Text("Selecione uma imagem"))
+          /*TextField(
               controller: fotografiaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
@@ -72,7 +78,7 @@ bool state = false;
               hintText: 'Fotografia',
               labelText: 'Fotografia',
             ),
-          ),
+          ),*/
           //falta a hora mas é automático, secalhar tiramos para não complicar xD  
            
           ButtonBar(            
