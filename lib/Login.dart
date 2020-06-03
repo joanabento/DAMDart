@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/main.dart';
 import 'dart:convert' show json;
@@ -73,12 +75,22 @@ final passc = TextEditingController();
               user.email = emailc.text;
               user.pass = passc.text;
               Future <int> verifica = user.makelogin(user.email, user.pass).then((int onValue){
-                if(onValue != 0){
-                  //verifica tipo e abre perfil correto
-                  Navigator.push(
+                if(onValue == 200){
+                  if(user.tipo == 'Administrador')
+                  {
+                    Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MyApp()),
+                                MaterialPageRoute(builder: (context) => PerfilA()),
                               );
+                  }
+                  else
+                  {
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL()),
+                              );
+                  }
+                  
                 }
                 else {
                   typeButton();

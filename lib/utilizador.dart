@@ -33,7 +33,7 @@ factory Utilizador.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Utilizador>> getUtilizadores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://a1632ea368cb.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://d379cfa93db3.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -46,7 +46,7 @@ Future<List<Utilizador>> getUtilizadores() async{
 
 Future<Utilizador> getUtilizadors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://a1632ea368cb.ngrok.io/api/Utilizador" + id.toString()),
+    Uri.encodeFull("http://d379cfa93db3.ngrok.io/api/Utilizador/" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -57,21 +57,21 @@ Future<Utilizador> getUtilizadors(int id) async {
   return user;
 }
 
-Future <http.Response> createUtilizador(Utilizador user) async {
-  var url = 'http://a1632ea368cb.ngrok.io/api/Utilizador';
+Future <int> createUtilizador(Utilizador user) async {
+  var url = 'http://d379cfa93db3.ngrok.io/api/Utilizador';
   var body = json.encode(<String,Object>{
     'idU':user.idu,
     'nome':user.nome, //mm nomes como no c#
     'email':user.email,
     'pass':user.pass,
-    //'tipo':user.tipo
+    'tipo':user.tipo
   });
   print(body);
 
   http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
       body: body);
-    return response;
+    return response.statusCode;
 }
 
 void updateUtilizador(int idU, String what, String nome, String pass) async{
@@ -89,11 +89,11 @@ void updateUtilizador(int idU, String what, String nome, String pass) async{
 
 Future<int> makelogin(String email, String password) async
 {
-  var url = "http://79d05b72761d.ngrok.io/api/Login";
+  var url = "http://d379cfa93db3.ngrok.io/api/Login";
 
   var body = json.encode(<String,Object>{
     'email': email,
-    'password':password
+    'password': password
 
   });
 
@@ -102,13 +102,7 @@ Future<int> makelogin(String email, String password) async
       body: body); 
 
 
-  if(response.statusCode == 200)
-  {
-    return json.decode(response.body);
-  }
-  else{
-    return 0; 
-  }
+  return response.statusCode;
 
 
 }

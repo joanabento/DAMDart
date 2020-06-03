@@ -10,7 +10,6 @@ import 'package:my_app/Gereservico.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
-import 'package:my_app/Registo.dart';
 import 'package:my_app/RegistoInicial.dart';
 import 'package:my_app/ViewContactos.dart';
 
@@ -54,7 +53,6 @@ class _HomePageState extends State<HomePage> {
       'Nosso Shopping',
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
-      
       style: optionStyle,
     ),
     Text(
@@ -74,11 +72,11 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Nosso Shopping'),
         backgroundColor: Colors.black,
         actions: <Widget>[
+          //get do utilizador, verificar tipo e mostrar perfil consoante o tipo 
           IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
             onPressed: () {
-              //se não tiver login feito n pode dar
               Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => PerfilA()),

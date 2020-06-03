@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
+import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/RegistoAdmin.dart';
 import 'dart:convert' show json;
 
@@ -17,9 +19,6 @@ class Registo extends StatefulWidget {
   @override
   _RegistoState createState() => _RegistoState();
 }
-
-
-  
 
 class _RegistoState extends State<Registo> {
 
@@ -94,7 +93,7 @@ bool state = false;
               child: const Icon(Icons.lock),
               )),
               obscureText: true,
-            ),
+            ),          
           ButtonBar(                        
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
@@ -109,12 +108,12 @@ bool state = false;
               user.nome = nameC.text;
               user.email = emailC.text;
               user.pass = passC.text;
-              //retorna um inteiro
-              user.createUtilizador(user).then((http.Response response){
-                if(response.statusCode == 200){                   
+              user.tipo = "Administrador";
+              user.createUtilizador(user).then((int onValue){
+                if(onValue == 200){                   
                   Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RegistoAdmin(json.decode(response.body))),
+                                MaterialPageRoute(builder: (context) => PerfilA())
                               );
                 }
                 else{
@@ -128,7 +127,45 @@ bool state = false;
               icon: Icon(Icons.person),
               iconSize: 50,
               onPressed: () {
-                
+                Utilizador user = new Utilizador();
+                user.idu = 0;
+                user.nome = nameC.text;
+                user.email = emailC.text;
+                user.pass = passC.text;
+                user.tipo = "Lojista";
+                user.createUtilizador(user).then((int onValue){
+                if(onValue == 200){                   
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL())
+                              );
+                }
+                else{
+                  typeButton();
+                }});
+              },
+              ),
+              Text("Lojista"),
+              IconButton(
+              icon: Icon(Icons.person),
+              iconSize: 50,
+              onPressed: () {
+                Utilizador user = new Utilizador();
+                user.idu = 0;
+                user.nome = nameC.text;
+                user.email = emailC.text;
+                user.pass = passC.text;
+                user.tipo = "Cliente";
+                user.createUtilizador(user).then((int onValue){
+                if(onValue == 200){                   
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Login())
+                              );
+                }
+                else{
+                  typeButton();
+                }});
               },
               ),
               Text("Cliente")

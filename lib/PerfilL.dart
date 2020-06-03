@@ -67,10 +67,10 @@ bool state = false;
                Utilizador user = new Utilizador();
               
               Future <Utilizador> listar = user.getUtilizadors(user.idu).then((Utilizador uti){
-               /* Navigator.push(
+                Navigator.push(
                                context,
-                                MaterialPageRoute(builder: (context) => ViewdadosL(uti)),
-                              );*/
+                                MaterialPageRoute(builder: (context) => ViewdadosL(uti:uti)),
+                              );
 
               }
               );

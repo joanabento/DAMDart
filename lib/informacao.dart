@@ -87,11 +87,10 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
     });
 }
 
-Future<int> EliminarInfo (int idInfo) async{
+Future<int> eliminarInfo (int idInfo) async{
   print(idInfo);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Informacao' + idInfo.toString();
+  var url = 'http://d379cfa93db3.ngrok.io/api/Informacao/' + idInfo.toString();
 
-  var body = json.encode("");
 
   http.Response response = await http.delete(url,
   headers: {"Content-Type": "application/json"},
