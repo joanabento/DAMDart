@@ -74,7 +74,7 @@ final passc = TextEditingController();
               user.pass = passc.text;
               Future <int> verifica = user.makelogin(user.email, user.pass).then((int onValue){
                 if(onValue != 0){
-                  
+                  //verifica tipo e abre perfil correto
                   Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => MyApp()),

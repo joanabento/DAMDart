@@ -95,7 +95,7 @@ bool state = false;
               )),
               obscureText: true,
             ),
-          ButtonBar(            
+          ButtonBar(                        
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
