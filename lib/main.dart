@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
               //se não tiver login feito n pode dar
               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => PerfilL()),
+                                MaterialPageRoute(builder: (context) => PerfilA()),
                               );
             }  
           ),

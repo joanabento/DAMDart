@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:js';
+//import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
