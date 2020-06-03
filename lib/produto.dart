@@ -94,7 +94,7 @@ void UpdateProduto(int idP, String what, Float preco, String nome, String loja, 
 
 Future<int> EliminarProduto (int idP) async{
   print(idP);
-  var url = 'link ngrok' + idP.toString();
+  var url = 'http://ab8d68853b54.ngrok.io/api/Produto' + idP.toString();
 
   var body = json.encode("");
 

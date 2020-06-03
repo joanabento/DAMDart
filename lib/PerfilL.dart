@@ -51,7 +51,7 @@ bool state = false;
             Column (children: [
             SizedBox(height: 30),
           Text(
-                'Dados do Pefil',  
+                'Dados do Perfil',  
                 textAlign: TextAlign.right,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

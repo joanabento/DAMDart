@@ -89,7 +89,7 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
 
 Future<int> EliminarInfo (int idInfo) async{
   print(idInfo);
-  var url = 'link ngrok' + idInfo.toString();
+  var url = 'http://ab8d68853b54.ngrok.io/api/Informacao' + idInfo.toString();
 
   var body = json.encode("");
 

@@ -32,7 +32,7 @@ factory Noticia.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Noticia>> getNoticias() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://fef807502b54.ngrok.io/api/Noticia'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://ab8d68853b54.ngrok.io/api/Noticia'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -45,7 +45,7 @@ Future<List<Noticia>> getNoticias() async{
 
 Future<Noticia> getNotices(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://fef807502b54.ngrok.io/api/Noticia" + id.toString()),
+    Uri.encodeFull("http://ab8d68853b54.ngrok.io/api/Noticia" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -57,7 +57,7 @@ Future<Noticia> getNotices(int id) async {
 }
 
 Future<int> createNoticia(Noticia noticia) async {
-  var url = 'http://fef807502b54.ngrok.io/api/Noticia';
+  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia';
   var body = json.encode(<String,Object>{
     'idN':noticia.idN,
     'nome':noticia.nome, //mm nomes como no c#
@@ -73,7 +73,7 @@ Future<int> createNoticia(Noticia noticia) async {
 }
 
 void updateNoticia(int idN, String what, String nome, DateTime data, String conteudo, String foto) async{
-  var url = 'http://fef807502b54.ngrok.io/api/Noticia' + idN.toString() + "/" + what;
+  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia' + idN.toString() + "/" + what;
   var body = json.encode(nome);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
@@ -86,7 +86,7 @@ void updateNoticia(int idN, String what, String nome, DateTime data, String cont
 }
 Future<int> EliminarN (int idN) async{
   print(idN);
-  var url = 'link ngrok' + idN.toString();
+  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia' + idN.toString();
 
   var body = json.encode("");
 

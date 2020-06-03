@@ -46,28 +46,30 @@ Future<void> _showChoiceDialog(BuildContext context){
             child: Text("Galeria") ,
             onTap: (){
               _openGallary(context);
-            },),
+            },
+            ),
             Padding(padding: EdgeInsets.all(8.0)),
-        ],)
+        ],
+        )
     ),
     );
   });
   
 }
 
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+/*final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
 final conteudoC = TextEditingController();
-final fotografiaC = TextEditingController();
+final fotografiaC = TextEditingController();*/
 
-bool state = false;
+//bool state = false;
 Widget _decideImageView(){
   if(imageFile == null){
     return Text("Nenhuma imagem selecionada");
   }
   else{
-    Image.file(imageFile, width: 250, height: 250);
+    Image.file(imageFile, width: 400, height: 400);
   }
 }
   @override
@@ -78,12 +80,19 @@ Widget _decideImageView(){
           title: const Text('Inserir Informação'),
           backgroundColor: Colors.black,
         ),        
-        body: Center(child: 
+        body: Container(
+          child:Center(
+          child: Column(
+            mainAxisAlignment:MainAxisAlignment.spaceAround,
+            children:<Widget>[
+              
+              
+        /*Center(child: 
             
             Column (children: [
-            SizedBox(height: 15),
+            SizedBox(height: 15),*/
    
-            TextField(
+            /*TextField(
               controller: nomeC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
@@ -96,11 +105,11 @@ Widget _decideImageView(){
               controller: conteudoC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
-              icon: Icon(Icons.phone),
+              icon: Icon(Icons.comment),
               hintText: 'Conteudo',
               labelText: 'Conteudo',
             ),
-          ),
+          ),*/
           _decideImageView(),
           RaisedButton(
             
@@ -109,7 +118,13 @@ Widget _decideImageView(){
               _showChoiceDialog(context);
 
             },
-            child:Text("Selecione uma imagem"))
+            child:Text("Selecione uma imagem"),)
+            ],
+          ),
+          ),
+          ),
+     );
+  }
           /*TextField(
               controller: fotografiaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -121,7 +136,7 @@ Widget _decideImageView(){
           ),*/
           //falta a hora mas é automático, secalhar tiramos para não complicar xD  
            
-          ,ButtonBar(            
+          /*,ButtonBar(            
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -178,6 +193,5 @@ Widget _decideImageView(){
     
 }
 
-  
-
-
+*/
+}
