@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
-import 'package:my_app/RegistoAdmin.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';

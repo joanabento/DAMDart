@@ -12,12 +12,11 @@ import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
 import 'package:my_app/RegistoInicial.dart';
 import 'package:my_app/ViewContactos.dart';
-
+import 'package:my_app/ViewInformacoes.dart';
 import 'package:my_app/ViewServicos.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/utilizador.dart';
-
 import 'ListarUti.dart';
 import 'ViewHorarios.dart';
 
@@ -51,18 +50,11 @@ class _HomePageState extends State<HomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Nosso Shopping',
-      textAlign: TextAlign.center,
+      textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       style: optionStyle,
     ),
-    Text(
-      'Map',
-      style: optionStyle,
-    ),
   ];
-   
-
-  
 
   @override
   Widget build(BuildContext context) {  
@@ -128,20 +120,20 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         ListTile(
-          leading: Icon(Icons.contacts),
-          title: Text('Contactos'),
+          leading: Icon(Icons.info),
+          title: Text('Informações Gerais'),
           onTap: (){
             Informacao contactos = new Informacao();            
             Future <List<Informacao>> listac = contactos.getInformacao().then((List<Informacao> contacts){
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ViewContactos(informacoes: contacts)),
+                  MaterialPageRoute(builder: (context) => ViewInformacoes(informacoes: contacts)),
                   );           
                 }
               );
           },
         ),
-        ListTile(
+      /*ListTile(
           leading: Icon(Icons.schedule),
           title: Text('Horários'),
           onTap: (){
@@ -154,7 +146,7 @@ class _HomePageState extends State<HomePage> {
                 }
               );
           },
-        ),
+        ),*/
         ListTile(
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
@@ -171,6 +163,11 @@ class _HomePageState extends State<HomePage> {
           onTap: (){},
         ),
         ListTile(
+          leading: Icon(Icons.map),
+          title: Text('Mapa'),
+          onTap: (){},
+        ),
+        /*ListTile(
           leading: Icon(Icons.info),
           title: Text('Serviços'),
           onTap: (){
@@ -183,11 +180,10 @@ class _HomePageState extends State<HomePage> {
                 }
               );
           },
-        ),
+        ),*/
       ],
     ),
-  ),
-  
+  ),  
       body:Center( 
         child: _widgetOptions.elementAt(_selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
@@ -207,21 +203,7 @@ class _HomePageState extends State<HomePage> {
       ],
       onTap: (index) {
         setState(() {
-      //navigationIndex = _selectedIndex;
       _selectedIndex = index;
-      /*switch (index) {
-        case 0:
-          return Login();
-          break;
-        case 1:
-          return Registo();
-          break;
-        case 2:
-          return Login();
-          break;
-        default: 
-          return Text('Erro');
-                }*/
               }
             );
           }
@@ -230,19 +212,6 @@ class _HomePageState extends State<HomePage> {
     } 
   } 
 
-
-
-  /*List<Widget> getwidgets()
-  {
-    int _selectedIndex = 0;
-    const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-    List<Widget> w = new List<Widget>();
-
-    
-
-     return w;
-     
-  }*/
 
 void newMyProfile(BuildContext context){
 Navigator.push(context, MaterialPageRoute(
