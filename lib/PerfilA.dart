@@ -11,12 +11,11 @@ import 'package:my_app/Inserirnoti.dart';
 import 'package:my_app/ListarUti.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/informacao.dart';
+import 'package:my_app/main.dart';
 import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
 
 import 'utilizador.dart';
-
-
 
 class PerfilA extends StatefulWidget {
 
@@ -25,9 +24,6 @@ class PerfilA extends StatefulWidget {
   @override
   _Perfil createState() => _Perfil();
 }
-
-
-  
 
 class _Perfil extends State<PerfilA> {
 
@@ -59,7 +55,7 @@ bool state = false;
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             FlatButton(
-            child: Text('Lista de Utilizadores'),
+            child: Text('Ver lista de Utilizadores'),
             color: Colors.black,
             onPressed: () {               
               Utilizador user = new Utilizador();
@@ -94,14 +90,8 @@ bool state = false;
                               );
                 }                
             ), 
-          ],
-        ),
-        ButtonBar(            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
             RaisedButton(
-            child: Text('Gerir Horários'),
+            child: Text('Ver lista de Horários'),
             color: Colors.black,
             onPressed: () {  
               Informacao horarios = new Informacao();            
@@ -113,7 +103,7 @@ bool state = false;
                 }
                 );                                
                 }                
-            ),     
+            ),
           ],
         ),
         ButtonBar(            
@@ -121,7 +111,7 @@ bool state = false;
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             RaisedButton(
-            child: Text('Gerir Contactos'),
+            child: Text('Ver lista de Contactos'),
             color: Colors.black,
             onPressed: () { 
                 Informacao contactos = new Informacao();            
@@ -134,14 +124,8 @@ bool state = false;
                 );
             }                
             ), 
-          ],
-        ),
-        ButtonBar(            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
             RaisedButton(
-            child: Text('Gerir Serviços'),
+            child: Text('Ver lista de Serviços'),
             color: Colors.black,
             onPressed: () {  
               Informacao servicos = new Informacao();            
@@ -153,7 +137,7 @@ bool state = false;
                 }
                 );                              
                 }                
-            ),  
+            ),     
           ],
         ),
         Text(
@@ -166,7 +150,7 @@ bool state = false;
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-            FlatButton(
+            RaisedButton(
             child: Text('Inserir Noticia'),
             color: Colors.black,
             onPressed: () {               
@@ -175,15 +159,9 @@ bool state = false;
                                 MaterialPageRoute(builder: (context) => Inserirnoti()),
                               );
                 }                
-            ),          
-          ],
-        ), 
-        ButtonBar(            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
+            ),
             RaisedButton(
-            child: Text('Lista de Noticias'),
+            child: Text('Ver lista de Noticias'),
             color: Colors.black,
             onPressed: () {               
               Noticia noticia = new Noticia();            
@@ -194,6 +172,23 @@ bool state = false;
                               );
                 }                
             );
+            }, 
+            ),           
+          ],
+        ), 
+        ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            Text("Terminar Sessão", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            RaisedButton(
+            child: Text('LogOut'),
+            color: Colors.black,
+            onPressed: () {  
+              Utilizador.logout();
+              Navigator.popUntil(context, 
+                    ModalRoute.withName('/'));
+              
             }, 
             ), 
           ],

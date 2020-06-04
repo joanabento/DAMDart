@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
@@ -20,10 +21,10 @@ Gerecontact({Key key, @required this.informacoes}): super(key:key);
       ),
 
     body:
-    createcontacts(informacoes));
+    createcontacts(informacoes, context));
   }
 //*
-Widget createcontacts(List informacoes){
+Widget createcontacts(List informacoes, context){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
@@ -42,7 +43,18 @@ Widget createcontacts(List informacoes){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {   
+              Informacao contacto = new Informacao();
+              contacto.idInfo = i.idInfo;
+              Future <int> eliminar = contacto.eliminarInfo(contacto.idInfo).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );
+
+                }
+              });                             
                 }                
             ),  
           ],

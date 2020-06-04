@@ -38,11 +38,11 @@ final passc = TextEditingController();
           title: const Text('Login'),
           backgroundColor: Colors.black,
         ),        
-        body: Center(child: 
+        body: 
+        Center(child: 
             Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
             SizedBox(height: 15),
-       
             TextField(
               controller: emailc,
               decoration: const InputDecoration(         
@@ -74,27 +74,20 @@ final passc = TextEditingController();
               Utilizador user = new Utilizador();
               user.email = emailc.text;
               user.pass = passc.text;
-              Future <int> verifica = user.makelogin(user.email, user.pass).then((int onValue){
-                if(onValue == 200){
-                  if(user.tipo == 'Administrador')
+              Future <int> verifica = user.makelogin(user.email, user.pass).then((Utilizador onValue){
+                if(onValue.tipo == 'Administrador')
                   {
-                    Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PerfilA()),
-                              );
+                    //var userr = Utilizador.isLogged();
+                    Navigator.pushAndRemoveUntil(context, 
+                    MaterialPageRoute(builder: (context) => PerfilA()),
+                    ModalRoute.withName('/'));
                   }
                   else
                   {
-                    Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PerfilL()),
-                              );
+                    Navigator.pushAndRemoveUntil(context, 
+                    MaterialPageRoute(builder: (context) => PerfilL()),
+                    ModalRoute.withName('/'));
                   }
-                  
-                }
-                else {
-                  typeButton();
-                }
               });
               
             },

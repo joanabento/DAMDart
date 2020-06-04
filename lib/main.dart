@@ -60,30 +60,41 @@ class _HomePageState extends State<HomePage> {
       style: optionStyle,
     ),
   ];
-
+   
 
   
 
   @override
-  Widget build(BuildContext context) {
-    
+  Widget build(BuildContext context) {  
+    var user = Utilizador.isLogged();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Nosso Shopping'),
         backgroundColor: Colors.black,
         actions: <Widget>[
           //get do utilizador, verificar tipo e mostrar perfil consoante o tipo 
-          IconButton(
+          Visibility(
+            child: IconButton(            
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
             onPressed: () {
-              Navigator.push(
+              if(user.tipo == "Administrador"){
+                Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => PerfilA()),
                               );
+              }else{
+                Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL()),
+                              );
+              }
             }  
           ),
-          IconButton(
+          visible: Utilizador.isLogged() != null,
+          ),
+         Visibility(
+           child:  IconButton(
             icon: const Icon(Icons.person_add),
             tooltip: 'Registar',
             onPressed: () {
@@ -92,7 +103,9 @@ class _HomePageState extends State<HomePage> {
                                 MaterialPageRoute(builder: (context) => RegistoInicial()),
                               );
             }            
-          ),         
+          ),
+          visible: Utilizador.isLogged() == null,
+         ),         
         ]
       ),
         drawer: Drawer(

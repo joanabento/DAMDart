@@ -28,7 +28,6 @@ final nameC = TextEditingController();
 final emailC = TextEditingController();
 final passC = TextEditingController();
 final passCC = TextEditingController();
-final tipoCC = TextEditingController();
 bool state = false;
 
   @override
@@ -40,7 +39,6 @@ bool state = false;
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
-            
             Column (children: [
             SizedBox(height: 15),
             Text(state ? "Faça o seu registo" : "Erro"),
@@ -50,8 +48,6 @@ bool state = false;
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontSize: 20),
               ),
-                         
-              
             TextField(
               controller: nameC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -59,8 +55,6 @@ bool state = false;
               icon: Icon(Icons.person),
               hintText: 'Name',
               labelText: 'Name',
-               
-              
             ),
           ),
             TextField(
@@ -99,7 +93,6 @@ bool state = false;
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             IconButton(
-              //Text("Administrador"),
               icon: Icon(Icons.person),
               iconSize: 50,
               onPressed: () {
@@ -123,7 +116,6 @@ bool state = false;
               ),
             Text("Administrador"),
             IconButton(
-              //Text("Cliente"),
               icon: Icon(Icons.person),
               iconSize: 50,
               onPressed: () {
@@ -171,44 +163,6 @@ bool state = false;
               Text("Cliente")
           ],
         ),     
-          /*ButtonBar(            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            FlatButton(
-            child: Text('Registar'),
-            color: Colors.black,
-            onPressed: () {
-              Utilizador user = new Utilizador();
-              user.idu = 0;
-              user.nome = nameC.text;
-              user.email = emailC.text;
-              user.pass = passC.text;
-              //retorna um inteiro
-              Future <int> create = user.createUtilizador(user).then((int onValue){
-                if(onValue == 200){                   
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login()),
-                              );
-                }
-                else{
-                  typeButton();
-                }});
-            },
-            ),
-            FlatButton(
-            child: Text('Login'),            
-            color: Colors.black,
-            onPressed: () {
-              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login()),
-                              );
-            },
-            ),
-          ],
-        )*/
         ]        
       ),     
       ),

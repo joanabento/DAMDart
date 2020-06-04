@@ -36,7 +36,7 @@ class Produto extends Model{
   }
 
   Future<List<Produto>> getProduto() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://b397c2bdca5a.ngrok.io/api/Produto'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://3af6df174374.ngrok.io/api/Produto'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -49,7 +49,7 @@ class Produto extends Model{
 
   Future<Produto> getInformacoes(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://b397c2bdca5a.ngrok.io/api/Produto" + id.toString()),
+    Uri.encodeFull("http://3af6df174374.ngrok.io/api/Produto" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -61,7 +61,7 @@ class Produto extends Model{
 }
 
 Future<int> createProduto(Produto p) async {
-  var url = 'http://b397c2bdca5a.ngrok.io/api/Produto';
+  var url = 'http://3af6df174374.ngrok.io/api/Produto';
   var body = json.encode(<String,Object>{
     'idProduto': p.idProduto,
     'nome':p.nome, //mm nomes como no c#
@@ -94,9 +94,7 @@ void UpdateProduto(int idP, String what, Float preco, String nome, String loja, 
 
 Future<int> EliminarProduto (int idP) async{
   print(idP);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Produto' + idP.toString();
-
-  var body = json.encode("");
+  var url = 'http://3af6df174374.ngrok.io/api/Produto/' + idP.toString();
 
   http.Response response = await http.delete(url,
   headers: {"Content-Type": "application/json"},

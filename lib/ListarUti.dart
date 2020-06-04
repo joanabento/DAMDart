@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
@@ -20,21 +21,21 @@ ListarUti({Key key, @required this.utilizadores}): super(key:key);
       ),
 
     body:
-    createlista(utilizadores));
+    createlista(utilizadores, context));
   }
 //*
-Widget createlista(List utilizadores){
+Widget createlista(List utilizadores, context){
   List<TableRow> rows = [];
   for (Utilizador u in utilizadores){
     rows.add(TableRow(children: [
+
       Text(u.nome,
       textAlign: TextAlign.center, 
-      style: TextStyle(fontSize: 20)
+      style: TextStyle(fontSize: 15)
       ),
-      //erro quando tentamos mostrar o email na lista
-      Text("TIPO", 
+      Text(u.tipo, 
       textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 20)
+      style: TextStyle(fontSize: 15)
       ),
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
@@ -43,7 +44,18 @@ Widget createlista(List utilizadores){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () { 
+              Utilizador user = new Utilizador();
+              user.idu = u.idu;
+              Future <int> eliminar = user.eliminarUti(user.idu).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );
+
+                }
+              });                               
                 }                
             ),  
           ],
@@ -53,7 +65,7 @@ Widget createlista(List utilizadores){
 
   return Table( border: TableBorder(
     horizontalInside: BorderSide(
-      color: Colors.black,
+      color: Colors.white,
       style: BorderStyle.solid,
       width: 1.0,
     ),

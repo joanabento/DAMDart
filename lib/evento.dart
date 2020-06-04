@@ -34,7 +34,7 @@ class Evento extends Model{
   }
 
   Future<List<Evento>> getEvento() async{
-    http.Response resposta = await http.get(Uri.encodeFull('http://ab8d68853b54.ngrok.io/api/Evento'), headers:{ "Accept" : "application/json"});
+    http.Response resposta = await http.get(Uri.encodeFull('http://3af6df174374.ngrok.io/api/Evento'), headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
@@ -47,7 +47,7 @@ class Evento extends Model{
 
    Future<Evento> getEventos(int id) async {
     http.Response resposta = await http.get(
-    Uri.encodeFull("http://ab8d68853b54.ngrok.io/api/Evento" + id.toString()),
+    Uri.encodeFull("http://3af6df174374.ngrok.io/api/Evento" + id.toString()),
     headers: {
       "Accept":"application/json"
     });
@@ -56,7 +56,7 @@ class Evento extends Model{
   }
 
 Future<int> createEvento(Evento e) async{
-    var url = 'http://ab8d68853b54.ngrok.io/api/Evento';
+    var url = 'http://3af6df174374.ngrok.io/api/Evento';
     var body = json.encode(<String, Object>{
         'idEvento' : e.idEvento,
         'nome': e.nome,
@@ -86,9 +86,8 @@ Future<int> createEvento(Evento e) async{
 }
 Future<int> EliminarEvento (int idEvento) async{
   print(idEvento);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Evento' + idEvento.toString();
+  var url = 'http://3af6df174374.ngrok.io/api/Evento/' + idEvento.toString();
 
-  var body = json.encode("");
 
   http.Response response = await http.delete(url,
   headers: {"Content-Type": "application/json"},
