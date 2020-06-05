@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-//import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Registo.dart';
@@ -22,10 +21,10 @@ GereHorario({Key key, @required this.informacoes}): super(key:key);
       ),
 
     body:
-    createhorario(informacoes));
+    createhorario(informacoes, context));
   }
 //*
-Widget createhorario(List informacoes){
+Widget createhorario(List informacoes, context){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
@@ -46,12 +45,13 @@ Widget createhorario(List informacoes){
             color: Colors.black,
             onPressed: () {   
               Informacao horario = new Informacao();
-              Future <int> eliminar = horario.EliminarInfo(horario.idInfo).then((int onValue){
+              horario.idInfo = i.idInfo;
+              Future <int> eliminar = horario.eliminarInfo(horario.idInfo).then((int onValue){
                 if(onValue == 200){
-                  /*  Navigator.push(
+                    Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => PerfilA()),
-                              );*/
+                              );
 
                 }
               });

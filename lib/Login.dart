@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/main.dart';
 import 'dart:convert' show json;
@@ -36,11 +38,11 @@ final passc = TextEditingController();
           title: const Text('Login'),
           backgroundColor: Colors.black,
         ),        
-        body: Center(child: 
+        body: 
+        Center(child: 
             Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
             SizedBox(height: 15),
-       
             TextField(
               controller: emailc,
               decoration: const InputDecoration(         
@@ -72,17 +74,20 @@ final passc = TextEditingController();
               Utilizador user = new Utilizador();
               user.email = emailc.text;
               user.pass = passc.text;
-              Future <int> verifica = user.makelogin(user.email, user.pass).then((int onValue){
-                if(onValue != 0){
-                  
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => MyApp()),
-                              );
-                }
-                else {
-                  typeButton();
-                }
+              Future <int> verifica = user.makelogin(user.email, user.pass).then((Utilizador onValue){
+                if(onValue.tipo == 'Administrador')
+                  {
+                    //var userr = Utilizador.isLogged();
+                    Navigator.pushAndRemoveUntil(context, 
+                    MaterialPageRoute(builder: (context) => PerfilA()),
+                    ModalRoute.withName('/'));
+                  }
+                  else
+                  {
+                    Navigator.pushAndRemoveUntil(context, 
+                    MaterialPageRoute(builder: (context) => PerfilL()),
+                    ModalRoute.withName('/'));
+                  }
               });
               
             },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:scoped_model/scoped_model.dart';
-import 'dart:convert' show json;
+import 'dart:convert' show json, jsonDecode;
 
 class Utilizador extends Model
 {
@@ -11,6 +11,8 @@ String nome;
 String email; 
 String pass;
 String tipo;
+
+static Utilizador _logado;
 
 
 Utilizador({int id, String name, String email, String password, String tipo})
@@ -21,6 +23,12 @@ Utilizador({int id, String name, String email, String password, String tipo})
   this.tipo = tipo;
 }
 
+factory Utilizador.isLogged(){
+  return _logado;
+}
+factory Utilizador.logout(){
+  _logado = null;
+}
 factory Utilizador.fromJson(Map<String, dynamic> json)
 {
   return Utilizador(
@@ -33,7 +41,7 @@ factory Utilizador.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Utilizador>> getUtilizadores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://a1632ea368cb.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://3af6df174374.ngrok.io/api/Utilizador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -46,7 +54,7 @@ Future<List<Utilizador>> getUtilizadores() async{
 
 Future<Utilizador> getUtilizadors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://a1632ea368cb.ngrok.io/api/Utilizador" + id.toString()),
+    Uri.encodeFull("http://3af6df174374.ngrok.io/api/Utilizador/" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -57,21 +65,35 @@ Future<Utilizador> getUtilizadors(int id) async {
   return user;
 }
 
-Future <http.Response> createUtilizador(Utilizador user) async {
-  var url = 'http://a1632ea368cb.ngrok.io/api/Utilizador';
+Future <int> createUtilizador(Utilizador user) async {
+  var url = 'http://3af6df174374.ngrok.io/api/Utilizador';
   var body = json.encode(<String,Object>{
     'idU':user.idu,
     'nome':user.nome, //mm nomes como no c#
     'email':user.email,
     'pass':user.pass,
-    //'tipo':user.tipo
+    'tipo':user.tipo
   });
   print(body);
 
   http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
       body: body);
-    return response;
+    return response.statusCode;
+}
+
+
+Future<int> eliminarUti(int idU) async {
+  print(idU);
+  var url = 'http://3af6df174374.ngrok.io/api/Utilizador/' + idU.toString();
+
+
+  http.Response response = await http.delete(url,
+  headers: {"Content-Type": "application/json"},
+  );
+
+  return response.statusCode;
+  
 }
 
 void updateUtilizador(int idU, String what, String nome, String pass) async{
@@ -87,29 +109,24 @@ void updateUtilizador(int idU, String what, String nome, String pass) async{
   
 }
 
-Future<int> makelogin(String email, String password) async
+Future<Utilizador> makelogin(String email, String password) async
 {
-  var url = "http://79d05b72761d.ngrok.io/api/Login";
+  var url = "http://3af6df174374.ngrok.io/api/Login";
 
   var body = json.encode(<String,Object>{
     'email': email,
-    'password':password
-
+    'password': password
   });
 
   http.Response response = await http.post(url,
       headers: {"Content-Type": "application/json"},
       body: body); 
-
-
-  if(response.statusCode == 200)
-  {
-    return json.decode(response.body);
+  
+  if(response.statusCode == 200){
+    var user = new Utilizador.fromJson(jsonDecode(response.body));
+    _logado = user;
+    return user;
   }
-  else{
-    return 0; 
-  }
-
-
+  throw new Exception('Failed on login');
 }
 }

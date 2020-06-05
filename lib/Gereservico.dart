@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
@@ -20,10 +21,10 @@ Gereservico({Key key, @required this.informacoes}): super(key:key);
       ),
 
     body:
-    createservice(informacoes));
+    createservice(informacoes, context));
   }
 //*
-Widget createservice(List informacoes){
+Widget createservice(List informacoes, context){
   List<TableRow> rows = [];
   for (Informacao i in informacoes){
     rows.add(TableRow(children: [
@@ -42,7 +43,18 @@ Widget createservice(List informacoes){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {  
+              Informacao servico = new Informacao();
+              servico.idInfo = i.idInfo;
+              Future <int> eliminar = servico.eliminarInfo(servico.idInfo).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );
+
+                }
+              });                              
                 }                
             ),  
           ],

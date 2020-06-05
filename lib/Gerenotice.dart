@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/noticia.dart';
 import 'dart:convert' show json;
@@ -21,10 +22,10 @@ Gerenotice({Key key, @required this.noticias}): super(key:key);
       ),
 
     body:
-    createnotices(noticias));
+    createnotices(noticias, context));
   }
 //*
-Widget createnotices(List noticias){
+Widget createnotices(List noticias, context){
   List<TableRow> rows = [];
   for (Noticia n in noticias){
     rows.add(TableRow(children: [
@@ -43,7 +44,18 @@ Widget createnotices(List noticias){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {  
+              Noticia noti = new Noticia();
+              noti.idN = n.idN;
+              Future <int> eliminar = noti.eliminarN(noti.idN).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );
+
+                }
+              });                              
                 }                
             ),  
           ],

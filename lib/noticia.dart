@@ -83,7 +83,7 @@ Future<int> createNoticia(Noticia noticia) async {
 }
 
 void updateNoticia(int idN, String what, String nome, DateTime data, String conteudo, String foto) async{
-  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia' + idN.toString() + "/" + what;
+  var url = 'http://3af6df174374.ngrok.io/api/Noticia' + idN.toString() + "/" + what;
   var body = json.encode(nome);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
@@ -94,11 +94,10 @@ void updateNoticia(int idN, String what, String nome, DateTime data, String cont
   
   
 }
-Future<int> EliminarN (int idN) async{
+Future<int> eliminarN (int idN) async{
   print(idN);
   var url = 'http://7f8e25bcdcfe.ngrok.io/api/Noticia' + idN.toString();
 
-  var body = json.encode("");
 
   http.Response response = await http.delete(url,
   headers: {"Content-Type": "application/json"},
