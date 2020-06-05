@@ -34,9 +34,10 @@ Widget createnotices(List noticias, context){
       style: TextStyle(fontSize: 20)
       ),
       Text(n.conteudo,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
+      textAlign: TextAlign.center, 
+      style: TextStyle(fontSize: 20)
       ),
+      Image.memory(n.fotografia, width: 200, height: 100),      
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,

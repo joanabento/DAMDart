@@ -29,6 +29,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   http: any
   scoped_model: ^1.0.1
+  byte_array: ^0.1.6
   
 dev_dependencies:
   flutter_test:

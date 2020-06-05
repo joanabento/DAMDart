@@ -119,7 +119,8 @@ final conteudoC = TextEditingController();
             },
             ),
        ]) 
-          ]),),
+          ]),
+          ),
        
         floatingActionButton: FloatingActionButton(
           onPressed: getImage,

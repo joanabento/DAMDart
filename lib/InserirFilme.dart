@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
@@ -28,6 +30,17 @@ class InserirFilme extends StatefulWidget {
   
 
 class _inserirfilme extends State<InserirFilme> {
+
+File _image;
+final picker = ImagePicker();
+
+Future getImage() async{
+  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+  setState((){
+    _image = File(pickedFile.path);
+  });
+}
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
@@ -108,7 +121,14 @@ bool state = false;
               labelText: 'Duração do filme',
             ),
           ),
-          
+          Text(
+            "Insira uma fotografia",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+          ),
+
+          _image == null
+            ? Text("Nenhuma imagem selecionada")
+            : Image.file(_image, width: 200, height: 100,),
            
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -127,6 +147,9 @@ bool state = false;
               f.duracao = duracaoC.text;
               f.versao = versaoC.text;
               f.dataEstreia = dataC.text;
+              List <int> list = _image.readAsBytesSync();
+              Uint8List bytes = Uint8List.fromList(list);
+              f.fotografia = bytes;
               //retorna um inteiro
               Future <int> create = f.createFilme(f).then((int onValue){
                 if(onValue == 200){
@@ -142,6 +165,7 @@ bool state = false;
                 }});
             },
             ),
+         
             FlatButton(
             child: Text('Cancelar'),
             
@@ -158,6 +182,13 @@ bool state = false;
         ]        
       ),     
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: getImage,
+          backgroundColor: Colors.black,
+          tooltip: "Escolha uma imagem",
+          child: Icon(Icons.add_a_photo),
+          ),
+
       );
   }
 
