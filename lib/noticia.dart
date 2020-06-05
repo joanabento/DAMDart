@@ -9,11 +9,11 @@ class Noticia extends Model
 int idN;  //todas as variaveis em minuscula
 String nome; 
 String conteudo; 
-String fotografia;
+Uint8List fotografia;
 
+final url = 'http://7f8e25bcdcfe.ngrok.io/';
 
-
-Noticia({int id, String name, DateTime date, String content, String pic})
+Noticia({int id, String name, DateTime date, String content, Uint8List pic})
 {
   this.idN = id;
   this.nome = name;  
@@ -23,16 +23,22 @@ Noticia({int id, String name, DateTime date, String content, String pic})
 
 factory Noticia.fromJson(Map<String, dynamic> json)
 {
+
+  String bystring = json['fotografia'] as String;
+  List <int> list = bystring.codeUnits;
+  Uint8List bytes = Uint8List.fromList(list);
+
   return Noticia(
     id: json['idN'] as int,
     name: json['nome'] as String,
     content: json['conteudo'] as String,
-    pic: json['fotografia'] as String
+    pic: bytes
   );
 }
 
 Future<List<Noticia>> getNoticias() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://ab8d68853b54.ngrok.io/api/Noticia'), headers:{"Accept" : "application/json"});
+  var url = this.url + 'api/Noticia';
+  http.Response resposta = await http.get(url, headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -44,8 +50,9 @@ Future<List<Noticia>> getNoticias() async{
 }
 
 Future<Noticia> getNotices(int id) async {
+  var url = this.url + 'api/Noticia/';
   http.Response response = await http.get(
-    Uri.encodeFull("http://ab8d68853b54.ngrok.io/api/Noticia" + id.toString()),
+    Uri.encodeFull(url + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -57,12 +64,15 @@ Future<Noticia> getNotices(int id) async {
 }
 
 Future<int> createNoticia(Noticia noticia) async {
-  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia';
+  var url = this.url + 'api/Noticia';
+
+  var list = new List.from(noticia.fotografia);
+
   var body = json.encode(<String,Object>{
-    'idN':noticia.idN,
+    'idN':noticia.idN.toString(),
     'nome':noticia.nome, //mm nomes como no c#
     'conteudo': noticia.conteudo,
-    'fotografia': noticia.fotografia
+    'fotografia': list
   });
   print(body);
 
@@ -86,7 +96,7 @@ void updateNoticia(int idN, String what, String nome, DateTime data, String cont
 }
 Future<int> EliminarN (int idN) async{
   print(idN);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia' + idN.toString();
+  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Noticia' + idN.toString();
 
   var body = json.encode("");
 

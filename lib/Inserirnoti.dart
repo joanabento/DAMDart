@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -26,52 +27,28 @@ class Inserirnoti extends StatefulWidget {
 
 class _inserirnoti extends State<Inserirnoti> {
 
-File imageFile;
-_openGallary(BuildContext context) async{
-  var picture = await ImagePicker.pickImage(source: ImageSource.gallery);
-  this.setState(() {
-    imageFile = picture;
-  });
+File _image;
+final picker = ImagePicker();
 
-  Navigator.of(context).pop();
-}
-Future<void> _showChoiceDialog(BuildContext context){
-  return showDialog(context: context, builder: (BuildContext context){
-    return AlertDialog(
-      title: Text("Escolha"),
-      content: SingleChildScrollView(
-      child: ListBody(
-        children: <Widget>[
-          GestureDetector(
-            child: Text("Galeria") ,
-            onTap: (){
-              _openGallary(context);
-            },
-            ),
-            Padding(padding: EdgeInsets.all(8.0)),
-        ],
-        )
-    ),
-    );
+Future getImage() async{
+  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+  setState((){
+    _image = File(pickedFile.path);
   });
+}
   
-}
+  
 
-/*final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
 final conteudoC = TextEditingController();
-final fotografiaC = TextEditingController();*/
-
+//final fotografiaC = TextEditingController();
+ 
 //bool state = false;
-Widget _decideImageView(){
-  if(imageFile == null){
-    return Text("Nenhuma imagem selecionada");
-  }
-  else{
-    Image.file(imageFile, width: 400, height: 400);
-  }
-}
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -80,27 +57,18 @@ Widget _decideImageView(){
           title: const Text('Inserir Informação'),
           backgroundColor: Colors.black,
         ),        
-        body: Container(
-          child:Center(
-          child: Column(
-            mainAxisAlignment:MainAxisAlignment.spaceAround,
-            children:<Widget>[
-              
-              
-        /*Center(child: 
-            
-            Column (children: [
-            SizedBox(height: 15),*/
-   
-            /*TextField(
+        body: Center(
+          child: Column(children: [
+            SizedBox(height: 15,),
+            TextField(
               controller: nomeC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.info),
-              hintText: 'Nome',
-              labelText: 'Nome',              
+              style: TextStyle(fontSize:18, fontWeight:  FontWeight.bold),
+              decoration: const InputDecoration(
+                icon: Icon(Icons.info),
+                hintText: 'Nome',
+                labelText: 'Nome',
+              ),
             ),
-          ),
             TextField(
               controller: conteudoC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -109,22 +77,65 @@ Widget _decideImageView(){
               hintText: 'Conteudo',
               labelText: 'Conteudo',
             ),
-          ),*/
-          _decideImageView(),
-          RaisedButton(
+          ),
+          Text(
+            "Insira uma fotografia",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
             
-            onPressed: (){
+          ),
+           _image == null
+            ? Text("Nenhuma imagem selecionada")
+            : Image.file(_image, width: 200, height: 100,),
 
-              _showChoiceDialog(context);
+            ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Criar'),
+            color: Colors.black,
+            onPressed: () {
+              Noticia noti = new Noticia();
+              noti.idN = 0;
+              noti.nome = nomeC.text;
+              noti.conteudo = conteudoC.text;
+              List <int> list = _image.readAsBytesSync();
+              Uint8List bytes = Uint8List.fromList(list);
+              noti.fotografia = bytes;
+              //noti.fotografia = _image.text;
+              //retorna um inteiro
+              Future <int> create = noti.createNoticia(noti).then((int onValue){
+                if(onValue == 200){
+                    
+                  Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilA()),
+                              );
 
+                }
+                else{
+                  //typeButton();
+                }});
             },
-            child:Text("Selecione uma imagem"),)
-            ],
+            ),
+       ]) 
+          ]),),
+       
+        floatingActionButton: FloatingActionButton(
+          onPressed: getImage,
+          backgroundColor: Colors.black,
+          tooltip: "Escolha uma imagem",
+          child: Icon(Icons.add_a_photo),
           ),
-          ),
-          ),
+          
+          
      );
   }
+              
+              
+        
+         
+           
           /*TextField(
               controller: fotografiaC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

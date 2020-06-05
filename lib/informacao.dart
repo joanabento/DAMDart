@@ -12,6 +12,8 @@ String horario;
 int contacto;
 String descricao;
 
+final url = 'http://7f8e25bcdcfe.ngrok.io/';
+
 
 Informacao({int id, String name, String hour, int contact, String description})
 {
@@ -34,7 +36,8 @@ factory Informacao.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Informacao>> getInformacao() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://ab8d68853b54.ngrok.io/api/Informacao'), headers:{"Accept" : "application/json"});
+  var url = this.url + 'api/Informacao';
+  http.Response resposta = await http.get(url, headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -46,8 +49,9 @@ Future<List<Informacao>> getInformacao() async{
 }
 
 Future<Informacao> getInformacoes(int id) async {
+  var url = this.url + 'api/Informacao';
   http.Response response = await http.get(
-    Uri.encodeFull("http://ab8d68853b54.ngrok.io/api/Informacao" + id.toString()),
+    Uri.encodeFull(url + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -59,7 +63,7 @@ Future<Informacao> getInformacoes(int id) async {
 }
 
 Future <int> createInfo(Informacao informacao) async {
-  var url = 'http://ab8d68853b54.ngrok.io/api/Informacao';
+  var url = this.url + 'api/Informacao';
   var body = json.encode(<String,Object>{
     'idInfo':informacao.idInfo,
     'nome':informacao.nome, //mm nomes como no c#
@@ -89,7 +93,7 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
 
 Future<int> EliminarInfo (int idInfo) async{
   print(idInfo);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Informacao' + idInfo.toString();
+  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Informacao' + idInfo.toString();
 
   var body = json.encode("");
 
