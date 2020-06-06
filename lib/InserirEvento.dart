@@ -46,7 +46,7 @@ bool state = false;
     // TODO: implement build
      return Scaffold(
         appBar: AppBar(
-          title: const Text('Inserir Filme'),
+          title: const Text('Inserir Evento'),
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -86,8 +86,8 @@ bool state = false;
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.info),
-              hintText: 'Data',
-              labelText: 'Data de Estreia',
+              hintText: 'Preço por pessoa',
+              labelText: 'Preço',
             ),
           ),
              TextField(

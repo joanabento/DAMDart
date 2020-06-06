@@ -13,6 +13,7 @@ import 'package:my_app/PerfilL.dart';
 import 'package:my_app/RegistoInicial.dart';
 import 'package:my_app/ViewContactos.dart';
 import 'package:my_app/ViewInformacoes.dart';
+import 'package:my_app/ViewMapa.dart';
 import 'package:my_app/ViewServicos.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
@@ -165,7 +166,12 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.map),
           title: Text('Mapa'),
-          onTap: (){},
+          onTap: (){
+             Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => ViewMapa()),
+                              );
+          },
         ),
         /*ListTile(
           leading: Icon(Icons.info),
@@ -184,29 +190,29 @@ class _HomePageState extends State<HomePage> {
       ],
     ),
   ),  
-      body:Center( 
-        child: _widgetOptions.elementAt(_selectedIndex)),
-        bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        iconSize: 30,
-        items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-          
+      body: Center(
+        child: Text("Bem vindo ao Nosso Shopping", textAlign: TextAlign.start, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+        //mais cenas que queremos que apareçam no main, é aqui que se põe
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          
-          title: Text('Map'),
-        ),
-      ],
-      onTap: (index) {
-        setState(() {
-      _selectedIndex = index;
-              }
-            );
-          }
+        bottomNavigationBar: Container(
+         height: 70,
+            color: Colors.white,
+            child: InkWell(
+              onTap: (null),
+              child: Padding(
+                padding: EdgeInsets.only(top: 8.0),
+                child: Column(
+                  children: <Widget>[
+                    Icon(
+                      Icons.home,
+                      color: Colors.black,
+                      size: 40,
+                    ),
+                    Text('Home', style: TextStyle(color: Colors.black)),
+                  ],
+                ),
+              ),
+            ),
         ),
       );
     } 

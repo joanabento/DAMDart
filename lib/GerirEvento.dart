@@ -32,22 +32,7 @@ Widget createevents(List products){
       textAlign: TextAlign.center, 
       style: TextStyle(fontSize: 15)
       ),
-      Text(e.fotografia,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      ButtonBar(            
-            mainAxisSize: MainAxisSize.min,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            RaisedButton(
-            child: Text('Editar'),
-            color: Colors.black,
-            onPressed: () {                                
-                }                
-            ),  
-          ],
-        ),
+      Image.network(e.fotografia),
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,

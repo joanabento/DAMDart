@@ -22,44 +22,17 @@ ViewInformacoes({Key key, @required this.informacoes}): super(key:key);
 }
 
 Widget createhorario(List informacoes){
-  List<TableRow> rows = [];
-  List<TableCell> cells = [];
-  for (Informacao i in informacoes){
-    rows.add(TableRow(children: [
-      IconButton(
-        icon: const Icon(Icons.info),
-        onPressed: () {} 
-      ),
-      Text(i.nome,
-      textAlign: TextAlign.center, 
-      style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold, fontSize: 15)
-      ),
-      Text(i.horario,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(i.contacto.toString(),
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(i.descricao,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      SizedBox(width: 10,height: 10,)
-    ],
-    ));      
-  }
-
-  return Table( border: TableBorder(
-    horizontalInside: BorderSide(
-      color: Colors.white,
-      style: BorderStyle.solid,
-      width: 0.5,
-    ),   
-  ),
-  children: rows);
-  
+final children = <Widget>[];
+for (Informacao i in informacoes) {
+  children.add(Icon(Icons.info));
+  children.add(Text(i.nome,textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)));
+  children.add(Text("Contacto: " + i.contacto.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 15)));
+  children.add(Text("Horário: " + i.horario, textAlign: TextAlign.center, style: TextStyle(fontSize: 15)));
+  //children.add(Text("Descriçao: " + i.descricao, textAlign: TextAlign.center, style: TextStyle(fontSize: 15)));
+}
+return new ListView(
+  children: children,
+);
 }
 
 }

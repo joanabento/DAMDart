@@ -42,7 +42,7 @@ class Filme extends Model{
   }
 
   Future<List<Filme>> getFilme() async{
-    http.Response resposta = await http.get(Uri.encodeFull('http://3af6df174374.ngrok.io/api/Filme'), headers:{ "Accept" : "application/json"});
+    http.Response resposta = await http.get(Uri.encodeFull('http://7a687372785c.ngrok.io/api/Filme'), headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
@@ -55,7 +55,7 @@ class Filme extends Model{
 
   Future<Filme> getFilmes(int id) async {
   http.Response resposta = await http.get(
-    Uri.encodeFull("http://3af6df174374.ngrok.io/api/Filme" + id.toString()),
+    Uri.encodeFull("http://7a687372785c.ngrok.io/api/Filme" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -67,7 +67,7 @@ class Filme extends Model{
 }
 
 Future<int> createFilme(Filme f) async {
-  var url = 'http://3af6df174374.ngrok.io/api/Filme';
+  var url = 'http://7a687372785c.ngrok.io/api/Filme';
   var body = json.encode(<String,Object>{
     'idF':f.idF,
     'titulo':f.titulo, //mm nomes como no c#
@@ -87,7 +87,7 @@ Future<int> createFilme(Filme f) async {
 }
 
 void UpdateFilme(int idF, String what,String titulo, int idade, String genero, String realizador, DateTime data, String versao, Float duracao) async{
-  var url = 'http://3af6df174374.ngrok.io/api/Filme' + idF.toString() + "/" + what;
+  var url = 'http://7a687372785c.ngrok.io/api/Filme' + idF.toString() + "/" + what;
   var body = json.encode(what);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
@@ -100,7 +100,7 @@ void UpdateFilme(int idF, String what,String titulo, int idade, String genero, S
 }
 Future<int> EliminarFilme (int idF) async{
   print(idF);
-  var url = 'http://3af6df174374.ngrok.io/api/Filme/' + idF.toString();
+  var url = 'http://7a687372785c.ngrok.io/api/Filme/' + idF.toString();
 
 
   http.Response response = await http.delete(url,
