@@ -81,7 +81,7 @@ Future <int> createInfo(Informacao informacao) async {
 }
 
 void updateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
-  var url = 'http://3af6df174374.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
+  var url = 'http://7a687372785c.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
   var body = json.encode(hora);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
