@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:scoped_model/scoped_model.dart';
-import 'dart:convert' show json;
+import 'dart:convert' show base64Decode, json;
 
 class Evento extends Model{
   int idEvento;
@@ -11,30 +11,38 @@ class Evento extends Model{
   String dataE;
   String localE;
   String preco;
-  String fotografia;
+  Uint8List fotografia;
 
-  Evento({int id, String nome, String data, String local, String preco, String foto}){
+final url = 'http://e07b173cd6a7.ngrok.io/';
+
+  Evento({int id, String nome, String data, String local, String preco, Uint8List pic}){
     this.idEvento = id;
     this.nome = nome;
     this.dataE = data;
     this.localE = local;
     this.preco = preco; 
-    this.fotografia = foto;
+    this.fotografia = pic;
   }
 
   factory Evento.fromJson(Map<String, dynamic> json){
+    
+  var bytes = base64Decode(json['fotografia'] as String);
+
     return Evento(
       id: json['idEvento'] as int,
       nome: json['nome'] as String, 
       data: json['dataE'] as String,
       local: json['localE'] as String, 
       preco: json['preco'] as String, 
-      foto: json['fotografia'] as String
+      pic: bytes
     );
   }
 
   Future<List<Evento>> getEvento() async{
-    http.Response resposta = await http.get(Uri.encodeFull('http://3af6df174374.ngrok.io/api/Evento'), headers:{ "Accept" : "application/json"});
+  
+  var url = this.url + 'api/Evento';
+
+    http.Response resposta = await http.get(url, headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
@@ -46,8 +54,9 @@ class Evento extends Model{
   }
 
    Future<Evento> getEventos(int id) async {
+     var url = this.url + 'api/Evento/';
     http.Response resposta = await http.get(
-    Uri.encodeFull("http://3af6df174374.ngrok.io/api/Evento" + id.toString()),
+    Uri.encodeFull(url + id.toString()),
     headers: {
       "Accept":"application/json"
     });
@@ -56,14 +65,16 @@ class Evento extends Model{
   }
 
 Future<int> createEvento(Evento e) async{
-    var url = 'http://3af6df174374.ngrok.io/api/Evento';
+  var url = this.url + 'api/Evento';
+  var list = new List.from(e.fotografia);
+  print(list);
     var body = json.encode(<String, Object>{
         'idEvento' : e.idEvento,
         'nome': e.nome,
         'dataE': e.dataE,
         'localE': e.localE,
         'preco': e.preco,
-        'fotografia': e.fotografia
+        'fotografia': list
     });
     print(body);
     http.Response response = await http.post(url,
@@ -86,7 +97,7 @@ Future<int> createEvento(Evento e) async{
 }
 Future<int> EliminarEvento (int idEvento) async{
   print(idEvento);
-  var url = 'http://3af6df174374.ngrok.io/api/Evento/' + idEvento.toString();
+  var url = 'http://e07b173cd6a7.ngrok.io/api/Evento/' + idEvento.toString();
 
 
   http.Response response = await http.delete(url,

@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
@@ -28,13 +30,24 @@ class InserirProd extends StatefulWidget {
 
 class _inserirprod extends State<InserirProd> {
 
+File _image;
+final picker = ImagePicker();
+
+Future getImage() async{
+  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+  setState((){
+    _image = File(pickedFile.path);
+  });
+}
+
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
 final lojaC = TextEditingController();
 final precoC = TextEditingController();
 final referenciaC = TextEditingController();
-final fotografiaC = TextEditingController();
+//final fotografiaC = TextEditingController();
   
 bool state = false;
 
@@ -87,16 +100,16 @@ bool state = false;
               labelText: 'Referencia',
             ),
           ),
-          TextField(
-              controller: fotografiaC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.image),
-              hintText: 'Fotografia',
-              labelText: 'Fotografia',
-            ),
+          Text(
+            "Insira uma fotografia",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
+
           ),
-          
+
+          _image == null
+            ? Text("Nenhuma imagem selecionada")
+            : Image.file(_image, width: 200, height: 100,),
+     
            
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -112,7 +125,9 @@ bool state = false;
               prod.loja = lojaC.text;
               prod.preco = int.parse(precoC.text); //aqui deve dar erro dps temos de confirmar no programa
               prod.referencia = referenciaC.text;
-              prod.fotografia = fotografiaC.text;
+              List <int> list = _image.readAsBytesSync();
+              Uint8List bytes = Uint8List.fromList(list);
+              prod.fotografia = bytes;
               //retorna um inteiro
               Future <int> create = prod.createProduto(prod).then((int onValue){
                 if(onValue == 200){
@@ -144,6 +159,13 @@ bool state = false;
         ]        
       ),     
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: getImage,
+          backgroundColor: Colors.black,
+          tooltip: "Escolha uma imagem",
+          child: Icon(Icons.add_a_photo),
+          ),
+
       );
   }
 

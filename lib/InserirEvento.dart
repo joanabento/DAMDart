@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
 import 'package:my_app/PerfilL.dart';
@@ -30,13 +32,24 @@ class InserirEvento extends StatefulWidget {
 
 class _inserirevento extends State<InserirEvento> {
 
+File _image;
+final picker = ImagePicker();
+
+Future getImage() async{
+  final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+  setState((){
+    _image = File(pickedFile.path);
+  });
+}
+
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
 final nomeC = TextEditingController();
 final dataC = TextEditingController();
 final localC = TextEditingController();
 final precoC = TextEditingController();
-final fotografiaC = TextEditingController();
+//final fotografiaC = TextEditingController();
 
   
 bool state = false;
@@ -46,7 +59,7 @@ bool state = false;
     // TODO: implement build
      return Scaffold(
         appBar: AppBar(
-          title: const Text('Inserir Filme'),
+          title: const Text('Inserir Evento'),
           backgroundColor: Colors.black,
         ),        
         body: Center(child: 
@@ -86,19 +99,17 @@ bool state = false;
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.info),
-              hintText: 'Data',
-              labelText: 'Data de Estreia',
+              hintText: 'Preco',
+              labelText: 'Preco',
             ),
           ),
-             TextField(
-              controller: fotografiaC,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              decoration: const InputDecoration(         
-              icon: Icon(Icons.person),
-              hintText: 'Fotografia',
-              labelText: 'Foto',
-            ),
+          Text(
+            "Insira uma fotografia",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,
           ),
+            _image == null
+            ? Text("Nenhuma imagem selecionada")
+            : Image.file(_image, width: 200, height: 100,),
   
           ButtonBar(            
             mainAxisSize: MainAxisSize.max,
@@ -114,7 +125,9 @@ bool state = false;
               e.preco = precoC.text;
               e.localE = localC.text;
               e.dataE = dataC.text;
-              e.fotografia = fotografiaC.text;
+              List <int> list = _image.readAsBytesSync();
+              Uint8List bytes = Uint8List.fromList(list);
+              e.fotografia = bytes;
               //retorna um inteiro
               Future <int> create = e.createEvento(e).then((int onValue){
                 if(onValue == 200){
@@ -130,7 +143,7 @@ bool state = false;
                 }});
             },
             ),
-            FlatButton(
+            /*FlatButton(
             child: Text('Cancelar'),
             
             color: Colors.black,
@@ -140,12 +153,18 @@ bool state = false;
                                 MaterialPageRoute(builder: (context) => PerfilL()),
                               );
             },
-            ),
+            ),*/
           ],
         )
         ]        
       ),     
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: getImage,
+          backgroundColor: Colors.black,
+          tooltip: "Escolha uma imagem",
+          child: Icon(Icons.add_a_photo),
+          ),
       );
   }
 

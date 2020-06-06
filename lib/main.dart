@@ -18,7 +18,9 @@ import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
 import 'package:my_app/utilizador.dart';
 import 'ListarUti.dart';
+import 'ViewFilme.dart';
 import 'ViewHorarios.dart';
+import 'filme.dart';
 
 
 void main() => runApp(MyApp());
@@ -150,12 +152,26 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
-          onTap: (){},      
+          onTap: (){
+            
+            
+
+          },      
         ),
         ListTile(
           leading: Icon(Icons.movie),
           title: Text('Cinema'),
-          onTap: (){},
+          onTap: (){
+            Filme filme = new Filme();            
+            Future <List<Filme>> listaf = filme.getFilme().then((List<Filme> films){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewFilme(filmes: films)),
+                  );           
+                }
+              );
+          
+          },
         ),
         ListTile(
           leading: Icon(Icons.theaters),
@@ -210,7 +226,10 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     } 
-  } 
+  }
+
+class ViewFilmes {
+} 
 
 
 void newMyProfile(BuildContext context){

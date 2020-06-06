@@ -36,7 +36,9 @@ Widget createproducts(List products){
       textAlign: TextAlign.center,
       style: TextStyle(fontSize: 15),
       ),
-      ButtonBar(            
+      Image.memory(p.fotografia, width: 200, height: 100),
+
+      /*ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -47,7 +49,7 @@ Widget createproducts(List products){
                 }                
             ),  
           ],
-        ),
+        ),*/
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,

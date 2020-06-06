@@ -14,7 +14,7 @@ String nome;
 String conteudo; 
 Uint8List fotografia;
 
-final url = 'http://7f8e25bcdcfe.ngrok.io/';
+final url = 'http://e07b173cd6a7.ngrok.io/';
 
 Noticia({int id, String name, DateTime date, String content, Uint8List pic})
 {
@@ -98,7 +98,7 @@ void updateNoticia(int idN, String what, String nome, DateTime data, String cont
 }
 Future<int> eliminarN (int idN) async{
   print(idN);
-  var url = 'http://ab8d68853b54.ngrok.io/api/Noticia' + idN.toString();
+  var url = 'http://e07b173cd6a7.ngrok.io/Noticia' + idN.toString();
 
   var body = json.encode("");
 

@@ -12,7 +12,7 @@ String horario;
 int contacto;
 String descricao;
 
-final url = 'http://7f8e25bcdcfe.ngrok.io/';
+final url = 'http://e07b173cd6a7.ngrok.io/';
 
 
 Informacao({int id, String name, String hour, int contact, String description})
@@ -93,7 +93,7 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
 
 Future<int> eliminarInfo (int idInfo) async{
   print(idInfo);
-  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Informacao' + idInfo.toString();
+  var url = 'http://e07b173cd6a7.ngrok.io/api/Informacao' + idInfo.toString();
 
 
   http.Response response = await http.delete(url,
