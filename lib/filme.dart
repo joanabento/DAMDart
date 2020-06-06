@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:scoped_model/scoped_model.dart';
-import 'dart:convert' show json;
+import 'dart:convert' show base64Decode, json;
 
 
 class Filme extends Model{
@@ -16,8 +16,9 @@ class Filme extends Model{
   String realizador; 
   String duracao; 
   String versao;
+  Uint8List fotografia; 
 
-  Filme({int id, String titulo, int idade, String data, String genero, String realizador, String duracao, String versao}){
+  Filme({int id, String titulo, int idade, String data, String genero, String realizador, String duracao, String versao, Uint8List pic}){
     this.idF = id;
     this.titulo = titulo;
     this.dataEstreia = data;
@@ -26,10 +27,15 @@ class Filme extends Model{
     this.duracao = duracao;
     this.versao = versao;
     this.genero = genero;
+    this.fotografia = pic;
   }
 
   factory Filme.fromJson(Map<String, dynamic> json){
+  
+   var bytes = base64Decode(json['fotografia'] as String);
+
     return Filme(
+      
       id: json['idF'] as int,
       titulo: json['titulo'] as String,
       idade: json['idade'] as int, 
@@ -37,12 +43,13 @@ class Filme extends Model{
       data: json['dataEstreia'] as String,
       realizador: json['realizador'] as String, 
       duracao: json['duracao'] as String,
-      versao: json['versao'] as String
+      versao: json['versao'] as String,
+      pic: bytes
     );
   }
 
   Future<List<Filme>> getFilme() async{
-    http.Response resposta = await http.get(Uri.encodeFull('http://7a687372785c.ngrok.io/api/Filme'), headers:{ "Accept" : "application/json"});
+    http.Response resposta = await http.get(Uri.encodeFull('http://7f8e25bcdcfe.ngrok.io/api/Filme'), headers:{ "Accept" : "application/json"});
 
     List lista = json.decode(resposta.body);
 
@@ -55,7 +62,7 @@ class Filme extends Model{
 
   Future<Filme> getFilmes(int id) async {
   http.Response resposta = await http.get(
-    Uri.encodeFull("http://7a687372785c.ngrok.io/api/Filme" + id.toString()),
+    Uri.encodeFull("http://7f8e25bcdcfe.ngrok.io/api/Filme" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -67,7 +74,8 @@ class Filme extends Model{
 }
 
 Future<int> createFilme(Filme f) async {
-  var url = 'http://7a687372785c.ngrok.io/api/Filme';
+  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Filme';
+  var list = new List.from(f.fotografia);
   var body = json.encode(<String,Object>{
     'idF':f.idF,
     'titulo':f.titulo, //mm nomes como no c#
@@ -76,7 +84,8 @@ Future<int> createFilme(Filme f) async {
     'dataEstreia': f.dataEstreia,
     'realizador': f.realizador,
     'duracao': f.duracao,
-    'versao': f.versao
+    'versao': f.versao,
+    'fotografia': list
   });
   print(body);
 
@@ -100,7 +109,7 @@ void UpdateFilme(int idF, String what,String titulo, int idade, String genero, S
 }
 Future<int> EliminarFilme (int idF) async{
   print(idF);
-  var url = 'http://7a687372785c.ngrok.io/api/Filme/' + idF.toString();
+  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Filme/' + idF.toString();
 
 
   http.Response response = await http.delete(url,

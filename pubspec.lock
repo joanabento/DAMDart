@@ -28,7 +28,18 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "1.0.5"
+=======
+    version: "2.0.0"
+  byte_array:
+    dependency: "direct main"
+    description:
+      name: byte_array
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.6"
+>>>>>>> 42b365847dffee4ef5be27dee7629cad60d5f854
   charcode:
     dependency: transitive
     description:

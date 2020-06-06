@@ -163,7 +163,7 @@ bool state = false;
               onPressed: () {               
                 Noticia noticia = new Noticia();            
                 Future <List<Noticia>> listar = noticia.getNoticias().then((List<Noticia> notices){
-                  Navigator.push(
+                Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => Gerenotice(noticias: notices)),
                               );

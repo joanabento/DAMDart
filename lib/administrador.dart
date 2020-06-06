@@ -28,7 +28,7 @@ factory Administrador.fromJson(Map<String, dynamic> json)
 }
 
 Future<List<Administrador>> getAdministradores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://ab8d68853b54.ngrok.io/api/Administrador'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://7f8e25bcdcfe.ngrok.io/api/Administrador'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -41,7 +41,7 @@ Future<List<Administrador>> getAdministradores() async{
 
 Future<Administrador> getAdministradors(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://ab8d68853b54.ngrok.io/api/Administrador" + id.toString()),
+    Uri.encodeFull("http://7f8e25bcdcfe.ngrok.io/api/Administrador" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -53,7 +53,7 @@ Future<Administrador> getAdministradors(int id) async {
 }
 
 Future<int> createAdmin(Administrador administrador) async {
-  var url = 'http://ab8d68853b54.ngrok.io/api/Administrador';
+  var url = 'http://7f8e25bcdcfe.ngrok.io/api/Administrador';
   var body = json.encode(<String,Object>{
     'idA':administrador.idA,
     'NomeShopping':administrador.nomeShopping //mm nomes como no c#
