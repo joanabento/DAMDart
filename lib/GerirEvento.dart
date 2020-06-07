@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/evento.dart';
 import 'package:my_app/produto.dart';
@@ -21,10 +22,10 @@ GerirEvento({Key key, @required this.eventos}): super(key:key);
         backgroundColor: Colors.black,
       ),
     body:
-    createevents(eventos));
+    createevents(eventos, context));
   }
 //*
-Widget createevents(List products){
+Widget createevents(List products, context){
   List<TableRow> rows = [];
   for (Evento e in eventos){
     rows.add(TableRow(children: [
@@ -33,19 +34,6 @@ Widget createevents(List products){
       style: TextStyle(fontSize: 15)
       ),
     Image.memory(e.fotografia, width: 200, height: 100),
-
-      /*ButtonBar(            
-            mainAxisSize: MainAxisSize.min,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            RaisedButton(
-            child: Text('Editar'),
-            color: Colors.black,
-            onPressed: () {                                
-                }                
-            ),  
-          ],
-        ),*/
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,
@@ -53,7 +41,18 @@ Widget createevents(List products){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {  
+              Evento evento = new Evento();
+              evento.idEvento = e.idEvento;
+              Future <int> eliminar = evento.eliminarEvento(evento.idEvento).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL()),
+                              );
+                }
+              }
+              );                              
                 }                
             ),  
           ],

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilA.dart';
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/produto.dart';
 import 'dart:convert' show json;
@@ -21,10 +23,10 @@ GerirProduto({Key key, @required this.produtos}): super(key:key);
       ),
 
     body:
-    createproducts(produtos));
+    createproducts(produtos, context));
   }
 //*
-Widget createproducts(List products){
+Widget createproducts(List products, context){
   List<TableRow> rows = [];
   for (Produto p in products){
     rows.add(TableRow(children: [
@@ -57,7 +59,18 @@ Widget createproducts(List products){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () {     
+              Produto po = new Produto();
+              po.idProduto = p.idProduto;
+              Future <int> eliminar = po.eliminarProduto(po.idProduto).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL()),
+                              );
+                }
+              }
+              );                             
                 }                
             ),  
           ],

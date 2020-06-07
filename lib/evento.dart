@@ -13,7 +13,7 @@ class Evento extends Model{
   String preco;
   Uint8List fotografia;
 
-final url = 'http://e07b173cd6a7.ngrok.io/';
+final url = 'http://b21d159b85b6.ngrok.io/';
 
   Evento({int id, String nome, String data, String local, String preco, Uint8List pic}){
     this.idEvento = id;
@@ -95,9 +95,9 @@ Future<int> createEvento(Evento e) async{
   
   
 }
-Future<int> EliminarEvento (int idEvento) async{
+Future<int> eliminarEvento (int idEvento) async{
   print(idEvento);
-  var url = 'http://e07b173cd6a7.ngrok.io/api/Evento/' + idEvento.toString();
+  var url = 'http://b21d159b85b6.ngrok.io/api/Evento/' + idEvento.toString();
 
 
   http.Response response = await http.delete(url,

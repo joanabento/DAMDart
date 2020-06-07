@@ -102,41 +102,7 @@ bool state = false;
                 }                
             ),
           ],
-        ),
-       /* ButtonBar(            
-            mainAxisSize: MainAxisSize.max,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            /*RaisedButton(
-              child: Text('Ver lista de Contactos'),
-              color: Colors.black,
-              onPressed: () { 
-                Informacao contactos = new Informacao();            
-                Future <List<Informacao>> listac = contactos.getInformacao().then((List<Informacao> contacts){
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Gerecontact(informacoes: contacts)),
-                              );           
-                }
-                );
-            }                
-            ),*/
-            /*RaisedButton(
-              child: Text('Ver lista de Serviços'),
-              color: Colors.black,
-              onPressed: () {  
-                Informacao servicos = new Informacao();            
-                Future <List<Informacao>> listas = servicos.getInformacao().then((List<Informacao> services){
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Gereservico(informacoes: services)),
-                              );           
-                }
-                );                              
-                }                
-            ),*/     
-          ],
-        ),*/
+        ),         
         Text(
             'Gerir Noticias',  
             textAlign: TextAlign.right,

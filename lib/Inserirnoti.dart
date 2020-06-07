@@ -54,7 +54,7 @@ final conteudoC = TextEditingController();
     // TODO: implement build
      return Scaffold(
         appBar: AppBar(
-          title: const Text('Inserir Informação'),
+          title: const Text('Inserir Noticia'),
           backgroundColor: Colors.black,
         ),        
         body: Center(

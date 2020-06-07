@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
 import 'package:my_app/filme.dart';
 import 'package:my_app/produto.dart';
@@ -22,10 +23,10 @@ GerirFilme({Key key, @required this.filmes}): super(key:key);
       ),
 
     body:
-    createfilmes(filmes));
+    createfilmes(filmes, context));
   }
 //*
-Widget createfilmes(List films){
+Widget createfilmes(List films, context){
   List<TableRow> rows = [];
   for (Filme f in films){
     rows.add(TableRow(children: [
@@ -38,18 +39,6 @@ Widget createfilmes(List films){
       style: TextStyle(fontSize: 20),
       ),
       Image.memory(f.fotografia, width: 200, height: 100),
-      /*ButtonBar(            
-            mainAxisSize: MainAxisSize.min,
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-            RaisedButton(
-            child: Text('Editar'),
-            color: Colors.black,
-            onPressed: () {                                
-                }                
-            ),  
-          ],
-        ),*/
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,
@@ -57,7 +46,18 @@ Widget createfilmes(List films){
             RaisedButton(
             child: Text('Eliminar'),
             color: Colors.black,
-            onPressed: () {                                
+            onPressed: () { 
+              Filme filme = new Filme();
+              filme.idF = f.idF;
+              Future <int> eliminar = filme.eliminarFilme(filme.idF).then((int onValue){
+                if(onValue == 200){
+                    Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => PerfilL()),
+                              );
+                }
+              }
+              );                               
                 }                
             ),  
           ],
