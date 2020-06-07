@@ -25,58 +25,23 @@ ViewFilme({Key key, @required this.filmes}): super(key:key);
   }
 //*
 Widget createfilme(List filmes){
-  List<TableRow> rows = [];
+  final children = <Widget>[];
   for (Filme f in filmes){
-    rows.add(TableRow(children: [
-      IconButton(
-        icon: const Icon(Icons.movie),
-        onPressed: () {} 
-      ),
-      Image.memory(f.fotografia, width: 200, height: 100),
-      Text(f.titulo,
-      textAlign: TextAlign.center, 
-      style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold, fontSize: 15)
-      ),
-      Text(f.idade.toString(),
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(f.genero,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(f.dataEstreia,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(f.realizador,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(f.duracao,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      Text(f.versao,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 15),
-      ),
-      
-      SizedBox(width: 10,height: 10,)
-    ],
-    ));   
+    //children.add(Icon(Icons.movie));
+    children.add(Image.memory(f.fotografia, width: 400, height: 100));
+    children.add(Text(f.titulo, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)));
+    children.add(Text("M" + f.idade.toString(), textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Género:" + f.genero, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Data de Estreia:" + f.dataEstreia, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Realizador:" + f.realizador, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Duração:" + f.duracao, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Versão:" + f.versao, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
     
   }
+return new ListView(
+  children:children,
+);
 
-  return Table( border: TableBorder(
-    horizontalInside: BorderSide(
-      color: Colors.white,
-      style: BorderStyle.solid,
-      width: 0.5,
-    ),
-    
-  ),
-  children: rows);
   
 }
 

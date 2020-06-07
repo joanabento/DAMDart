@@ -17,10 +17,15 @@ import 'package:my_app/ViewMapa.dart';
 import 'package:my_app/ViewServicos.dart';
 import 'package:my_app/informacao.dart';
 import 'package:my_app/noticia.dart';
+import 'package:my_app/produto.dart';
 import 'package:my_app/utilizador.dart';
 import 'ListarUti.dart';
+import 'ViewEvento.dart';
 import 'ViewFilme.dart';
 import 'ViewHorarios.dart';
+import 'ViewNoticia.dart';
+import 'ViewProduto.dart';
+import 'evento.dart';
 import 'filme.dart';
 
 
@@ -154,6 +159,15 @@ class _HomePageState extends State<HomePage> {
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
           onTap: (){
+
+            Produto produto = new Produto();            
+            Future <List<Produto>> listap = produto.getProduto().then((List<Produto> products){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewProduto(produtos: products)),
+                  );           
+                }
+              );
             
             
 
@@ -177,7 +191,16 @@ class _HomePageState extends State<HomePage> {
         ListTile(
           leading: Icon(Icons.theaters),
           title: Text('Teatro'),
-          onTap: (){},
+          onTap: (){
+            Evento evento = new Evento();            
+            Future <List<Evento>> listae = evento.getEvento().then((List<Evento> events){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewEvento(eventos: events)),
+                  );           
+                }
+              );
+          },
         ),
         ListTile(
           leading: Icon(Icons.map),
@@ -207,9 +230,35 @@ class _HomePageState extends State<HomePage> {
     ),
   ),  
       body: Center(
-        child: Text("Bem vindo ao Nosso Shopping", textAlign: TextAlign.start, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold))
+        child: 
+        Column (children: [
+        Text("Bem vindo ao Nosso Shopping", textAlign: TextAlign.start, style: TextStyle(fontFamily: 'RobotoMono',color: Colors.blue, fontSize: 25, fontWeight: FontWeight.bold)),
+        Image.network("https://nossoshopping.pt/wp-content/themes/nosso/img/the_center_img.png"),
+         ButtonBar(            
+            mainAxisSize: MainAxisSize.max,
+            alignment: MainAxisAlignment.center,
+            children: <Widget>[
+            FlatButton(
+            child: Text('Ver notícias'),
+            color: Colors.blue,
+            onPressed: () {
+                   Noticia noticia = new Noticia();            
+            Future <List<Noticia>> listan = noticia.getNoticias().then((List<Noticia> notices){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ViewNoticia(noticias: notices)),
+                  );           
+                }
+              );
+            
+            }
+            ),],),
         //mais cenas que queremos que apareçam no main, é aqui que se põe
-        ),
+        ]
+
+        )),
+        
+        
         bottomNavigationBar: Container(
          height: 70,
             color: Colors.white,

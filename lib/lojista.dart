@@ -28,7 +28,7 @@ factory Lojista.fromJson(Map<String, dynamic> json)
 }
 
 Future<List> getLojistas() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://4cce06a837ab.ngrok.io/api/Lojista'), headers:{"Accept" : "application/json"});
+  http.Response resposta = await http.get(Uri.encodeFull('http://825ce5240a3a.ngrok.io/api/Lojista'), headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -41,7 +41,7 @@ Future<List> getLojistas() async{
 
 Future<Lojista> getLojista(int id) async {
   http.Response response = await http.get(
-    Uri.encodeFull("http://4cce06a837ab.ngrok.io/api/Lojista" + id.toString()),
+    Uri.encodeFull("http://825ce5240a3a.ngrok.io/api/Lojista" + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -53,7 +53,7 @@ Future<Lojista> getLojista(int id) async {
 }
 
 void CreateLojista(Lojista lojista) async {
-  var url = 'http://4cce06a837ab.ngrok.io/api/Lojista';
+  var url = 'http://825ce5240a3a.ngrok.io/api/Lojista';
   var body = json.encode(<String,String>{
     'idL':lojista.idL.toString(),
     'loja':lojista.loja, //mm nomes como no c#
