@@ -28,12 +28,12 @@ ViewEvento({Key key, @required this.eventos}): super(key:key);
 Widget createevento(List eventos){
   final children = <Widget>[];
   for (Evento e in eventos){
-   // children.add(Icon(Icons.theaters));
+    children.add(Icon(Icons.theaters));
     children.add(Image.memory(e.fotografia, width: 400, height: 100));
     children.add(Text(e.nome, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)));
-    children.add(Text("Data de Estreia:" + e.dataE, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
-    children.add(Text("Local:" + e.localE, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
-    children.add(Text("Preço:" + e.preco, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Data de Estreia: " + e.dataE, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Local: " + e.localE, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text("Preço: " + e.preco +'€', textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
     
   }
 return new ListView(

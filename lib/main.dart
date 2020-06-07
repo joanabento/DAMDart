@@ -141,20 +141,6 @@ class _HomePageState extends State<HomePage> {
               );
           },
         ),
-      /*ListTile(
-          leading: Icon(Icons.schedule),
-          title: Text('Horários'),
-          onTap: (){
-            Informacao horarios = new Informacao();            
-            Future <List<Informacao>> listac = horarios.getInformacao().then((List<Informacao> horario){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewHorarios(informacoes: horario)),
-                  );           
-                }
-              );
-          },
-        ),*/
         ListTile(
           leading: Icon(Icons.shop),
           title: Text('Promoções'),
@@ -168,9 +154,6 @@ class _HomePageState extends State<HomePage> {
                   );           
                 }
               );
-            
-            
-
           },      
         ),
         ListTile(
@@ -212,20 +195,6 @@ class _HomePageState extends State<HomePage> {
                               );
           },
         ),
-        /*ListTile(
-          leading: Icon(Icons.info),
-          title: Text('Serviços'),
-          onTap: (){
-            Informacao servicos = new Informacao();            
-            Future <List<Informacao>> listac = servicos.getInformacao().then((List<Informacao> servico){
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ViewServicos(informacoes: servico)),
-                  );           
-                }
-              );
-          },
-        ),*/
       ],
     ),
   ),  
@@ -253,7 +222,6 @@ class _HomePageState extends State<HomePage> {
             
             }
             ),],),
-        //mais cenas que queremos que apareçam no main, é aqui que se põe
         ]
 
         )),
@@ -375,173 +343,3 @@ Navigator.push(context, MaterialPageRoute(
 }
      
 
-
-
-/*void newContacto(BuildContext context){
-Navigator.push(context, MaterialPageRoute(
-    builder: (BuildContext context) {
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text('Contactos'),
-          backgroundColor: Colors.black,
-        ),        
-        body: Center(child: 
-            Column (mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-            SizedBox(height: 15),
-           
-           Text(
-             'Contactos',  
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-
-           ),
-            Text(
-             'NossoShopping',  
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-
-           ),
-           Text(
-             '(+351) 259 309 060.',  
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 10),
-
-           ),
-
-        
-            
-        ]        
-      ),     
-      ),
-      );
-    },
-  ));
-
-
-}
-
-/// This is the stateless widget that the main application instantiates.
-class MyStatelessWidget extends StatelessWidget {
-  MyStatelessWidget({Key key}) : super(key: key);
-
-int _selectedIndex = 0;
-static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-static const List<Widget> _widgetOptions = <Widget>[
-  Text(
-    'Index 0: Home',
-    style: optionStyle,
-  ),
-  Text(
-     'Index 1: Person',
-     style: optionStyle,
-  ),
-  Text(
-     'Index 2: Map',
-     style: optionStyle,
-  ),
-];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      key: scaffoldKey,
-      appBar: AppBar(
-        
-        title: const Text('Nosso Shopping'),
-        backgroundColor: Colors.black,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.person_add),
-            tooltip: 'Registar',
-            onPressed: () {
-              openPage(context);
-            },
-          ),
-          
-        ],
-      ),
-       drawer: Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children:  <Widget>[
-        DrawerHeader(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            image: const DecorationImage(
-            image: NetworkImage('https://nossoshopping.pt/wp-content/themes/nosso/img/the_center_img.png'),
-            ),
-          ),
-          child: Text(
-            '',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-            ),
-          ),
-        ),
-        ListTile(
-          leading: Icon(Icons.contacts),
-          title: Text('Contactos'),
-          onTap: (){return newContacto(context);},
-        ),
-        ListTile(
-          leading: Icon(Icons.schedule),
-          title: Text('Horários'),
-          onTap: (){return newHorarios(context);},
-        ),
-        ListTile(
-          leading: Icon(Icons.event),
-          title: Text('Eventos'),
-          onTap: (){return newEventos(context);},
-        ),
-        ListTile(
-          leading: Icon(Icons.shop),
-          title: Text('Promoções'),
-          onTap: (){return newPromo(context);},      
-        ),
-        ListTile(
-          leading: Icon(Icons.movie),
-          title: Text('Cinema'),
-          onTap: (){return newCine(context);},
-        ),
-        ListTile(
-          leading: Icon(Icons.theaters),
-          title: Text('Teatro'),
-          onTap: (){return newTeatro(context);},
-        ),
-        ListTile(
-          leading: Icon(Icons.info),
-          title: Text('Serviços'),
-          onTap: (){return newService(context);},
-        ),
-      ],
-    ),
-  ),
-      body:  Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-      bottomNavigationBar: BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          title: Text('My Profile'),         
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.map),
-          title: Text('Map'),
-        ),
-      ],
-      ),
-    );
-  }
-  
-
-}*/

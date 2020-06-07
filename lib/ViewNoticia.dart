@@ -34,7 +34,7 @@ Widget createnoticia(List noticias){
     //children.add(Icon(Icons.movie));
     children.add(Image.memory(n.fotografia, width: 400, height: 100));
     children.add(Text(n.nome, textAlign: TextAlign.center, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)));
-    children.add(Text("Conteúdo" + n.conteudo, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
+    children.add(Text(n.conteudo, textAlign: TextAlign.center, style: TextStyle(fontSize: 12)));
     
   }
 return new ListView(
