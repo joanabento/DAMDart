@@ -13,7 +13,7 @@ class Evento extends Model{
   String preco;
   Uint8List fotografia;
 
-final url = 'http://e07b173cd6a7.ngrok.io/';
+final url = 'http://825ce5240a3a.ngrok.io/';
 
   Evento({int id, String nome, String data, String local, String preco, Uint8List pic}){
     this.idEvento = id;

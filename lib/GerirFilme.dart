@@ -37,7 +37,7 @@ Widget createfilmes(List films){
       textAlign: TextAlign.center,
       style: TextStyle(fontSize: 20),
       ),
-      Image.memory(f.fotografia, width: 200, height: 100),
+      Image.memory(f.fotografia, width: 300, height: 100),
       /*ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,

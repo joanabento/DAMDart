@@ -15,7 +15,7 @@ class Produto extends Model{
   String referencia;
   Uint8List fotografia;
 
-final url = 'http://e07b173cd6a7.ngrok.io/';
+final url = 'http://825ce5240a3a.ngrok.io/';
 
   Produto({int id, String nome, String loja, int p, Uint8List pic, String referencia}){
     this.idProduto = id;
@@ -104,7 +104,7 @@ void UpdateProduto(int idP, String what, Float preco, String nome, String loja, 
 
 Future<int> EliminarProduto (int idP) async{
   print(idP);
-  var url = 'http://e07b173cd6a7.ngrok.io/api/Produto/' + idP.toString();
+  var url = 'http://825ce5240a3a.ngrok.io/api/Produto/' + idP.toString();
 
   http.Response response = await http.delete(url,
   headers: {"Content-Type": "application/json"},
