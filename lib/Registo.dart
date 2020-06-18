@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/Login.dart';
 import 'package:my_app/PerfilA.dart';
-import 'package:my_app/PerfilL.dart';
 import 'dart:convert' show json;
 
-import 'utilizador.dart';
-
+import 'package:my_app/administrador.dart';
 
 
 class Registo extends StatefulWidget {
@@ -23,7 +21,7 @@ class _RegistoState extends State<Registo> {
 
 final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 final SnackBar snackBar = const SnackBar(content: Text('Showing Snackbar'));
-final nameC = TextEditingController();
+final nomeC = TextEditingController();
 final emailC = TextEditingController();
 final passC = TextEditingController();
 final passCC = TextEditingController();
@@ -35,12 +33,12 @@ bool state = false;
      return Scaffold(
         appBar: AppBar(
           title: const Text('Registar'),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.green,
         ),        
         body: Center(child: 
             Column (children: [
             SizedBox(height: 15),
-            Text(state ? "Faça o seu registo" : "Erro"),
+            Text(state ? "Faça o seu registo" : ""),
           Text(
                 'Efetue o seu registo',  
                 textAlign: TextAlign.center,
@@ -48,12 +46,12 @@ bool state = false;
                 style: TextStyle(fontSize: 20),
               ),
             TextField(
-              controller: nameC,
+              controller: nomeC,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(         
               icon: Icon(Icons.person),
-              hintText: 'Name',
-              labelText: 'Name',
+              hintText: 'Nome',
+              labelText: 'Nome',
             ),
           ),
             TextField(
@@ -91,17 +89,17 @@ bool state = false;
             mainAxisSize: MainAxisSize.max,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.person),
-              iconSize: 50,
+            FlatButton(
+              child: Text('Registar'),
+              color: Colors.green,
               onPressed: () {
-              Utilizador user = new Utilizador();
-              user.idu = 0;
-              user.nome = nameC.text;
-              user.email = emailC.text;
-              user.pass = passC.text;
-              user.tipo = "Administrador";
-              user.createUtilizador(user).then((int onValue){
+              Administrador admin = new Administrador();
+              admin.id = 0;
+              admin.nome = nomeC.text;
+              admin.email = emailC.text;
+              admin.pass = passC.text;
+             
+              admin.createAdmin(admin).then((int onValue){
                 if(onValue == 200){                   
                   Navigator.push(
                                 context,
@@ -113,53 +111,8 @@ bool state = false;
                 }});
               },
               ),
-            Text("Administrador"),
-            IconButton(
-              icon: Icon(Icons.person),
-              iconSize: 50,
-              onPressed: () {
-                Utilizador user = new Utilizador();
-                user.idu = 0;
-                user.nome = nameC.text;
-                user.email = emailC.text;
-                user.pass = passC.text;
-                user.tipo = "Lojista";
-                user.createUtilizador(user).then((int onValue){
-                if(onValue == 200){                   
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => PerfilL())
-                              );
-                }
-                else{
-                  typeButton();
-                }});
-              },
-              ),
-              Text("Lojista"),
-              IconButton(
-              icon: Icon(Icons.person),
-              iconSize: 50,
-              onPressed: () {
-                Utilizador user = new Utilizador();
-                user.idu = 0;
-                user.nome = nameC.text;
-                user.email = emailC.text;
-                user.pass = passC.text;
-                user.tipo = "Cliente";
-                user.createUtilizador(user).then((int onValue){
-                if(onValue == 200){                   
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login())
-                              );
-                }
-                else{
-                  typeButton();
-                }});
-              },
-              ),
-              Text("Cliente")
+           
+              
           ],
         ),     
         ]        

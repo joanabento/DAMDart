@@ -2,37 +2,53 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_app/PerfilA.dart';
-import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
-import 'informacao.dart';
+import 'PerfilA.dart';
+import 'distrito.dart';
 
-class Geririnformacoes extends StatelessWidget {
+
+
+class GerirDistrito extends StatelessWidget {
  
- List informacoes;
-Geririnformacoes({Key key, @required this.informacoes}): super(key:key);
+ List distritos;
+GerirDistrito({Key key, @required this.distritos}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
-        title: Center(child:Text('Gerir Informações')),
-        backgroundColor: Colors.black,
+        title: Center(child:Text('Gerir Informações de Portugal')),
+        backgroundColor: Colors.green,
       ),
     body:
-    createservice(informacoes, context));
+    createdistrito(distritos, context));
   }
 //*
-Widget createservice(List informacoes, context){
+Widget createdistrito(List distritos, context){
   List<TableRow> rows = [];
-  for (Informacao i in informacoes){
+  for (Distrito d in distritos){
     rows.add(TableRow(children: [
       IconButton(
         icon: Icon(Icons.info),
         onPressed: null,
       ),
       Text(
-        i.nome,
+        d.Confirmed.toString(),
+        textAlign: TextAlign.center, 
+        style: TextStyle(fontSize: 20)
+      ),
+      Text(
+        d.Deaths.toString(),
+        textAlign: TextAlign.center, 
+        style: TextStyle(fontSize: 20)
+      ),
+      Text(
+        d.Recovered.toString(),
+        textAlign: TextAlign.center, 
+        style: TextStyle(fontSize: 20)
+      ),
+      Text(
+        d.Active.toString(),
         textAlign: TextAlign.center, 
         style: TextStyle(fontSize: 20)
       ),
@@ -42,11 +58,11 @@ Widget createservice(List informacoes, context){
             children: <Widget>[
             RaisedButton(
             child: Text('Eliminar'),
-            color: Colors.black,
+            color: Colors.green,
             onPressed: () {  
-              Informacao servico = new Informacao();
-              servico.idInfo = i.idInfo;
-              Future <int> eliminar = servico.eliminarInfo(servico.idInfo).then((int onValue){
+              Distrito distrito = new Distrito();
+              distrito.id = d.id;
+              Future <int> eliminar = distrito.eliminarDist(distrito.id).then((int onValue){
                 if(onValue == 200){
                     Navigator.push(
                                 context,
@@ -65,7 +81,7 @@ Widget createservice(List informacoes, context){
 
   return Table( border: TableBorder(
     horizontalInside: BorderSide(
-      color: Colors.black,
+      color: Colors.blue,
       style: BorderStyle.solid,
       width: 0.5,
     ),

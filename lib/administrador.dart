@@ -2,33 +2,49 @@ import 'package:flutter/material.dart';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:scoped_model/scoped_model.dart';
-import 'dart:convert' show json;
+import 'dart:convert' show json, jsonDecode;
 
 class Administrador extends Model
 {
-int idA;  //todas as variaveis em minuscula
-String nomeShopping; 
+int id;  //todas as variaveis em minuscula
+String nome;
+String email;
+String pass;
 
+final url = 'http://298d6af40aef.ngrok.io/';
 
+static Administrador _logado;
 
-Administrador({int id, String nameS})
+Administrador({int id, String name, String em, String password})
 {
-  this.idA = id;
-  this.nomeShopping = nameS;  
+  this.id = id;
+  //this.nomeShopping = nameS; 
+  this.nome = name;
+  this.email = em;
+  this.pass = password; 
 
 }
 
+factory Administrador.isLogged(){
+  return _logado;
+}
+factory Administrador.logout(){
+  _logado = null;
+}
 factory Administrador.fromJson(Map<String, dynamic> json)
 {
   return Administrador(
-    id: json['idA'] as int,
-    nameS: json['NomeShopping'] as String,
+    id: json['id'] as int,
+    name: json['nome'] as String,
+    em: json['email'] as String,
+    password: json['pass'] as String
    
   );
 }
 
 Future<List<Administrador>> getAdministradores() async{
-  http.Response resposta = await http.get(Uri.encodeFull('http://79b87e60209d.ngrok.io/api/Administrador'), headers:{"Accept" : "application/json"});
+  var url = this.url +'api/Administrador';
+  http.Response resposta = await http.get(url, headers:{"Accept" : "application/json"});
 
   List lista = json.decode(resposta.body);
 
@@ -40,8 +56,9 @@ Future<List<Administrador>> getAdministradores() async{
 }
 
 Future<Administrador> getAdministradors(int id) async {
+  var url = this.url + 'api/Administrador/';
   http.Response response = await http.get(
-    Uri.encodeFull("http://79b87e60209d.ngrok.io/api/Administrador" + id.toString()),
+    Uri.encodeFull(url + id.toString()),
     headers: {
       "Accept":"application/json"
     }
@@ -53,10 +70,13 @@ Future<Administrador> getAdministradors(int id) async {
 }
 
 Future<int> createAdmin(Administrador administrador) async {
-  var url = 'http://79b87e60209d.ngrok.io/api/Administrador';
+  var url = this.url + 'api/Administrador';
   var body = json.encode(<String,Object>{
-    'idA':administrador.idA,
-    'NomeShopping':administrador.nomeShopping //mm nomes como no c#
+    'id':administrador.id,
+    'nome':administrador.nome, //mm nomes como no c#
+    'email': administrador.email,
+    'pass': administrador.pass
+    
     
   });
   print(body);
@@ -78,5 +98,26 @@ void UpdateAdmin(int idA, String what, String NS) async{
     });
   
   
+}
+
+Future<Administrador> makelogin(String email, String pass) async
+{
+  var url = this.url + 'api/Login';
+
+  var body = json.encode(<String,Object>{
+    'email': email,
+    'pass': pass
+  });
+
+  http.Response response = await http.post(url,
+      headers: {"Content-Type": "application/json"},
+      body: body); 
+  
+  if(response.statusCode == 200){
+    var admin = new Administrador.fromJson(jsonDecode(response.body));
+    _logado = admin;
+    return admin;
+  }
+  throw new Exception('Failed on login');
 }
 }

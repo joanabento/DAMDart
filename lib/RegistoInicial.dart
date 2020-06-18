@@ -6,7 +6,7 @@ import 'package:my_app/Login.dart';
 import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
-import 'informacao.dart';
+
 
 class RegistoInicial extends StatelessWidget {
  
@@ -15,7 +15,7 @@ class RegistoInicial extends StatelessWidget {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
         title: Center(child:Text('')),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.green,
       ),
     body: 
     Container( 
@@ -24,7 +24,7 @@ class RegistoInicial extends StatelessWidget {
         children: <Widget> [
           SizedBox(
           child:
-          Text("Bem-vindo ao Nosso Shopping",
+          Text("Apenas para administradores",
             textAlign: TextAlign.center, 
             
             style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)
@@ -73,12 +73,7 @@ class RegistoInicial extends StatelessWidget {
               ],
             ), 
           ]),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage('https://nossoshopping.pt/wp-content/uploads/2017/09/Logo_Monograma-01.png'),
-            fit: BoxFit.cover,
-          ),         
-        ), 
+        
       ),    
     );        
   }

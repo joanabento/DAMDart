@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_app/PerfilA.dart';
-import 'package:my_app/PerfilL.dart';
 import 'package:my_app/Registo.dart';
+import 'package:my_app/administrador.dart';
 import 'package:my_app/main.dart';
 import 'dart:convert' show json;
 
-import 'utilizador.dart';
 
 
 
@@ -36,7 +35,7 @@ final passc = TextEditingController();
      return Scaffold(
         appBar: AppBar(
           title: const Text('Login'),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.green,
         ),        
         body: 
         Center(child: 
@@ -69,32 +68,25 @@ final passc = TextEditingController();
             children: <Widget>[
             FlatButton(
             child: Text('Login'),
-            color: Colors.black,
+            color: Colors.green,
             onPressed: () {
-              Utilizador user = new Utilizador();
-              user.email = emailc.text;
-              user.pass = passc.text;
-              Future <int> verifica = user.makelogin(user.email, user.pass).then((Utilizador onValue){
-                if(onValue.tipo == 'Administrador')
-                  {
+              Administrador admin = new Administrador();
+              admin.email = emailc.text;
+              admin.pass = passc.text;
+              Future <int> verifica = admin.makelogin(admin.email, admin.pass).then((Administrador onValue){
+               
                     //var userr = Utilizador.isLogged();
                     Navigator.pushAndRemoveUntil(context, 
                     MaterialPageRoute(builder: (context) => PerfilA()),
                     ModalRoute.withName('/'));
-                  }
-                  else
-                  {
-                    Navigator.pushAndRemoveUntil(context, 
-                    MaterialPageRoute(builder: (context) => PerfilL()),
-                    ModalRoute.withName('/'));
-                  }
+                
               });
               
             },
             ),
             FlatButton(
             child: Text('Cancelar'),
-            color: Colors.black,
+            color: Colors.green,
             onPressed: () {},
             
             ),
