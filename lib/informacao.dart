@@ -12,7 +12,7 @@ String horario;
 int contacto;
 String descricao;
 
-final url = 'http://b21d159b85b6.ngrok.io/';
+final url = 'http://25ae316ec689.ngrok.io/';
 
 
 Informacao({int id, String name, String hour, int contact, String description})
@@ -81,7 +81,7 @@ Future <int> createInfo(Informacao informacao) async {
 }
 
 void updateInfo(int idInfo, String what, DateTime hora, String nome, int contacto, String descricao) async{
-  var url = 'http://7a687372785c.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
+  var url = 'http://25ae316ec689.ngrok.io/api/Informacao' + idInfo.toString() + "/" + what;
   var body = json.encode(hora);  //aqui ele tem value e eu queria por nome, pass mas n dá. como fazer?????
 
   http.put(url,
@@ -93,7 +93,7 @@ void updateInfo(int idInfo, String what, DateTime hora, String nome, int contact
 
 Future<int> eliminarInfo (int idInfo) async{
   print(idInfo);
-  var url = 'http://b21d159b85b6.ngrok.io/api/Informacao/' + idInfo.toString();
+  var url = 'http://25ae316ec689.ngrok.io/api/Informacao/' + idInfo.toString();
 
 
   http.Response response = await http.delete(url,

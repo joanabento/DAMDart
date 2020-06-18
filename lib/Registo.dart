@@ -137,29 +137,6 @@ bool state = false;
               },
               ),
               Text("Lojista"),
-              IconButton(
-              icon: Icon(Icons.person),
-              iconSize: 50,
-              onPressed: () {
-                Utilizador user = new Utilizador();
-                user.idu = 0;
-                user.nome = nameC.text;
-                user.email = emailC.text;
-                user.pass = passC.text;
-                user.tipo = "Cliente";
-                user.createUtilizador(user).then((int onValue){
-                if(onValue == 200){                   
-                  Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Login())
-                              );
-                }
-                else{
-                  typeButton();
-                }});
-              },
-              ),
-              Text("Cliente")
           ],
         ),     
         ]        
