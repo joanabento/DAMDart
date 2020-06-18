@@ -2,71 +2,75 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:my_app/PerfilA.dart';
-import 'package:my_app/Registo.dart';
 import 'dart:convert' show json;
 
-import 'informacao.dart';
+import 'package:my_app/formulario.dart';
 
-class Gereservico extends StatelessWidget {
+import 'PerfilA.dart';
+
+
+
+
+
+class ListarForm extends StatelessWidget {
  
- List informacoes;
-Gereservico({Key key, @required this.informacoes}): super(key:key);
+ List formularios;
+ListarForm({Key key, @required this.formularios}): super(key:key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(appBar: AppBar(
-        title: Center(child:Text('Gerir Serviços')),
-        backgroundColor: Colors.black,
+        title: Center(child:Text('Gerir Formulários')),
+        backgroundColor: Colors.green,
       ),
-
     body:
-    createservice(informacoes, context));
+    createform(formularios, context));
   }
 //*
-Widget createservice(List informacoes, context){
+Widget createform(List formularios, context){
   List<TableRow> rows = [];
-  for (Informacao i in informacoes){
+  for (Formulario f in formularios){
     rows.add(TableRow(children: [
-      Text(i.nome,
-      textAlign: TextAlign.center, 
-      style: TextStyle(fontSize: 20)
+      IconButton(
+        icon: Icon(Icons.info),
+        onPressed: null,
       ),
-      Text(i.descricao,
-      textAlign: TextAlign.center,
-      style: TextStyle(fontSize: 20),
+      Text(
+        f.nome,
+        textAlign: TextAlign.center, 
+        style: TextStyle(fontSize: 20)
       ),
+      
       ButtonBar(            
             mainAxisSize: MainAxisSize.min,
             alignment: MainAxisAlignment.center,
             children: <Widget>[
             RaisedButton(
             child: Text('Eliminar'),
-            color: Colors.black,
+            color: Colors.green,
             onPressed: () {  
-              Informacao servico = new Informacao();
-              servico.idInfo = i.idInfo;
-              Future <int> eliminar = servico.eliminarInfo(servico.idInfo).then((int onValue){
+              Formulario form = new Formulario();
+              form.id = f.id;
+              Future <int> eliminar = form.eliminarForm(form.id).then((int onValue){
                 if(onValue == 200){
                     Navigator.push(
                                 context,
                                 MaterialPageRoute(builder: (context) => PerfilA()),
                               );
-
                 }
-              });                              
-                }                
+              }
+              );                              
+            }                
             ),  
           ],
         ),
-    ],
-    ));   
-    
+      ],
+    ));     
   }
 
   return Table( border: TableBorder(
     horizontalInside: BorderSide(
-      color: Colors.black,
+      color: Colors.blue,
       style: BorderStyle.solid,
       width: 0.5,
     ),
